@@ -15284,7 +15284,7 @@ InitShotgun(PLAYERp pp)
             SPRITEp hsp = &sprite[hitsprite];
             USERp hu = User[hitsprite];
         
-            if (hu->ID == TRASHCAN)
+            if ((hu) && (hu->ID == TRASHCAN))
                 {
                 extern STATE s_TrashCanPain[];
             
@@ -18091,7 +18091,7 @@ InitUzi(PLAYERp pp)
         USERp hu = User[hitsprite];
         hsp = &sprite[hitsprite];
         
-        if (hu->ID == TRASHCAN)
+        if ((hu) && (hu->ID == TRASHCAN))
             {
             extern STATE s_TrashCanPain[];
             
