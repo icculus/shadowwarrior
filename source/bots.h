@@ -40,19 +40,19 @@ typedef enum
     } BOT_Actions;
 
 // Linked lists containing node trees that are chosen based on desired actions
-struct NODEstruct;
-typedef struct NODEstruct NODE, *NODEp;
+//struct NODEstruct;
+//typedef struct NODEstruct NODE, *NODEp;
 
 typedef struct NODEstruct
     {
-    NODEp p, l, r;              // Pointers to tree nodes
+    struct NODEstruct *p, *l, *r;              // Pointers to tree nodes
     long goalx, goaly, goalz;   // x,y,z point bot wants to get to
     BOT_Actions action;         // Action to take if this node is reached
     long tics;                  // Optionally stay in this node for x tics.
     } NODE, *NODEp;
     
-struct NODETREEstruct;    
-typedef struct NODETREEstruct NODETREE, *NODETREEp;
+//struct NODETREEstruct;
+//typedef struct NODETREEstruct NODETREE, *NODETREEp;
 
 typedef struct NODETREEstruct
     {

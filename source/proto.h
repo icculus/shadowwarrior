@@ -119,7 +119,7 @@ void resettiming(void);
 //           Resets timing, such as setting totalclock = 0.  Also resets other
 //           timers.  This is for use with the showengineinfo function above.
 
-short ksqrt(long num);  // returns (long)square root
+//short ksqrt(long num);  // returns (long)square root
 //           A square root function optimized for integers.  Use this function
 //           only if you want to.
 
@@ -129,7 +129,7 @@ int getangle(long xvect,long yvect);  //  returns (short)angle;
 //           you would get the bullet's angle this way:
 //  sprite[bullet].ang = getangle(posx-sprite[monst].x,posy-sprite[monst].y);
 
-short inside(long x, long y, short sectnum);
+//short inside(long x, long y, short sectnum);
 //  Tests to see whether the overhead point (x, y) is inside sector (sectnum)
 //  Returns either 0 or 1, where 1 means it is inside, and 0 means it is not.
 
@@ -226,10 +226,10 @@ int COVERinsertsprite(short sectnum, short statnum);   //returns (short)spritenu
 //  number from 0 to MAXSTATUS-1.  Insertsprite works like a memory
 //  allocation function and returns the sprite number.
 
-void deletesprite(short spritenum);
+//void deletesprite(short spritenum);
 //  Deletes the sprite.
 
-void changespritesect(short spritenum, short newsectnum);
+//void changespritesect(short spritenum, short newsectnum);
 //  Changes the sector of sprite (spritenum) to the
 //  newsector (newsectnum).  This function may become
 //  internal to the engine in the move_sprite function.  But
@@ -325,9 +325,9 @@ void neartag(long x, long y, long z, short sectnum, short ang,  //Starting posit
 #define NTAG_SEARCH_HI 2
 #define NTAG_SEARCH_LO_HI 3
 
-void neartag (long xs, long ys, long zs, short sectnum, short ange,
-  short *neartagsector, short *neartagwall, short *neartagsprite,
-  long *neartaghitdist, long neartagrange, char tagsearch);
+//void neartag (long xs, long ys, long zs, short sectnum, short ange,
+//  short *neartagsector, short *neartagwall, short *neartagsprite,
+//  long *neartaghitdist, long neartagrange, char tagsearch);
 #endif  
 
 
@@ -341,7 +341,7 @@ void dragpoint(short wallnum, long newx, long newy);
 
 void rotatepoint(long xpivot, long ypivot, long x, long y, short deltaang, long *x2, long *y2);
 
-int draw2dscreen(long posxe, long posye, short ange, long zoome, short gride);
+//int draw2dscreen(long posxe, long posye, short ange, long zoome, short gride);
 
 int qsetmode320200(void);
 int qsetmode640350(void);

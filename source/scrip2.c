@@ -26,24 +26,28 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 
 // scriplib.c
 #include "condef.h"
-#include <sys\types.h>
-#include <sys\stat.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+
+#if PLATFORM_DOS
 #include <io.h>
 #include <dos.h>
-#include <fcntl.h>
 #include <process.h>
+#include <conio.h>
+#include <direct.h>
+#include <bios.h>
+#endif
+
+#include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include <ctype.h>
 #include <string.h>
-#include <conio.h>
 #include <time.h>
-#include <direct.h>
-#include <bios.h>
 
 #include "string.h"
-#include "build.h"
+#include "shadow.h" // added for unix port.  --ryan.
 #include "proto.h"
 #include "keys.h"
 #include "names2.h"

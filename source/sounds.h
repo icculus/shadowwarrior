@@ -88,7 +88,7 @@ typedef struct
     } *VOC_HDRp;
 
 // Ambient Sound Structure
-struct ambientstruct
+typedef struct ambientstruct
     {
     SHORT name;
     SHORT diginame;

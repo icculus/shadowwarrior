@@ -24,11 +24,14 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 */
 //-------------------------------------------------------------------------
 
+#if PLATFORM_DOS
 #include <dos.h>
+#endif
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "build.h"
+#include "shadow.h" // added for unix port.  --ryan.
 #include "proto.h"
 #include "names2.h"
 #include "panel.h"

@@ -127,9 +127,12 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 #include "weapon.def"
 
 // Build              
-#include "mmulti.def" 
-#include "build.def"  
-#include "engine.def" 
-#include "cache1d.def"
-                      
+//#include "mmulti.def"
+//#include "build.def"
+//#include "engine.def"
+//#include "cache1d.def"
+#include "buildengine/engine.h"
+#include "buildengine/build.h"
+#include "buildengine/cache1d.h"
+
 #endif                

@@ -24,13 +24,17 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 */
 //-------------------------------------------------------------------------
 
-#include <stdio.h>                                                  
-#include <conio.h>
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+
+#if PLATFORM_DOS
+#include <conio.h>
+#endif
+
 #include "condef.h"
-#include "build.h"
+#include "shadow.h" // added for unix port.  --ryan.
 #include "proto.h"
 #include "keys.h"
 #include "names2.h"

@@ -24,15 +24,21 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 */
 //-------------------------------------------------------------------------
 
+#if !PLATFORM_MACOSX
 #include <malloc.h>
+#endif
+
+#if PLATFORM_DOS
 #include <conio.h>
+#include <dos.h>
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <dos.h>
 #include <math.h>
 
-#include "build.h"
+#include "shadow.h" // added for unix port.  --ryan.
 #undef MAXPLAYERS
 #include "keys.h"
 

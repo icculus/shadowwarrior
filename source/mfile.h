@@ -24,6 +24,9 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 */
 //-------------------------------------------------------------------------
 
+#ifndef _INCL_MFILE_H_
+#define _INCL_MFILE_H_
+
 #define FILE_ANSI_STD   0
 #define FILE_KEN        1
 #define FILE_DOS        2
@@ -43,8 +46,8 @@ typedef FILE *MFILE;
 
 #if FILE_TYPE == FILE_KEN
 typedef FILE *MFILE; 
-size_t dfread( void *, size_t, size_t, FILE * );
-size_t dfwrite( void *, size_t, size_t, FILE * );
+//size_t dfread( void *, size_t, size_t, FILE * );
+//size_t dfwrite( void *, size_t, size_t, FILE * );
 #define MREAD(ptr, size, num,handle) dfread((ptr),(size),(num),(handle))
 #define MWRITE(ptr, size, num,handle) dfwrite((ptr),(size),(num),(handle))
 #define MOPEN_WRITE(name) fopen(name,"wb")
@@ -61,5 +64,7 @@ typedef long MFILE;
 #define MOPEN_READ(name) open(name,O_BINARY|O_RDWR,S_IREAD)
 #define MCLOSE(handle) close(handle)
 #define MF_ERR -1
+#endif
+
 #endif
 

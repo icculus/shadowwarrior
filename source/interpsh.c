@@ -24,7 +24,7 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 */
 //-------------------------------------------------------------------------
 
-#include  "pragmas.h"
+#include  "buildengine/pragmas.h"
 #include "interp.h"
 
 #define SHORT_MAXINTERPOLATIONS 256

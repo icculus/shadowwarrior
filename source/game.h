@@ -28,6 +28,9 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 
 #define GAME_H
 
+#define NUMOPTIONS 8
+#define NUMKEYS 19
+
 #define DEBUG 0
 #define TEN_DEBUG 0
  
@@ -836,8 +839,8 @@ typedef struct STATEstruct STATE, *STATEp, **STATEpp;
 struct PANEL_STATEstruct;
 typedef struct PANEL_STATEstruct PANEL_STATE, *PANEL_STATEp;
 
-struct PLAYERstruct;
-typedef struct PLAYERstruct PLAYER, *PLAYERp;
+//struct PLAYERstruct;
+//typedef struct PLAYERstruct PLAYER, *PLAYERp;
 
 struct PERSONALITYstruct;
 typedef struct PERSONALITYstruct PERSONALITY, *PERSONALITYp;
@@ -1060,8 +1063,6 @@ extern VOID (*InitWeapon[MAX_WEAPONS])(PLAYERp);
 #define MAX_SW_PLAYERS (8)
 #endif
 
-extern PLAYER Player[MAX_SW_PLAYERS+1];
-
 typedef struct
     {
     char map_name[16];
@@ -1126,8 +1127,6 @@ enum PlayerDeathTypes
     
 typedef void (*PLAYER_ACTION_FUNCp)(PLAYERp);
 
-#include "inv.h"
-
 typedef struct
 {
 short cursectnum,lastcursectnum,pang,filler;
@@ -1135,8 +1134,25 @@ long xvect,yvect,oxvect,oyvect,slide_xvect,slide_yvect;
 long posx,posy,posz;
 SECTOR_OBJECTp sop_control;
 }REMOTE_CONTROL, *REMOTE_CONTROLp;
-    
-struct PLAYERstruct
+
+enum InventoryNames
+    {
+    INVENTORY_MEDKIT, 
+    INVENTORY_REPAIR_KIT,
+    INVENTORY_CLOAK,        // de-cloak when firing
+    INVENTORY_NIGHT_VISION, 
+    INVENTORY_CHEMBOMB,
+    INVENTORY_FLASHBOMB, 
+    INVENTORY_CALTROPS,  
+    MAX_INVENTORY
+    };    
+
+#define INVF_AUTO_USE (BIT(0))
+#define INVF_TIMED (BIT(1))
+#define INVF_COUNT (BIT(2))
+
+
+typedef struct PLAYERstruct
     {
     // variable that fit in the sprite or user structure
     long posx, posy, posz;
@@ -1337,8 +1353,23 @@ struct PLAYERstruct
     short Reverb;                   // Player's current reverb setting
     short Heads;                    // Number of Accursed Heads orbiting player
     long PlayerVersion;
-    };
+    } PLAYER, *PLAYERp;
     
+extern PLAYER Player[MAX_SW_PLAYERS+1];
+
+typedef struct
+    {
+    char *Name;
+    VOID (*Init)(PLAYERp);
+    VOID (*Stop)(PLAYERp, short);
+    PANEL_STATEp State;
+    short DecPerSec;
+    short MaxInv;
+    long  Scale;
+    short Flags;
+    } INVENTORY_DATA, *INVENTORY_DATAp;
+
+extern INVENTORY_DATA InventoryData[MAX_INVENTORY+1];
 
 //
 // Player Flags
@@ -1823,7 +1854,7 @@ typedef enum stag_id STAG_ID;
 #define WALLFX_DONT_SCALE                BIT(8) // for sector object
 #define WALLFX_LOOP_OUTER_SECONDARY      BIT(9) // for sector object
 
-enum ShrapType 
+typedef enum
 {
 SHRAP_NONE              = 0,                                                           
 SHRAP_GLASS             = 1,  // 
@@ -1846,7 +1877,7 @@ SHRAP_WOODMIX           = 17,
 SHRAP_MARBELS           = 18,
 SHRAP_PAPERMIX          = 19,
 SHRAP_USER_DEFINED      = 99
-};
+} ShrapType;
                                                            
 typedef struct
     {
@@ -2214,7 +2245,7 @@ int move_missile(short spritenum, long xchange, long ychange, long zchange, long
 int DoPickTarget(SPRITEp sp, WORD max_delta_ang, BOOL skip_targets);
 int getflorzofslope(short, long x, long y);
 int getceilzofslope(short, long x, long y);
-int getzsofslope(short sectnum, long x, long y, long *ceilz, long *florz);
+//int getzsofslope(short sectnum, long x, long y, long *ceilz, long *florz);
 
 VOID change_sprite_stat(short, short);
 VOID SetOwner(short, short);  
@@ -2259,12 +2290,12 @@ VOID COVERupdatesector(LONG x, LONG y, SHORTp newsector);
 
 void updatesectorz(long,long,long,SHORTp);
     
-int kopen4load(char *filename, char searchfirst);
-int kread(long handle, void *buffer, long leng);
-int klseek(long handle, long offset, long whence);
-int kfilelength(long handle);
-int kclose(long handle);
-int setfirstwall(short sectnum, short newfirstwall);
+//int kopen4load(char *filename, char searchfirst);
+//int kread(long handle, void *buffer, long leng);
+//int klseek(long handle, long offset, long whence);
+//int kfilelength(long handle);
+//int kclose(long handle);
+//int setfirstwall(short sectnum, short newfirstwall);
 
 extern long clipmoveboxtracenum;
 
