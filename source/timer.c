@@ -24,8 +24,6 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 */
 //-------------------------------------------------------------------------
 
-#error do not compile this...use the one in buildengine instead.  --ryan.
-
 #if PLATFORM_DOS
 #include <dos.h>
 #endif
@@ -64,7 +62,7 @@ volatile char readch, oldreadch, extended, keytemp;
 
 void TimerFunc(task * Task);
 task *Task1 = NULL;
-int Timer1;
+int Timer1 = 0;
 
 // CTW MODIFICATION
 //#if 0
@@ -86,22 +84,36 @@ TimerFunc(task * Task)
     }
 #endif    
 
-inittimer()
+
+
+// Build Engine port implements this.  --ryan.
+#if PLATFORM_DOS
+void inittimer(void)
     {
     Timer1 = 0;
     Task1 = TS_ScheduleTask(&TimerFunc, 120, 1, &Timer1);
     TS_Dispatch();
     }
 
-uninittimer()
+void uninittimer(void)
     {
     //TS_Terminate(Task1);
     //TS_Terminate(0);
     //before you shutdown your memory system
     TS_Shutdown();
     }
-
 #else
+void timerhandler(void)
+{
+    TimeFunc(&Timer1);
+}
+#endif  // PLATFORM_DOS
+
+#else  // !ASL
+
+
+// Build Engine port implements this.  --ryan.
+#if PLATFORM_DOS
 void (__interrupt __far * oldtimerhandler) ();
 void __interrupt __far timerhandler(void);
 
@@ -136,8 +148,16 @@ timerhandler()
     //keytimerstuff();
     outp(0x20, 0x20);
     }
+#else
+void timerhandler(void)
+{
+    totalclock++;
+}
+#endif  // PLATFORM_DOS
 
-#endif
+
+#endif  // ASL
+
 
 ///////////////////////////////
 
