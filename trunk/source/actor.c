@@ -47,7 +47,7 @@ extern STATE s_NinjaDieSliced[];
 
 extern STATEp sg_NinjaGrabThroat[]; 
 
-DoScaleSprite(short SpriteNum);
+int DoScaleSprite(short SpriteNum);
 
 
 int 

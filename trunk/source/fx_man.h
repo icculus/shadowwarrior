@@ -140,3 +140,4 @@ int  FX_StartRecording( int MixRate, void ( *function )( char *ptr, int length )
 void FX_StopRecord( void );
 
 #endif
+

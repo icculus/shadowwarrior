@@ -36,3 +36,4 @@ extern long RectClipMove(PLAYERp pp,long *qx,long *qy);
 extern long testpointinquad(long x,long y,long *qx,long *qy);
 //#line "mclip.c" 498
 extern short RectClipTurn(PLAYERp pp,short new_ang,long *qx,long *qy,long *ox,long *oy);
+

@@ -29,3 +29,4 @@ SPRITEp WarpPlane(LONGp x, LONGp y, LONGp z, SHORTp sectnum);
 SPRITEp WarpToArea(SPRITEp sp_from, LONGp x, LONGp y, LONGp z, SHORTp sectnum);
 BOOL WarpSectorInfo(short sectnum, SPRITEp *sp_warp);
 SPRITEp Warp(LONGp x, LONGp y, LONGp z, SHORTp sectnum);
+

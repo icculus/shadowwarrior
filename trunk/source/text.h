@@ -32,3 +32,4 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 #define TEXT_INFO_LINE(line) (TEXT_INFO_Y + ((line) * TEXT_INFO_YOFF))
 //#define TEXT_INFO_LINE(line) (TEXT_INFO_Y + ((line) * TEXT_INFO_YOFF) + GlobalInfoLineOffset)
 
+

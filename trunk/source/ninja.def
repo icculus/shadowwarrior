@@ -54,3 +54,4 @@ extern void PlayerSpriteLoadLevel(short SpriteNum);
 extern void InitPlayerSprite(PLAYERp pp);
 //#line "ninja.c" 1917
 extern void SpawnPlayerUnderSprite(PLAYERp pp);
+

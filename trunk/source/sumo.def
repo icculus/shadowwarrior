@@ -36,3 +36,4 @@ extern int DoSumoRumble(short SpriteNum);
 extern int InitSumoFart(short SpriteNum);
 //#line "sumo.c" 606
 extern int InitSumoStomp(short SpriteNum);
+

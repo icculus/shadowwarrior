@@ -38,3 +38,4 @@ extern int DoHornetCircle(short SpriteNum);
 extern int DoHornetDeath(short SpriteNum);
 //#line "hornet.c" 506
 extern int DoHornetMove(short SpriteNum);
+

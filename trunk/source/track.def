@@ -108,3 +108,4 @@ extern void ActorLeaveTrack(short SpriteNum);
 extern BOOL ActorTrackDecide(TRACK_POINTp tpoint,short SpriteNum);
 //#line "track.c" 3642
 extern int ActorFollowTrack(short SpriteNum,short locktics);
+

@@ -28,6 +28,8 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 
 #define TYPES_H
 
+#include "shadow.h"  // added for unix port.  --ryan.
+
 	// CTW ADDITION (from Duke 3d TYPES.H)
 	typedef unsigned char           uint8;
 	typedef uint8                   byte;
@@ -309,4 +311,5 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 #define BETWEEN(x,low,high) (((x) >= (low)) && ((x) <= (high)))
 
 #endif
+
 

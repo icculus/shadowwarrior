@@ -34,3 +34,4 @@ extern void DoLightingMatch(short match,short state);
 extern void InitLighting(void );
 //#line "light.c" 250
 extern void DoLighting(void );
+

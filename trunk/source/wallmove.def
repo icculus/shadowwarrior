@@ -32,3 +32,4 @@ extern int DoWallMove(SPRITEp sp);
 extern BOOL CanSeeWallMove(SPRITEp wp,short match);
 //#line "wallmove.c" 169
 extern int DoWallMoveMatch(short match);
+

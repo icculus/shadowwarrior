@@ -98,3 +98,4 @@ void  MUSIC_RerouteMidiChannel( int channel, int cdecl ( *function )( int event,
 void  MUSIC_RegisterTimbreBank( unsigned char *timbres );
 
 #endif
+

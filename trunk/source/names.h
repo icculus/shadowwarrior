@@ -92,3 +92,4 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 //#define BLACK!!!!!!!!!!! 2306
 #define FragBarErase 2375
 #define FragBarErase2 2376
+

@@ -69,8 +69,8 @@ extern ATTRIBUTE DefaultAttrib;
     
 // AI.C functions
 void __export DebugMoveHit(short SpriteNum);
-char __export ActorMoveHitReact(short SpriteNum);
-char __export ActorFlaming(short SpriteNum);
+BOOL __export ActorMoveHitReact(short SpriteNum);
+BOOL __export ActorFlaming(short SpriteNum);
 void __export DoActorSetSpeed(short SpriteNum,BYTE speed);
 short __export ChooseActionNumber(short decision[]);
 int __export DoActorNoise(ANIMATORp Action,short SpriteNum);

@@ -57,3 +57,4 @@ extern void JS_ToggleLockouts(void );
 //#line "jsector.c" 1295
 extern void UnlockKeyLock(short key_num,short hitsprite);
 extern void JS_ProcessEchoSpot(void);
+

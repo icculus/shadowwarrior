@@ -46,3 +46,4 @@ extern BOOL CDAudio_Playing(void );
 extern int CDAudio_Init(void );
 //#line "cd.c" 1186
 extern void CDAudio_Shutdown(void );
+

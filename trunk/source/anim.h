@@ -29,3 +29,4 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 #define ANIM_SUMO 2
 #define ANIM_ZILLA 3
 
+

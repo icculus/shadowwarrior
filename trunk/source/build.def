@@ -133,3 +133,4 @@ extern void printmessage256(char name[]);
 extern void getclosestpointonwall(long x,long y,long dawall,long *nx,long *ny);
 //#line "build.c" 6546
 extern void initcrc(void);
+

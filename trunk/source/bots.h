@@ -107,3 +107,4 @@ extern NODETREE BOT_TREELIST[25][50]; // There can be up to 50 of each item
                                       // with a cooresponding search tree for each  
 
 #endif
+

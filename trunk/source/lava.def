@@ -30,3 +30,4 @@ extern int SetupLava(short SpriteNum);
 extern int NullLava(short SpriteNum);
 //#line "lava.c" 470
 extern int DoLavaMove(short SpriteNum);
+

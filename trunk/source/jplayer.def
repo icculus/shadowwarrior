@@ -38,3 +38,4 @@ extern void operatefta(void );
 extern int getspritescore(long snum,long dapicnum);
 //#line "jplayer.c" 305
 extern void computergetinput(long snum,SW_PACKET *syn);
+

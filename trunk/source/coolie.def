@@ -36,3 +36,4 @@ extern int NullCoolie(short SpriteNum);
 extern int DoCoolieMove(short SpriteNum);
 //#line "coolie.c" 561
 extern int InitCoolieCharge(short SpriteNum);
+

@@ -38,3 +38,4 @@ extern int DoSkullBob(short SpriteNum);
 extern int DoSkullSpawnShrap(short SpriteNum);
 //#line "skull.c" 418
 extern int DoSkullWait(short SpriteNum);
+

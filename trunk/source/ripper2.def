@@ -57,3 +57,4 @@ extern void Ripper2Hatch(short Weapon);
 extern int DoRipper2Move(short SpriteNum);
 //#line "ripper2.c" 1299
 extern int InitRipper2Charge(short SpriteNum);
+

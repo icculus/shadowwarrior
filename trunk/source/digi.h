@@ -991,3 +991,4 @@ DIGI_ENTRY("ZC9.VOC",     DIGI_ZC9,               624,      PRI_PLAYERVOICE, 0, 
 DIGI_ENTRY("Z16043.VOC",  DIGI_Z16043,            625,      PRI_PLAYERVOICE, 0,      0, NULL, DIST_NORMAL, VF_NORMAL )             
 
 #undef DIGI_ENTRY
+

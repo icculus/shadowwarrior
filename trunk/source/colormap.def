@@ -34,3 +34,4 @@ extern void SetPaletteToVESA(char *pal);
 extern void set_pal(char *pal);
 //#line "colormap.c" 390
 extern void GetPaletteFromVESA(char *pal);
+

@@ -62,3 +62,4 @@ extern void PutStringInfoLine2(PLAYERp pp,char *string);
 extern void pMenuClearTextLine(PLAYERp pp);
 //#line "text.c" 454
 extern void PutStringPlayerInfo(PLAYERp pp,char *string);
+

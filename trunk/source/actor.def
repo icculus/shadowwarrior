@@ -64,3 +64,4 @@ extern int DoJump(short SpriteNum);
 extern int DoBeginFall(short SpriteNum);
 //#line "actor.c" 794
 extern int DoFall(short SpriteNum);
+

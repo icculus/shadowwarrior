@@ -119,3 +119,4 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
     #define PALETTE_ILLUMINATE          32  // Used to make sprites bright green in night vision
 
  
+

@@ -44,3 +44,4 @@ extern int NullWashGirl(short SpriteNum);
 extern int WashGirlUzi(short SpriteNum);
 //#line "miscactr.c" 964
 extern int WashGirlPain(short SpriteNum);
+

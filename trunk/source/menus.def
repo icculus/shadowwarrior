@@ -98,3 +98,4 @@ extern void FadeOut(unsigned char targetcolor,unsigned int clicks);
 extern void SetFadeAmt(PLAYERp pp,short damage,unsigned char startcolor);
 //#line "menus.c" 2832
 extern void DoPaletteFlash(PLAYERp pp);
+

@@ -30,3 +30,4 @@ extern void initkeys(void );
 extern void uninitkeys(void );
 //#line "kbd.c" 96
 extern void gamekeys(void );
+

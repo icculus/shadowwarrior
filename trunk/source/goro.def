@@ -32,3 +32,4 @@ extern int NullGoro(short SpriteNum);
 extern int DoGoroPain(short SpriteNum);
 //#line "goro.c" 517
 extern int DoGoroMove(short SpriteNum);
+

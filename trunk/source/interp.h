@@ -36,3 +36,4 @@ extern long oldipos[MAXINTERPOLATIONS];
 extern long bakipos[MAXINTERPOLATIONS];
 extern long *curipos[MAXINTERPOLATIONS];
 
+

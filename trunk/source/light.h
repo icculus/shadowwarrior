@@ -55,3 +55,4 @@ VOID DoLighting(VOID);
 #define LIGHT_DiffuseMult(sp) (SP_TAG4((sp)))
 
 enum LightTypes {LIGHT_CONSTANT, LIGHT_FLICKER, LIGHT_FADE, LIGHT_FLICKER_ON, LIGHT_FADE_TO_ON_OFF};
+

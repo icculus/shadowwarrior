@@ -46,3 +46,4 @@ extern void DoRotatorStopInterp(short SpriteNum);
 extern int DoRotatorMove(short SpriteNum);
 //#line "rotator.c" 390
 extern int DoRotator(short SpriteNum);
+

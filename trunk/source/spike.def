@@ -48,3 +48,4 @@ extern void MoveSpritesWithSpike(short sectnum);
 extern int DoSpike(short SpriteNum);
 //#line "spike.c" 414
 extern int DoSpikeAuto(short SpriteNum);
+

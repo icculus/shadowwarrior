@@ -33,8 +33,11 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 extern int animationFrameNumber;
 #endif
 
+#if PLATFORM_DOS
 #include <i86.h>
-#include "build.h"
+#endif
+
+#include "shadow.h"  // added for unix port.  --ryan.
 #include "proto.h"
 #include "keys.h"
 #include "types.h"
@@ -271,7 +274,7 @@ char * LoadAnm(short anim_num)
     // lock it
     walock[ANIM_TILE(ANIMnum)] = 219;
 
-    if (anm_ptr[anim_num] == 0)
+    if (anm_ptr[(int) anim_num] == 0)
         {
         handle = kopen4load(ANIMname[ANIMnum], 0);
         if (handle == -1)

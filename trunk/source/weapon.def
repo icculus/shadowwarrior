@@ -468,3 +468,4 @@ extern int ShrapKillSprite(short SpriteNum);
 extern BOOL CheckBreakToughness(BREAK_INFOp break_info,short ID);
 //#line "weapon.c" 16737
 extern int DoItemFly(SHORT SpriteNum);
+

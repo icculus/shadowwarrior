@@ -122,3 +122,4 @@ extern int DoActorReposition(short SpriteNum);
 extern int InitActorPause(short SpriteNum);
 //#line "ai.c" 1810
 extern int DoActorPause(short SpriteNum);
+

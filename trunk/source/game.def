@@ -154,3 +154,4 @@ extern void PreCacheRange(short start_pic,short end_pic);
 extern void DoTheCache(void );
 //#line "game.c" 3772
 extern void test_pal(void );
+

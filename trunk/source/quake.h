@@ -37,3 +37,4 @@ int SetNuclearQuake(SHORT Weapon);
 int SetSumoQuake(SHORT SpriteNum);
 int SetSumoFartQuake(SHORT SpriteNum);
     
+
