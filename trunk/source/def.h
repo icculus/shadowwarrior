@@ -31,7 +31,11 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 #include <stdarg.h>
 //#include <stdlib.h>
 #include <string.h>
+
+#if !PLATFORM_MACOSX
 #include <malloc.h>
+#endif
+
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
