@@ -23,9 +23,12 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 */
 //-------------------------------------------------------------------------
 
+#include "shadow.h"  // added for unix port.  --ryan.
+
 // CTW ADDITION
 // This file created to point to MYTYPES.H for all the files that
 // are currently pointing to TYPES.H. This just made it quicker
 // and easier to update.
 #include "mytypes.h"
 // CTW ADDITION END
+
