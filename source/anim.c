@@ -264,6 +264,10 @@ char * LoadAnm(short anim_num)
     char *animbuf, *palptr;
     long i,j,k;
     
+   assert(sizeof(lp_descriptor) == 6);
+   assert(sizeof(lpfileheader) == 128);
+   assert(sizeof(anim->LpArray) == 1536);
+
     DSPRINTF(ds,"LoadAnm");
     MONO_PRINT(ds);
 
@@ -439,6 +443,9 @@ playanm(short anim_num)
     char backup_pal[3*256];
     char tempbuf[256];
     char *palook_bak = palookup[0];
+
+STUBBED("playanm is broken right now.");
+return;
 
     ANIMnum = anim_num;
 
