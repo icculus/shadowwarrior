@@ -2412,9 +2412,6 @@ drawscreen(PLAYERp pp)
         return;        
         }
     #endif    
-    
-    if (getrendermode() >= 3)
-	RedrawScreen = TRUE;
 
     DrawScreen = TRUE;
     PreDraw();

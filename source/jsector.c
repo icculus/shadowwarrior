@@ -514,8 +514,6 @@ void drawroomstotile(long daposx, long daposy, long daposz,
 	setviewback();
 
 	squarerotatetile(tilenume);
-
-	invalidatetile(tilenume, -1, -1);
 }
 #else
 void

@@ -263,7 +263,7 @@ char * LoadAnm(short anim_num)
     long length;
     char *animbuf, *palptr;
     long i,j,k;
-    
+
     DSPRINTF(ds,"LoadAnm");
     MONO_PRINT(ds);
 
@@ -440,6 +440,9 @@ playanm(short anim_num)
     char tempbuf[256];
     char *palook_bak = palookup[0];
 
+STUBBED("playanm is broken");
+return;
+
     ANIMnum = anim_num;
 
     KB_FlushKeyboardQueue();    
@@ -495,11 +498,9 @@ playanm(short anim_num)
         {
         // draw the first frame
         waloff[ANIM_TILE(ANIMnum)] = FP_OFF(ANIM_DrawFrame(1));
-	invalidatetile(ANIM_TILE(ANIMnum), 0, 1<<4);
         rotatesprite(0 << 16, 0 << 16, 65536L, 512, ANIM_TILE(ANIMnum), 0, 0, 2 + 4 + 8 + 16 + 64, 0, 0, xdim - 1, ydim - 1);
              }
-    //VBE_setPalette(0L, 256L, ANIMvesapal);
-    setbrightness(0,ANIMvesapal);
+    VBE_setPalette(0L, 256L, ANIMvesapal);
 
     SoundState = 0;
     //ototalclock = totalclock + 120*2;
@@ -546,7 +547,6 @@ playanm(short anim_num)
             }    
             
         waloff[ANIM_TILE(ANIMnum)] = FP_OFF(ANIM_DrawFrame(i));
-	invalidatetile(ANIM_TILE(ANIMnum), 0, 1<<4);
 
         rotatesprite(0 << 16, 0 << 16, 65536L, 512, ANIM_TILE(ANIMnum), 0, 0, 2 + 4 + 8 + 16 + 64, 0, 0, xdim - 1, ydim - 1);
         nextpage();
