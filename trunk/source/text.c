@@ -637,7 +637,8 @@ VOID PutStringInfo(PLAYERp pp, char *string)
 VOID PutStringInfoLine(PLAYERp pp, char *string)
     {
     short x,y;
-    short w,h;
+    short w = 0;
+    short h = 0;
 
     if (pp-Player != myconnectindex)
         return;

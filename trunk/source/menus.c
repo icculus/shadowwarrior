@@ -455,7 +455,8 @@ MNU_Ten(void)
 BOOL 
 MNU_DoEpisodeSelect(UserCall call, MenuItem * item)
     {
-    short w,h;
+    short w = 0;
+    short h = 0;
     char TempString[80];
     char *extra_text;
 
@@ -3089,7 +3090,8 @@ static void
 MNU_DrawMenuContents(void)
     {
     MenuItem *item;
-    short w,h;
+    short w = 0;
+    short h = 0;
 
     ASSERT(currentmenu != NULL);
 

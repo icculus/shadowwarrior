@@ -2464,7 +2464,8 @@ SceneLevel(VOID)
 VOID
 LoadingLevelScreen(char *level_name)
     {
-    short w,h;
+    short w = 0;
+    short h = 0;
     extern BOOL DemoMode;
     extern char *MNU_LevelName[28];
     DrawLoadLevelScreen();
