@@ -30,7 +30,7 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 // This header is used for reserving tile space for programatic purposes
 // MAXTILES is currently at 6144 in size - anything under this is ok
 
-#define MAXMIRRORS          8
+#define MAXMIRRORS          64
 // This is just some, high, blank tile number not used
 // by real graphics to put the MAXMIRRORS mirrors in
 #define MIRRORLABEL         6000    
