@@ -678,7 +678,7 @@ JS_DrawMirrors(PLAYERp pp, long tx, long ty, long tz, short tpang, long tphoriz)
         }
 
     // WARNING!  Assuming (MIRRORLABEL&31) = 0 and MAXMIRRORS = 64
-    longptr = (long *) FP_OFF(gotpic[MIRRORLABEL >> 3]);
+    longptr = (long *) FP_OFF(&gotpic[MIRRORLABEL >> 3]);
     if ((longptr) && (longptr[0] | longptr[1]))
         {
         for (cnt = MAXMIRRORS - 1; cnt >= 0; cnt--)
