@@ -7005,7 +7005,8 @@ DoDamage(short SpriteNum, short Weapon)
         else
             {
             // Don't let it hurt the SUMO
-            if (User[wp->owner]->ID == SUMO_RUN_R0) break;
+            if (wp->owner != -1)
+                if (User[wp->owner]->ID == SUMO_RUN_R0) break;
             ActorHealth(SpriteNum, damage);
             ActorPain(SpriteNum);
             ActorDamageSlide(SpriteNum, damage, ANG2SPRITE(sp, wp));
@@ -8268,8 +8269,15 @@ DoStar(SHORT Weapon)
         if (hitsprite != -1)
             {
             su = User[hitsprite];
+if (su == NULL)
+{
+    STUBBED("Should have accessed NULL here.");
+}
+else
+{
             if (su->ID == TRASHCAN || su->ID == ZILLA_RUN_R0)
                 PlaySound(DIGI_STARCLINK, &sp->x, &sp->y, &sp->z, v3df_none);
+}
             }
             
         if (TEST(u->ret, HIT_MASK) != HIT_SPRITE) // Don't clank on sprites
@@ -13986,6 +13994,13 @@ InitSwordAttack(PLAYERp pp)
                 extern STATE s_TrashCanPain[];
                 SPRITEp hsp = &sprite[hitsprite];
                 tu = User[hitsprite];
+
+if (tu == NULL)
+{
+    STUBBED("should have hit a NULL here.");
+    return 0;
+}
+
 
                 switch(tu->ID)
                     {    

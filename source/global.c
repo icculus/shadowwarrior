@@ -816,7 +816,7 @@ void Shutdown(void)
  */
 void _settextposition(int x, int y)
 {
-    printf("\e[%d;%dH", x, y);
+    //printf("\e[%d;%dH", x, y);
 } /* gotoxy */
 
 
