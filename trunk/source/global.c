@@ -812,6 +812,26 @@ void Shutdown(void)
 
 
 /*
+ * ANSI escape sequences...ph34r.  --ryan.
+ */
+void _settextposition(int x, int y)
+{
+    printf("\e[%d;%dH", x, y);
+} /* gotoxy */
+
+
+void _outtext(const char *str)
+{
+    puts(str);
+} /* gotoxy */
+
+
+// !!! FIXME: What IS this thing?
+int _nullarea = 0;
+int __begtext = 0;
+
+
+/*
  * From Ryan's buildengine CHANGELOG:
  *  Removed global var: cachedebug in engine.c, and put #define
  *  BUILD_CACHEDEBUG 0 at the top of the source. Flip it to 1 if you ever
