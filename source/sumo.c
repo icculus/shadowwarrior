@@ -571,7 +571,7 @@ STATEp *Dive;
 
 ACTOR_ACTION_SET SumoActionSet =
   {
-  {sg_SumoStand},
+  sg_SumoStand,
   sg_SumoRun,
   NULL, 
   NULL, 
@@ -599,7 +599,7 @@ ACTOR_ACTION_SET SumoActionSet =
 
 ACTOR_ACTION_SET MiniSumoActionSet =
   {
-  {sg_SumoStand},
+  sg_SumoStand,
   sg_SumoRun,
   NULL, 
   NULL, 
@@ -797,14 +797,14 @@ int DoSumoDeathMelt(short SpriteNum)
     u->ID = 0;
 
     DoMatchEverything(NULL, sp->lotag, ON);
-    #ifndef SW_SHAREWARE
+    if (!SW_SHAREWARE) {
     if(gs.MusicOn && !alreadydid)
         {
         CDAudio_Stop();
         CDAudio_Play(RedBookSong[Level], TRUE);
         alreadydid = TRUE;
         }
-    #endif
+    }
     BossSpriteNum[1] = -2; // Sprite is gone, set it back to keep it valid!
     
     return(0);
@@ -880,41 +880,41 @@ BossHealthMeter(void)
                     if (i == 0 && !serpwasseen)
                         {
                         serpwasseen = TRUE;
-                        #ifndef SW_SHAREWARE
+                        if (!SW_SHAREWARE) {
                         if(gs.MusicOn)
                             {
                             CDAudio_Stop();
                             CDAudio_Play(13, TRUE); 
                             }
-                        #endif    
+                        }
                         }
                     else 
                     if (i == 1 && !sumowasseen)
                         {
                         sumowasseen = TRUE;
-                        #ifndef SW_SHAREWARE
+                        if (!SW_SHAREWARE) {
                         if(gs.MusicOn)
                             {
                             CDAudio_Stop();
                             CDAudio_Play(13, TRUE); 
                             }
-                        #endif    
+                        }
                         }
                     else    
                     if (i == 2 && !zillawasseen)
                         {
                         zillawasseen = TRUE;
-                        #ifndef SW_SHAREWARE
+                        if (!SW_SHAREWARE) {
                         if(gs.MusicOn)
                             {
                             CDAudio_Stop();
                             CDAudio_Play(13, TRUE); 
                             }
-                        #endif    
                         }
                     }
                 }    
             }
+        }    
         }    
 
 
@@ -929,13 +929,13 @@ BossHealthMeter(void)
             continue;
         
         // This is needed because of possible saved game situation    
-        #ifndef SW_SHAREWARE
+        if (!SW_SHAREWARE) {
             if ((!CDAudio_Playing() || playTrack != 13) && !triedplay)
                 {
                 CDAudio_Play(13, TRUE); 
                 triedplay = TRUE; // Only try once, then give up
                 }
-        #endif    
+	}
                 
         sp = &sprite[BossSpriteNum[i]];
         u = User[BossSpriteNum[i]];

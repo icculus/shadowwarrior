@@ -327,7 +327,7 @@ STATEp *Special[2];
     
 ACTOR_ACTION_SET EelActionSet =
   {
-  {sg_EelStand},
+  sg_EelStand,
   sg_EelRun,
   NULL, 
   NULL, 
@@ -347,7 +347,10 @@ ACTOR_ACTION_SET EelActionSet =
   {sg_EelAttack},
   {1024},
   {sg_EelAttack},
-  {1024}
+  {1024},
+  {NULL,NULL},
+  NULL,
+  NULL
   };
 
 void

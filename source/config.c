@@ -90,14 +90,14 @@ int32 ControllerType;
 // Screen variables
 //
 
-int32 ScreenMode;
-int32 ScreenWidth;
-int32 ScreenHeight;
+int32 ScreenMode = 1;
+int32 ScreenWidth = 640;
+int32 ScreenHeight = 480;
 
 char  RTSName[MAXRTSNAMELENGTH];
 //static char setupfilename[64]={SETUPFILENAME};
 char setupfilename[64]={SETUPFILENAME};
-static int32 scripthandle;
+static int32 scripthandle = -1;
 
 char  MouseAnalogAxes[MAXMOUSEAXES][MAXFUNCTIONLENGTH];
 char  JoystickAnalogAxes[MAXJOYAXES][MAXFUNCTIONLENGTH];
@@ -249,6 +249,7 @@ int32 CONFIG_FunctionNameToNum( char * func )
    {
    int32 i;
 
+   if (!func) return -1;
    for (i=0;i<NUMGAMEFUNCTIONS;i++)
       {
       if (!stricmp(func,gamefunctions[i]))
@@ -269,13 +270,13 @@ int32 CONFIG_FunctionNameToNum( char * func )
 
 char * CONFIG_FunctionNumToName( int32 func )
    {
-   if (func < NUMGAMEFUNCTIONS)
+   if ((unsigned)func >= (unsigned)NUMGAMEFUNCTIONS)
       {
-      return gamefunctions[func];
+      return NULL;
       }
    else
       {
-      return NULL;
+      return gamefunctions[func];
       }
    }
 
@@ -323,6 +324,8 @@ void CONFIG_ReadKeys( int32 scripthandle )
    char keyname1[80];
    char keyname2[80];
    kb_scancode key1,key2;
+
+   if (scripthandle < 0) return;
 
    numkeyentries = SCRIPT_NumberEntries( scripthandle,"KeyDefinitions" );
 
@@ -375,6 +378,8 @@ void CONFIG_SetupMouse( int32 scripthandle )
    char str[80];
    char temp[80];
    int32 function, scale;
+
+   if (scripthandle < 0) return;
 
    for (i=0;i<MAXMOUSEBUTTONS;i++)
       {

@@ -194,150 +194,148 @@ VMODE vmode[7] =
 
 MenuItem sound_i[] =
 {
-    {DefButton(btn_music, NULL, "Music"), OPT_XS,                OPT_LINE(0), 1, m_defshade, 0, MNU_TryMusicInit, MNU_MusicCheck},
-    {DefSlider(sldr_musicvolume, NULL, "Music Volume"), OPT_XS,  OPT_LINE(1), 1, m_defshade, 0, MNU_TryMusicInit, MNU_MusicCheck},
-    {DefInert(NULL, NULL), OPT_XSIDE,                               OPT_LINE(1), NULL, m_defshade, 0, NULL},
+    {DefButton(btn_music, 0, "Music"), OPT_XS,                OPT_LINE(0), 1, m_defshade, 0, MNU_TryMusicInit, MNU_MusicCheck, NULL},
+    {DefSlider(sldr_musicvolume, 0, "Music Volume"), OPT_XS,  OPT_LINE(1), 1, m_defshade, 0, MNU_TryMusicInit, MNU_MusicCheck, NULL},
+    {DefInert(0, NULL), OPT_XSIDE,                            OPT_LINE(1), 0, m_defshade, 0, NULL, NULL, NULL},
     
-    {DefButton(btn_sound, NULL, "Sounds"), OPT_XS,               OPT_LINE(2), 1, m_defshade, 0, NULL, MNU_FxCheck},
-    {DefSlider(sldr_sndfxvolume, NULL, "Sound Volume"), OPT_XS,  OPT_LINE(3), 1, m_defshade, 0, NULL, MNU_FxCheck},
-    {DefInert(NULL, NULL), OPT_XSIDE,                               OPT_LINE(3), NULL, m_defshade, 0, NULL}, 
+    {DefButton(btn_sound, 0, "Sounds"), OPT_XS,               OPT_LINE(2), 1, m_defshade, 0, NULL, MNU_FxCheck, NULL},
+    {DefSlider(sldr_sndfxvolume, 0, "Sound Volume"), OPT_XS,  OPT_LINE(3), 1, m_defshade, 0, NULL, MNU_FxCheck, NULL},
+    {DefInert(0, NULL), OPT_XSIDE,                            OPT_LINE(3), 0, m_defshade, 0, NULL, NULL, NULL}, 
     
-    //{DefButton(btn_talking, NULL, "Talking"), OPT_XS,            OPT_LINE(4), 1, m_defshade, 0, NULL, MNU_FxCheck},
-    {DefButton(btn_ambience, NULL, "Ambience"), OPT_XS,          OPT_LINE(4), 1, m_defshade, 0, NULL, MNU_FxCheck},
-    {DefButton(btn_flipstereo, NULL, "Flip Stereo"), OPT_XS,     OPT_LINE(5), 1, m_defshade, 0, NULL, MNU_FxCheck},
-    //{DefButton(btn_playcd, NULL, "Play CD"), OPT_XS,         OPT_LINE(6), 1, m_defshade, 0, NULL},
-    {mt_none}
+    //{DefButton(btn_talking, 0, "Talking"), OPT_XS,            OPT_LINE(4), 1, m_defshade, 0, NULL, MNU_FxCheck, NULL},
+    {DefButton(btn_ambience, 0, "Ambience"), OPT_XS,          OPT_LINE(4), 1, m_defshade, 0, NULL, MNU_FxCheck, NULL},
+    {DefButton(btn_flipstereo, 0, "Flip Stereo"), OPT_XS,     OPT_LINE(5), 1, m_defshade, 0, NULL, MNU_FxCheck, NULL},
+    //{DefButton(btn_playcd, 0, "Play CD"), OPT_XS,         OPT_LINE(6), 1, m_defshade, 0, NULL, NULL, NULL},
+    {DefNone}
 };
 
-MenuGroup soundgroup = {110,5,"^Sound",sound_i,pic_optionstitl,NULL,m_defshade};
+MenuGroup soundgroup = {110,5,"^Sound",sound_i,pic_optionstitl,0,m_defshade, NULL,NULL, 0};
 
 MenuItem parental_i[] =
     {
-    {DefButton(btn_parental, NULL, "Kid Mode"), OPT_XS, OPT_LINE(0), 1, m_defshade, 0, NULL},
-    {DefOption(KEYSC_P, "Change Password"),              OPT_XS, OPT_LINE(1), 1, m_defshade, 0, MNU_ParentalCustom},
-    {mt_none}
+    {DefButton(btn_parental, 0, "Kid Mode"), OPT_XS, OPT_LINE(0), 1, m_defshade, 0, NULL, NULL, NULL},
+    {DefOption(KEYSC_P, "Change Password"),              OPT_XS, OPT_LINE(1), 1, m_defshade, 0, MNU_ParentalCustom, NULL, NULL},
+    {DefNone}
     };
 
-MenuGroup parentalgroup = {65, 5, "^Kid Mode", parental_i, pic_newgametitl, NULL, m_defshade, MNU_DoParentalPassword};
+MenuGroup parentalgroup = {65, 5, "^Kid Mode", parental_i, pic_newgametitl, 0, m_defshade, MNU_DoParentalPassword,NULL,0};
 
 MenuItem screen_i[] = 
     {
-    {DefSlider(sldr_scrsize, NULL, "Screen Size"), OPT_XS,          OPT_LINE(0), 1, m_defshade, 0, NULL},//, MNU_BorderCheck},
-    {DefInert(NULL, NULL), OPT_XSIDE,                               OPT_LINE(0), NULL, m_defshade, 0, NULL},
+    {DefSlider(sldr_scrsize, 0, "Screen Size"), OPT_XS,          OPT_LINE(0), 1, m_defshade, 0, NULL, NULL, NULL},//, MNU_BorderCheck},
+    {DefInert(0, NULL), OPT_XSIDE,                               OPT_LINE(0), 0, m_defshade, 0, NULL, NULL, NULL},
     
-    {DefSlider(sldr_bordertile, NULL, "Border Tile"), OPT_XS,       OPT_LINE(1), 1, m_defshade, 0, NULL},//, MNU_BorderCheck},
-    {DefInert(NULL, NULL), OPT_XSIDE,                               OPT_LINE(1), NULL, m_defshade, 0, NULL},
+    {DefSlider(sldr_bordertile, 0, "Border Tile"), OPT_XS,       OPT_LINE(1), 1, m_defshade, 0, NULL, NULL, NULL},//, MNU_BorderCheck},
+    {DefInert(0, NULL), OPT_XSIDE,                               OPT_LINE(1), 0, m_defshade, 0, NULL, NULL, NULL},
 
-    {DefSlider(sldr_brightness, KEYSC_B, "Brightness"), OPT_XS,     OPT_LINE(2), 1, m_defshade, 0, NULL},
-    {DefInert(NULL, NULL), OPT_XSIDE,                               OPT_LINE(2), NULL, m_defshade, 0, NULL},
-    {mt_none}
+    {DefSlider(sldr_brightness, KEYSC_B, "Brightness"), OPT_XS,     OPT_LINE(2), 1, m_defshade, 0, NULL, NULL, NULL},
+    {DefInert(0, NULL), OPT_XSIDE,                               OPT_LINE(2), 0, m_defshade, 0, NULL, NULL, NULL},
+    {DefNone}
     };
 
-MenuGroup screengroup = {65, 5, "^Screen", screen_i, pic_newgametitl, NULL, m_defshade};
+MenuGroup screengroup = {65, 5, "^Screen", screen_i, pic_newgametitl, 0, m_defshade, NULL,NULL, 0};
 
 MenuItem mouse_i[] = 
     {
-    {DefSlider(sldr_mouse, NULL, "Mouse Speed"), OPT_XS,            OPT_LINE(0), 1, m_defshade, 0, NULL, MNU_MouseCheck},
-    {DefInert(NULL, NULL), OPT_XSIDE,                               OPT_LINE(0), NULL, m_defshade, 0, NULL},    // Blank line for mouse
+    {DefSlider(sldr_mouse, 0, "Mouse Speed"), OPT_XS,            OPT_LINE(0), 1, m_defshade, 0, NULL, MNU_MouseCheck, NULL},
+    {DefInert(0, NULL), OPT_XSIDE,                               OPT_LINE(0), 0, m_defshade, 0, NULL, NULL, NULL},    // Blank line for mouse
     
-    {DefButton(btn_mouse_aim, NULL, "Mouse Aiming"), OPT_XS,        OPT_LINE(1), 1, m_defshade, 0, NULL, MNU_MouseCheck},
-    {DefButton(btn_mouse_invert, NULL, "Invert Mouse"), OPT_XS,     OPT_LINE(2), 1, m_defshade, 0, NULL, MNU_MouseCheck},
-    {mt_none}
+    {DefButton(btn_mouse_aim, 0, "Mouse Aiming"), OPT_XS,        OPT_LINE(1), 1, m_defshade, 0, NULL, MNU_MouseCheck, NULL},
+    {DefButton(btn_mouse_invert, 0, "Invert Mouse"), OPT_XS,     OPT_LINE(2), 1, m_defshade, 0, NULL, MNU_MouseCheck, NULL},
+    {DefNone}
     };
 
-MenuGroup mousegroup = {65, 5, "^Mouse", mouse_i, pic_newgametitl, NULL, m_defshade};
+MenuGroup mousegroup = {65, 5, "^Mouse", mouse_i, pic_newgametitl, 0, m_defshade, NULL,NULL, 0};
 
 MenuItem options_i[] =
     {
-    {DefLayer(NULL, "Screen Menu", &screengroup),OPT_XS,            OPT_LINE(0), 1, m_defshade,0,NULL, NULL},
-    {DefLayer(NULL, "Mouse Menu", &mousegroup),OPT_XS,              OPT_LINE(1), 1, m_defshade,0,NULL, MNU_MouseCheck},
-    {DefLayer(NULL, "Sound Menu", &soundgroup),OPT_XS,              OPT_LINE(2), 1, m_defshade,0,MNU_TryMusicInit, MNU_MusicFxCheck},
+    {DefLayer(0, "Screen Menu", &screengroup),OPT_XS,            OPT_LINE(0), 1, m_defshade,0,NULL, NULL, NULL},
+    {DefLayer(0, "Mouse Menu", &mousegroup),OPT_XS,              OPT_LINE(1), 1, m_defshade,0,NULL, MNU_MouseCheck, NULL},
+    {DefLayer(0, "Sound Menu", &soundgroup),OPT_XS,              OPT_LINE(2), 1, m_defshade,0,MNU_TryMusicInit, MNU_MusicFxCheck, NULL},
     #ifndef PLOCK_VERSION // No need for this in weener version
-    {DefLayer(NULL, "Kid Mode", &parentalgroup),OPT_XS,        OPT_LINE(3), 1, m_defshade,0,NULL, NULL},
+    {DefLayer(0, "Kid Mode", &parentalgroup),OPT_XS,        OPT_LINE(3), 1, m_defshade,0,NULL, NULL, NULL},
     #endif
-    {DefButton(btn_messages, NULL, "Messages"), OPT_XS,             OPT_LINE(4), 1, m_defshade, 0, NULL},
-//    {DefButton(btn_bobbing, NULL, "View Bobbing"), OPT_XS,          OPT_LINE(7), 1, m_defshade, 0, NULL},
-    {DefButton(btn_shadows, NULL, "Shadows"), OPT_XS,               OPT_LINE(5), 1, m_defshade, 0, NULL},
-    {DefButton(btn_auto_run, NULL, "Auto Run"), OPT_XS,             OPT_LINE(6), 1, m_defshade, 0, NULL},
-    {DefButton(btn_crosshair, NULL, "Crosshair"), OPT_XS,           OPT_LINE(7), 1, m_defshade, 0, NULL},
-    {DefButton(btn_auto_aim, NULL, "Auto-Aiming"), OPT_XS,          OPT_LINE(8), 1, m_defshade, 0, NULL},
-    #ifndef SW_3DFX
-    {DefButton(btn_voxels, NULL, "3D Sprites"), OPT_XS,          OPT_LINE(9), 1, m_defshade, 0, NULL},
-    #endif
-    {DefButton(btn_stats, NULL, "Level Stats"), OPT_XS,          OPT_LINE(10), 1, m_defshade, 0, NULL, MNU_StatCheck},
-    {mt_none}
+    {DefButton(btn_messages, 0, "Messages"), OPT_XS,             OPT_LINE(4), 1, m_defshade, 0, NULL, NULL, NULL},
+//    {DefButton(btn_bobbing, 0, "View Bobbing"), OPT_XS,          OPT_LINE(7), 1, m_defshade, 0, NULL, NULL, NULL},
+    {DefButton(btn_shadows, 0, "Shadows"), OPT_XS,               OPT_LINE(5), 1, m_defshade, 0, NULL, NULL, NULL},
+    {DefButton(btn_auto_run, 0, "Auto Run"), OPT_XS,             OPT_LINE(6), 1, m_defshade, 0, NULL, NULL, NULL},
+    {DefButton(btn_crosshair, 0, "Crosshair"), OPT_XS,           OPT_LINE(7), 1, m_defshade, 0, NULL, NULL, NULL},
+    {DefButton(btn_auto_aim, 0, "Auto-Aiming"), OPT_XS,          OPT_LINE(8), 1, m_defshade, 0, NULL, NULL, NULL},
+    {DefButton(btn_voxels, 0, "3D Sprites"), OPT_XS,          OPT_LINE(9), 1, m_defshade, 0, NULL, NULL, NULL},
+    {DefButton(btn_stats, 0, "Level Stats"), OPT_XS,          OPT_LINE(10), 1, m_defshade, 0, NULL, MNU_StatCheck, NULL},
+    {DefNone}
     };
 
-MenuGroup optiongroup = {100, 5, "^Options", options_i, pic_optionstitl, NULL, m_defshade};
+MenuGroup optiongroup = {100, 5, "^Options", options_i, pic_optionstitl, 0, m_defshade, NULL,NULL, 0};
 
 MenuItem skill_i[] =
     {
-    {DefOption(KEYSC_E, "^Tiny grasshopper"), 30, 46, pic_easy, m_defshade, 0, MNU_StartGame},
-    {DefOption(KEYSC_N, "^I Have No Fear"),       30, 62, pic_normal, m_defshade, 0, MNU_StartGame},
-    {DefOption(KEYSC_H, "^Who Wants Wang"),     30, 78, pic_hard, m_defshade, 0, MNU_StartGame},
-    {DefOption(KEYSC_I, "^No Pain, No Gain"),     30, 94, pic_impossible, m_defshade, 0, MNU_StartGame},
-    {mt_none}
+    {DefOption(KEYSC_E, "^Tiny grasshopper"), 30, 46, pic_easy, m_defshade, 0, MNU_StartGame, NULL, NULL},
+    {DefOption(KEYSC_N, "^I Have No Fear"),       30, 62, pic_normal, m_defshade, 0, MNU_StartGame, NULL, NULL},
+    {DefOption(KEYSC_H, "^Who Wants Wang"),     30, 78, pic_hard, m_defshade, 0, MNU_StartGame, NULL, NULL},
+    {DefOption(KEYSC_I, "^No Pain, No Gain"),     30, 94, pic_impossible, m_defshade, 0, MNU_StartGame, NULL, NULL},
+    {DefNone}
     };
 
-MenuGroup skillgroup = {100, 5, "^Skill", skill_i, pic_newgametitl, NULL, m_defshade, NULL, NULL, 2};
+MenuGroup skillgroup = {100, 5, "^Skill", skill_i, pic_newgametitl, 0, m_defshade, NULL, NULL, 2};
 
 MenuItem episode_i[] =
     {
-    {DefLayer(KEYSC_S, "^Enter the Wang",  &skillgroup), 30, 46, pic_episode1, m_defshade, 0, MNU_EpisodeCustom},
+    {DefLayer(KEYSC_S, "^Enter the Wang",  &skillgroup), 30, 46, pic_episode1, m_defshade, 0, MNU_EpisodeCustom, NULL, NULL},
     {DefLayer(KEYSC_F, "^Code of Honor", &skillgroup), 30, 78, pic_episode2, m_defshade, 0, MNU_EpisodeCustom, MNU_ShareWareCheck, MNU_ShareWareMessage},
     //{DefLayer(KEYSC_S, NULL, &skillgroup), 60, 30, pic_episode1, m_defshade, 0, MNU_EpisodeCustom},
     //{DefLayer(KEYSC_F, NULL, &skillgroup), 60, 46, pic_episode2, m_defshade, 0, MNU_EpisodeCustom},
     //{DefLayer(KEYSC_T, NULL, &skillgroup), 60, 62, pic_episode3, m_defshade, 0, MNU_EpisodeCustom},
-    {mt_none}
+    {DefNone}
     };
 
-MenuGroup episodegroup = {100, 5, "^Episode", episode_i, pic_newgametitl, NULL, m_defshade, MNU_DoEpisodeSelect};
+MenuGroup episodegroup = {100, 5, "^Episode", episode_i, pic_newgametitl, 0, m_defshade, MNU_DoEpisodeSelect, NULL, 0};
 
 extern char UserMapName[80];
 
 MenuItem network_extra_i[] = 
 {
-    {DefSlider(sldr_monsters, NULL, "Monsters"),OPT_XS, OPT_LINE(0), 1, m_defshade, 0, NULL, NULL},
-    {DefInert(NULL, NULL),               OPT_XSIDE,OPT_LINE(0), NULL, m_defshade, 0, NULL},
+    {DefSlider(sldr_monsters, 0, "Monsters"),OPT_XS, OPT_LINE(0), 1, m_defshade, 0, NULL, NULL, NULL},
+    {DefInert(0, NULL),               OPT_XSIDE,OPT_LINE(0), 0, m_defshade, 0, NULL, NULL, NULL},
 
-    {DefButton(btn_teamplay,     NULL, "Team Play"),    OPT_XS, OPT_LINE(1), 1, m_defshade, 0, MNU_TeamPlayChange, MNU_TeamPlayCheck},
-    {DefButton(btn_friendlyfire, NULL, "Hurt Teammate"),OPT_XS, OPT_LINE(2), 1, m_defshade, 0, NULL, MNU_HurtTeammateCheck},
-    {DefButton(btn_nuke,         NULL, "Play with Nuke"),OPT_XS, OPT_LINE(3), 1, m_defshade, 0, NULL, NULL},
-    {mt_none}
+    {DefButton(btn_teamplay,     0, "Team Play"),    OPT_XS, OPT_LINE(1), 1, m_defshade, 0, MNU_TeamPlayChange, MNU_TeamPlayCheck, NULL},
+    {DefButton(btn_friendlyfire, 0, "Hurt Teammate"),OPT_XS, OPT_LINE(2), 1, m_defshade, 0, NULL, MNU_HurtTeammateCheck, NULL},
+    {DefButton(btn_nuke,         0, "Play with Nuke"),OPT_XS, OPT_LINE(3), 1, m_defshade, 0, NULL, NULL, NULL},
+    {DefNone}
 };
 
-MenuGroup networkextragroup = {50, 5, "^Net Options", network_extra_i, pic_newgametitl, NULL, m_defshade};
+MenuGroup networkextragroup = {50, 5, "^Net Options", network_extra_i, pic_newgametitl, 0, m_defshade, NULL, NULL, 0};
 
 MenuItem network_i[] =
     {
-    {DefSlider(sldr_gametype, NULL, "Game Type"),   OPT_XS,         OPT_LINE(0), 1, m_defshade, 0, NULL, NULL},
-    {DefInert(NULL, NULL),                          OPT_XSIDE-38,   OPT_LINE(0), NULL, m_defshade, 0, NULL},
+    {DefSlider(sldr_gametype, 0, "Game Type"),   OPT_XS,         OPT_LINE(0), 1, m_defshade, 0, NULL, NULL, NULL},
+    {DefInert(0, NULL),                          OPT_XSIDE-38,   OPT_LINE(0), 0, m_defshade, 0, NULL, NULL, NULL},
 
-    {DefSlider(sldr_netlevel, NULL, "Level"),       OPT_XS,         OPT_LINE(1), 1, m_defshade, 0, NULL, MNU_CheckUserMap},
-    {DefInert(NULL, NULL),                          OPT_XSIDE-70,   OPT_LINE(1), NULL, m_defshade, 0, NULL, MNU_CheckUserMap},
-    {DefInert(NULL, " "),                           OPT_XS,         OPT_LINE(2), pic_episode1, m_defshade, 0, NULL, MNU_CheckUserMap},
+    {DefSlider(sldr_netlevel, 0, "Level"),       OPT_XS,         OPT_LINE(1), 1, m_defshade, 0, NULL, MNU_CheckUserMap, NULL},
+    {DefInert(0, NULL),                          OPT_XSIDE-70,   OPT_LINE(1), 0, m_defshade, 0, NULL, MNU_CheckUserMap, NULL},
+    {DefInert(0, " "),                           OPT_XS,         OPT_LINE(2), pic_episode1, m_defshade, 0, NULL, MNU_CheckUserMap, NULL},
 
-    {DefButton(btn_markers,      NULL, "Markers"),  OPT_XS,         OPT_LINE(3), 1, m_defshade, 0, NULL, NULL},
+    {DefButton(btn_markers,      0, "Markers"),  OPT_XS,         OPT_LINE(3), 1, m_defshade, 0, NULL, NULL, NULL},
 
-    {DefSlider(sldr_killlimit, NULL, "Kill Limit"),OPT_XS,          OPT_LINE(4), 1, m_defshade, 0, NULL, MNU_CoopPlayCheck},
-    {DefInert(NULL, NULL),               OPT_XSIDE,                 OPT_LINE(4), NULL, m_defshade, 0, NULL, MNU_CoopPlayCheck},
+    {DefSlider(sldr_killlimit, 0, "Kill Limit"),OPT_XS,          OPT_LINE(4), 1, m_defshade, 0, NULL, MNU_CoopPlayCheck, NULL},
+    {DefInert(0, NULL),               OPT_XSIDE,                 OPT_LINE(4), 0, m_defshade, 0, NULL, MNU_CoopPlayCheck, NULL},
 
-    {DefSlider(sldr_timelimit, NULL, "Time Limit"),OPT_XS,          OPT_LINE(5), 1, m_defshade, 0, NULL, MNU_CoopPlayCheck},
-    {DefInert(NULL, NULL),               OPT_XSIDE,                 OPT_LINE(5), NULL, m_defshade, 0, NULL, MNU_CoopPlayCheck},
+    {DefSlider(sldr_timelimit, 0, "Time Limit"),OPT_XS,          OPT_LINE(5), 1, m_defshade, 0, NULL, MNU_CoopPlayCheck, NULL},
+    {DefInert(0, NULL),               OPT_XSIDE,                 OPT_LINE(5), 0, m_defshade, 0, NULL, MNU_CoopPlayCheck, NULL},
 
-    {DefSlider(sldr_playercolor, NULL, "Player Color"),OPT_XS,      OPT_LINE(6), 1, m_defshade, 0, NULL, NULL},
-    {DefInert(NULL, NULL),               OPT_XSIDE,                 OPT_LINE(6), NULL, m_defshade, 0, NULL},
+    {DefSlider(sldr_playercolor, 0, "Player Color"),OPT_XS,      OPT_LINE(6), 1, m_defshade, 0, NULL, NULL, NULL},
+    {DefInert(0, NULL),               OPT_XSIDE,                 OPT_LINE(6), 0, m_defshade, 0, NULL, NULL, NULL},
 
-    {DefLayer(NULL, "Other Options", &networkextragroup),OPT_XS,    OPT_LINE(7), 1, m_defshade,0,NULL, NULL},
+    {DefLayer(0, "Other Options", &networkextragroup),OPT_XS,    OPT_LINE(7), 1, m_defshade,0,NULL, NULL, NULL},
     
-    {DefInert(NULL, UserMapName),         OPT_XSIDE,                OPT_LINE(8), pic_episode1, m_defshade, 0, NULL},
-    {DefOption(KEYSC_S, "Start Game"),   OPT_XS,                    OPT_LINE(8), pic_episode1, m_defshade, 0, MNU_StartNetGame},
+    {DefInert(0, UserMapName),         OPT_XSIDE,                OPT_LINE(8), pic_episode1, m_defshade, 0, NULL, NULL, NULL},
+    {DefOption(KEYSC_S, "Start Game"),   OPT_XS,                    OPT_LINE(8), pic_episode1, m_defshade, 0, MNU_StartNetGame, NULL, NULL},
     
-    {mt_none}
+    {DefNone}
     
     };
 
-MenuGroup networkgroup = {50, 5, "^Network Game", network_i, pic_newgametitl, NULL, m_defshade};
+MenuGroup networkgroup = {50, 5, "^Network Game", network_i, pic_newgametitl, 0, m_defshade, NULL, NULL, 0};
 
 
 MenuItem load_i[] =
@@ -346,69 +344,63 @@ MenuItem load_i[] =
 #define SD_XSTART 5
 #define SD_YOFF 13
 #define SD_LINE(line) (SD_YSTART + (line * SD_YOFF))
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(0), NULL, m_defshade, 0, MNU_GetLoadCustom},
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(1), NULL, m_defshade, 0, MNU_GetLoadCustom},
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(2), NULL, m_defshade, 0, MNU_GetLoadCustom},
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(3), NULL, m_defshade, 0, MNU_GetLoadCustom},
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(4), NULL, m_defshade, 0, MNU_GetLoadCustom},
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(5), NULL, m_defshade, 0, MNU_GetLoadCustom},
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(6), NULL, m_defshade, 0, MNU_GetLoadCustom},
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(7), NULL, m_defshade, 0, MNU_GetLoadCustom},
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(8), NULL, m_defshade, 0, MNU_GetLoadCustom},
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(9), NULL, m_defshade, 0, MNU_GetLoadCustom},
-    {mt_none}
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(0), 0, m_defshade, 0, MNU_GetLoadCustom, NULL, NULL},
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(1), 0, m_defshade, 0, MNU_GetLoadCustom, NULL, NULL},
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(2), 0, m_defshade, 0, MNU_GetLoadCustom, NULL, NULL},
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(3), 0, m_defshade, 0, MNU_GetLoadCustom, NULL, NULL},
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(4), 0, m_defshade, 0, MNU_GetLoadCustom, NULL, NULL},
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(5), 0, m_defshade, 0, MNU_GetLoadCustom, NULL, NULL},
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(6), 0, m_defshade, 0, MNU_GetLoadCustom, NULL, NULL},
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(7), 0, m_defshade, 0, MNU_GetLoadCustom, NULL, NULL},
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(8), 0, m_defshade, 0, MNU_GetLoadCustom, NULL, NULL},
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(9), 0, m_defshade, 0, MNU_GetLoadCustom, NULL, NULL},
+    {DefNone}
     };
 
 MenuItem save_i[] =
     {
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(0), NULL, m_defshade, 0, MNU_GetSaveCustom},
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(1), NULL, m_defshade, 0, MNU_GetSaveCustom},
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(2), NULL, m_defshade, 0, MNU_GetSaveCustom},
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(3), NULL, m_defshade, 0, MNU_GetSaveCustom},
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(4), NULL, m_defshade, 0, MNU_GetSaveCustom},
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(5), NULL, m_defshade, 0, MNU_GetSaveCustom},
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(6), NULL, m_defshade, 0, MNU_GetSaveCustom},
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(7), NULL, m_defshade, 0, MNU_GetSaveCustom},
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(8), NULL, m_defshade, 0, MNU_GetSaveCustom},
-    {DefOption(NULL, NULL), SD_XSTART, SD_LINE(9), NULL, m_defshade, 0, MNU_GetSaveCustom},
-    {mt_none}
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(0), 0, m_defshade, 0, MNU_GetSaveCustom, NULL, NULL},
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(1), 0, m_defshade, 0, MNU_GetSaveCustom, NULL, NULL},
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(2), 0, m_defshade, 0, MNU_GetSaveCustom, NULL, NULL},
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(3), 0, m_defshade, 0, MNU_GetSaveCustom, NULL, NULL},
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(4), 0, m_defshade, 0, MNU_GetSaveCustom, NULL, NULL},
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(5), 0, m_defshade, 0, MNU_GetSaveCustom, NULL, NULL},
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(6), 0, m_defshade, 0, MNU_GetSaveCustom, NULL, NULL},
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(7), 0, m_defshade, 0, MNU_GetSaveCustom, NULL, NULL},
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(8), 0, m_defshade, 0, MNU_GetSaveCustom, NULL, NULL},
+    {DefOption(0, NULL), SD_XSTART, SD_LINE(9), 0, m_defshade, 0, MNU_GetSaveCustom, NULL, NULL},
+    {DefNone}
     };
 
 // No actual submenus for this, just quit text.
-MenuGroup quitgroup = {0, 0, NULL, NULL, NULL, NULL, m_defshade, MNU_QuitCustom};
-MenuGroup quickloadgroup = {0, 0, NULL, NULL, NULL, NULL, m_defshade, MNU_QuickLoadCustom};
-MenuGroup ordergroup = {0, 0, NULL, NULL, NULL, NULL, m_defshade, MNU_OrderCustom};
+MenuGroup quitgroup = {0, 0, NULL, NULL, 0, 0, m_defshade, MNU_QuitCustom, NULL, 0};
+MenuGroup quickloadgroup = {0, 0, NULL, NULL, 0, 0, m_defshade, MNU_QuickLoadCustom, NULL, 0};
+MenuGroup ordergroup = {0, 0, NULL, NULL, 0, 0, m_defshade, MNU_OrderCustom, NULL, 0};
 
 // save and load function calls
-MenuGroup SaveGameGroup = {100, 5, "^Save Game", save_i, pic_savegame, NULL, m_defshade, MNU_LoadSaveDraw, MNU_LoadSaveMove};
-MenuGroup LoadGameGroup = {100, 5, "^Load Game", load_i, pic_loadgame, NULL, m_defshade, MNU_LoadSaveDraw, MNU_LoadSaveMove};
+MenuGroup SaveGameGroup = {100, 5, "^Save Game", save_i, pic_savegame, 0, m_defshade, MNU_LoadSaveDraw, MNU_LoadSaveMove, 0};
+MenuGroup LoadGameGroup = {100, 5, "^Load Game", load_i, pic_loadgame, 0, m_defshade, MNU_LoadSaveDraw, MNU_LoadSaveMove, 0};
 
 #define MAIN_YSTART 32
 #define MAIN_YOFF 17
 #define MAIN_XSTART 55
 #define MAIN_LINE(line) (MAIN_YSTART + (MAIN_YOFF * line))
+
+#define MAIN_MENU_COOL_STUFF "^Cool Stuff"
+#define MAIN_MENU_HOW_TO_ORDER "^How to Order"
+
 MenuItem main_i[] =
     {
-    {DefLayer(KEYSC_N, "^New Game", &episodegroup),      MAIN_XSTART, MAIN_LINE(0), pic_newgame, m_defshade, 0, NULL},
-// CTW REMOVED
-//    {DefOption(KEYSC_P, "^Play it on TEN!"),             MAIN_XSTART, MAIN_LINE(1), pic_orderinfo, m_defshade, 0, MNU_Ten, MNU_TenCheck},
-// CTW REMOVED END
-// CTW MODIFICATION
-// Moved all the remaining menu options up one index.
-    {DefLayer(KEYSC_L, "^Load Game", &LoadGameGroup),    MAIN_XSTART, MAIN_LINE(1), pic_load, m_defshade, 0, NULL, MNU_LoadGameCheck},
-    {DefLayer(KEYSC_S, "^Save Game", &SaveGameGroup),    MAIN_XSTART, MAIN_LINE(2), pic_save, m_defshade, 0, NULL, MNU_SaveGameCheck},
-    {DefLayer(KEYSC_O, "^Options", &optiongroup),        MAIN_XSTART, MAIN_LINE(3), pic_options, m_defshade, 0, NULL},
-    #ifndef SW_SHAREWARE
-    {DefLayer(KEYSC_H, "^Cool Stuff", &ordergroup),         MAIN_XSTART, MAIN_LINE(4), pic_orderinfo, m_defshade, 0, NULL},
-    #else
-    {DefLayer(KEYSC_H, "^How to Order", &ordergroup),    MAIN_XSTART, MAIN_LINE(4), pic_orderinfo, m_defshade, 0, NULL},
-    #endif
-    {DefLayer(KEYSC_Q, "^Quit", &quitgroup),             MAIN_XSTART, MAIN_LINE(5), pic_quit, m_defshade, 0, NULL},
-// CTW MODIFICATION END
-    {mt_none}
+    {DefLayer(KEYSC_N, "^New Game", &episodegroup),      MAIN_XSTART, MAIN_LINE(0), pic_newgame, m_defshade, 0, NULL, NULL, NULL},
+    {DefLayer(KEYSC_L, "^Load Game", &LoadGameGroup),    MAIN_XSTART, MAIN_LINE(1), pic_load, m_defshade, 0, NULL, MNU_LoadGameCheck, NULL},
+    {DefLayer(KEYSC_S, "^Save Game", &SaveGameGroup),    MAIN_XSTART, MAIN_LINE(2), pic_save, m_defshade, 0, NULL, MNU_SaveGameCheck, NULL},
+    {DefLayer(KEYSC_O, "^Options", &optiongroup),        MAIN_XSTART, MAIN_LINE(3), pic_options, m_defshade, 0, NULL, NULL, NULL},
+    {DefLayer(KEYSC_H, "^Oh Dear", &ordergroup),         MAIN_XSTART, MAIN_LINE(4), pic_orderinfo, m_defshade, 0, NULL, NULL, NULL},
+    {DefLayer(KEYSC_Q, "^Quit", &quitgroup),             MAIN_XSTART, MAIN_LINE(5), pic_quit, m_defshade, 0, NULL, NULL, NULL},
+    {DefNone}
     };
 
-MenuGroup maingroup = {160, 15, NULL, main_i, pic_shadow_warrior, NULL, m_defshade};
+MenuGroup maingroup = {160, 15, NULL, main_i, pic_shadow_warrior, 0, m_defshade, NULL, NULL, 0};
 
 CTLType ControlPanelType;
 
@@ -474,6 +466,7 @@ MNU_DoEpisodeSelect(UserCall call, MenuItem * item)
     MNU_MeasureString(extra_text, &w, &h);
     MNU_DrawString(30, 96, extra_text, 1, 16);
 
+    return(TRUE);
     }
     
 BOOL
@@ -638,8 +631,7 @@ MNU_OrderCustom(UserCall call, MenuItem * item)
     short choose_snd;
     static int wanghandle;
 
-    #ifndef SW_SHAREWARE    
-    static short OrderScreen[] = 
+    static short RegOrderScreen[] = 
         {
         5262,
         5261,
@@ -653,8 +645,7 @@ MNU_OrderCustom(UserCall call, MenuItem * item)
         //5261,
         //5262
         };
-    #else
-    static short OrderScreen[] = 
+    static short SWOrderScreen[] = 
         {
         5262,
         5110,
@@ -664,7 +655,15 @@ MNU_OrderCustom(UserCall call, MenuItem * item)
         5118,
         4979
         };
-    #endif
+    short *OrderScreen, OrderScreenSiz;
+    
+    if (SW_SHAREWARE) {
+	OrderScreen = SWOrderScreen;
+	OrderScreenSiz = SIZ(SWOrderScreen);
+    } else {
+	OrderScreen = RegOrderScreen;
+	OrderScreenSiz = SIZ(RegOrderScreen);
+    }
     
     // Ignore the special touchup calls
     if (call == uc_touchup)
@@ -676,8 +675,7 @@ MNU_OrderCustom(UserCall call, MenuItem * item)
             return (FALSE);
         }
 
-    #ifdef SW_SHAREWARE    
-    if (on_screen == 0 && !DidOrderSound)        
+    if (SW_SHAREWARE && on_screen == 0 && !DidOrderSound)        
         {        
         DidOrderSound = TRUE;        
         choose_snd = STD_RANDOM_RANGE(1000);        
@@ -687,7 +685,6 @@ MNU_OrderCustom(UserCall call, MenuItem * item)
         if (!FX_SoundActive(wanghandle))            
             wanghandle = PlaySound(DIGI_WANGORDER2, &zero, &zero, &zero, v3df_dontpan);        
         }            
-    #endif    
                 
     order_input.button0 = order_input.button1 = FALSE;
     order_input.dir = dir_None;
@@ -781,9 +778,9 @@ MNU_OrderCustom(UserCall call, MenuItem * item)
 // Yeah... I changed default behavior just because I wanted to. 
 // AND YOU CAN'T STOP ME SUCKER!!!
     if(on_screen < 0) 
-        on_screen = SIZ(OrderScreen)-1;
+        on_screen = OrderScreenSiz-1;
         
-    if(on_screen > SIZ(OrderScreen)-1) 
+    if(on_screen > OrderScreenSiz-1) 
         on_screen = 0;
 // CTW MODIFICATION END
         
@@ -1159,6 +1156,8 @@ MNU_InitMenus(void)
 //        #else
 //        main_i[0].child = &skillgroup;        
 //        #endif    
+    main_i[4].text = (SW_SHAREWARE) ? MAIN_MENU_HOW_TO_ORDER : MAIN_MENU_COOL_STUFF;
+    main_i[4].hotkey = (SW_SHAREWARE) ? KEYSC_H : KEYSC_C;
     }
 
 ////////////////////////////////////////////////
@@ -1202,7 +1201,7 @@ MNU_MeasureStringLarge(char *string, short *w, short *h)
             }    
         
         width += tilesizx[pic]+1;
-        if (height < tilesizx[pic])
+        if (height < tilesizy[pic])
             height = tilesizy[pic];
         }
 
@@ -1280,7 +1279,7 @@ MNU_MeasureString(char *string, short *w, short *h)
         if (c > asc_Space && c < 127)
             {
             width += tilesizx[ac];
-            if (height < tilesizx[ac])
+            if (height < tilesizy[ac])
                 height = tilesizy[ac];
             }
         else 
@@ -1379,7 +1378,7 @@ MNU_MeasureSmallString(char *string, short *w, short *h)
         if (c > asc_Space && c < 127)
             {
             width += tilesizx[ac];
-            if (height < tilesizx[ac])
+            if (height < tilesizy[ac])
                 height = tilesizy[ac];
             }
         else 
@@ -1941,9 +1940,9 @@ MNU_LoadSaveDraw(UserCall call, MenuItem_p item)
 BOOL
 MNU_ShareWareCheck(MenuItem *item)
     {
-    #ifdef SW_SHAREWARE
+    if (SW_SHAREWARE) {
         SET(item->flags, mf_disabled);
-    #endif
+    }
 
     return (TRUE);
     }
@@ -1964,7 +1963,7 @@ MNU_ShareWareMessage(MenuItem *item)
     char *extra_text;
     short w,h;
 
-    #ifdef SW_SHAREWARE
+    if (SW_SHAREWARE) {
         extra_text = "Be sure to call 800-3DREALMS today";
         MNU_MeasureString(extra_text, &w, &h);
         MNU_DrawString(TEXT_XCENTER(w), 110, extra_text, 1, 16);
@@ -1984,7 +1983,7 @@ MNU_ShareWareMessage(MenuItem *item)
         MNU_MeasureString(extra_text, &w, &h);
         MNU_DrawString(TEXT_XCENTER(w), 160, extra_text, 1, 16);
         SET(item->flags, mf_disabled);
-    #endif
+    }
     return (TRUE);
     }
     
@@ -2152,8 +2151,8 @@ MNU_TryMusicInit(void)
 BOOL    
 MNU_MusicCheck(MenuItem *item)
     {
-    #ifdef SW_SHAREWARE
-    if (MusicDevice == NumSoundCards || !MusicInitialized)
+    if (SW_SHAREWARE) {
+        if (MusicDevice == NumSoundCards || !MusicInitialized)
         {
         SET(item->flags, mf_disabled);
         }
@@ -2161,7 +2160,7 @@ MNU_MusicCheck(MenuItem *item)
         {
         RESET(item->flags, mf_disabled);
         }    
-    #else
+    } else {
     // Redbook audio stuff
     if (!cdvalid)
         {
@@ -2181,7 +2180,7 @@ MNU_MusicCheck(MenuItem *item)
         {
         RESET(item->flags, mf_disabled);
         }    
-    #endif    
+    }
         
     return (TRUE);
     }
@@ -2313,10 +2312,10 @@ MNU_DoButton(MenuItem_p item, BOOL draw)
                 }    
             break;
         case btn_music:
-            #ifdef SW_SHAREWARE
+            if (SW_SHAREWARE) {
             if (!MusicInitialized)
                  break;
-            #endif 
+	    }
 
             last_value = gs.MusicOn;
             gs.MusicOn = state = buttonsettings[item->button];
@@ -2326,11 +2325,11 @@ MNU_DoButton(MenuItem_p item, BOOL draw)
                 
                 if (gs.MusicOn)
                     {
-                    #ifdef SW_SHAREWARE
+                    if (SW_SHAREWARE) {
                     bak = DemoMode;
                     PlaySong(LevelSong);    
                     DemoMode = bak;
-                    #else
+		    } else {
                     if (!cdvalid)
                         {
                         enabled = TRUE;
@@ -2346,26 +2345,26 @@ MNU_DoButton(MenuItem_p item, BOOL draw)
                         CDAudio_Stop();
                         CDAudio_Play(RedBookSong[Level], TRUE);
                         }
-                    #endif
+                    }
                     }
                 else
                     {
-                    #ifdef SW_SHAREWARE
+                    if (SW_SHAREWARE) {
                     bak = DemoMode;
                     StopSong();
                     DemoMode = bak;
-                    #else
+                    } else {
                     CDAudio_Stop();
-                    #endif
+		    }
 
-                    #ifdef SW_SHAREWARE
+                    if (SW_SHAREWARE) {
                     handle = PlaySound(DIGI_NOLIKEMUSIC,&zero,&zero,&zero,v3df_none);
 
                     if (handle > FX_Ok)
                         while(FX_SoundActive(handle))
                             ;
-                    #endif
                     }
+                }    
                 }    
             break;
         case btn_talking:
@@ -2437,6 +2436,7 @@ MNU_DoButton(MenuItem_p item, BOOL draw)
         case btn_mouse_aim:
             extra_text = gs.MouseAimingType ? "Momentary" : "Toggle";       
             break;
+	default: break;
         }
         
     
@@ -2544,11 +2544,11 @@ MNU_DoSlider(short dir, MenuItem_p item, BOOL draw)
         
         slidersettings[sldr_musicvolume] = offset;
         gs.MusicVolume = MUSIC_MIN + (offset * VOL_MUL);
-        #ifndef SW_SHAREWARE
+        if (!SW_SHAREWARE) {
         CDAudio_SetVolume(gs.MusicVolume);
-        #else
+	} else {
         MUSIC_SetVolume(gs.MusicVolume);
-        #endif    
+	}
         break;
         
     case sldr_scrsize:
@@ -3004,6 +3004,7 @@ MNU_DoItem(void)
                 item->custom();
             MNU_DownLevel(item->child);
             break;
+	default: break;
         }
     }
 
@@ -3255,6 +3256,8 @@ MNU_DoHotkey(void)
     {
     MenuItem_p item;
     short index;
+
+    if (!currentmenu->items) return FALSE;
 
     index = 0;
 	 // DDOI
@@ -3721,7 +3724,7 @@ FadeOut(unsigned char targetcolor, unsigned int clicks)
 
 #define FADE_DAMAGE_FACTOR  3   // 100 health / 32 shade cycles = 3.125
 
-unsigned char ppalette[MAX_SW_PLAYERS][768];
+unsigned char ppalette[MAX_SW_PLAYERS_REG][768];
 
 //////////////////////////////////////////
 // Set the amount of redness for damage

@@ -80,7 +80,7 @@ extern unsigned char palette_data[256][3];      // Global palette array
 #define PLAYER_MIN_HEIGHT (Z(20))
 #define PLAYER_CRAWL_WADE_DEPTH (30)
 
-USER puser[MAX_SW_PLAYERS];
+USER puser[MAX_SW_PLAYERS_REG];
 
 //SHORT gNet.MultiGameType = MULTI_GAME_NONE;
 BOOL NightVision = FALSE;
@@ -146,7 +146,7 @@ extern BOOL DebugOperate;
 
 long dimensionmode, zoom;
 
-PLAYER Player[MAX_SW_PLAYERS + 1];
+PLAYER Player[MAX_SW_PLAYERS_REG + 1];
 
 //short snum = 0;
 
@@ -4410,7 +4410,7 @@ DoPlayerBeginFly(PLAYERp pp)
     NewStateGroup(pp->PlayerSprite, sg_PlayerNinjaFly);
     }
 
-GetSinNdx(long range, long bob_amt)
+int GetSinNdx(long range, long bob_amt)
     {
     long amt;
 
@@ -8094,7 +8094,7 @@ domovethings(VOID)
     
     TRAVERSE_CONNECT(pnum)
         {
-        extern short screenpeek, myconnectindex;
+        extern short screenpeek;
         extern BOOL PlayerTrackingMode;
         void pSpriteControl(PLAYERp pp);
           extern PLAYERp GlobPlayerP;
@@ -8276,7 +8276,7 @@ int SearchSpawnPosition(PLAYERp pp)
     return(pos_num);
     }
     
-BOOL SpawnPositionUsed[MAX_SW_PLAYERS+1];
+BOOL SpawnPositionUsed[MAX_SW_PLAYERS_REG+1];
     
 VOID
 PlayerSpawnPosition(PLAYERp pp)
@@ -8401,9 +8401,11 @@ InitMultiPlayerInfo(VOID)
             }    
             
         start0 = SpawnSprite(MultiStatList[stat], ST1, NULL, pp->cursectnum, pp->posx, pp->posy, pp->posz, pp->pang, 0);
+        ASSERT(start0 >= 0);
+	if (User[start0]) {
         FreeMem(User[start0]);
         User[start0] = NULL;
-        ASSERT(start0 >= 0);
+	}
         sprite[start0].picnum = ST1;
         }
     

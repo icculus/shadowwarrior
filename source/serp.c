@@ -664,7 +664,7 @@ STATEp *Special[2];
     
 ACTOR_ACTION_SET SerpActionSet =
   {
-  {sg_SerpStand},
+  sg_SerpStand,
   sg_SerpRun,
   NULL,//sg_SerpJump,  
   NULL,//sg_SerpFall, 
@@ -685,7 +685,9 @@ ACTOR_ACTION_SET SerpActionSet =
   {1024},
   {sg_SerpSlash, sg_SerpSpell, sg_SerpRapidSpell, sg_SerpRapidSpell},
   {256, 724, 900, 1024},
-  {NULL}
+  {NULL},
+  NULL,
+  NULL
   };
  
 int 
@@ -809,14 +811,14 @@ int DoDeathSpecial(short SpriteNum)
     
     DoMatchEverything(NULL, sp->lotag, ON);
 
-    #ifndef SW_SHAREWARE
+    if (!SW_SHAREWARE) {
     if(gs.MusicOn && !alreadydid)
         {
         CDAudio_Stop();
         CDAudio_Play(RedBookSong[Level], TRUE);
         alreadydid = TRUE;
         }
-    #endif
+    }
 
     BossSpriteNum[0] = -2;    
     return(0);

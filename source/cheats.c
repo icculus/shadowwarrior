@@ -122,11 +122,11 @@ VOID WeaponCheat(PLAYERp pp, char *cheat_string)
         u = User[p->PlayerSprite];
 
         // ALL WEAPONS
-        #ifndef SW_SHAREWARE
-        p->WpnFlags = 0xFFFFFFFF;
-        #else
-        p->WpnFlags = 0x0000207F;  // Disallows high weapon cheat in shareware
-        #endif    
+        if (!SW_SHAREWARE) {
+            p->WpnFlags = 0xFFFFFFFF;
+        } else {
+            p->WpnFlags = 0x0000207F;  // Disallows high weapon cheat in shareware
+        }
 
         for (i = 0; i < SIZ(p->WpnAmmo); i++)
             {
@@ -169,13 +169,13 @@ VOID WarpCheat(PLAYERp pp, char *cheat_string)
     //DSPRINTF(ds,"ep %d, lev %d",episode_num, level_num);
     //MONO_PRINT(ds);
 
-    #ifndef SW_SHAREWARE    
+    if (!SW_SHAREWARE) {
     if (level_num > 28 || level_num < 1)
         return;
-    #else
+    } else {
     if (level_num > 4 || level_num < 1)
         return;
-    #endif
+    }
 
     Level = level_num;
     ExitLevel = TRUE;
@@ -286,6 +286,7 @@ int cheatcmp(char *str1, char *str2, long len)
 
 
 #define CF_ALL    BIT(0)    
+#define CF_NOTSW  BIT(1)
 
 typedef struct
     {
@@ -297,21 +298,19 @@ typedef struct
     
 CHEAT_INFO ci[] = 
     {
-    {"swchan",      GodCheat},
-    {"swgimme",     ItemCheat},
-    {"swtrek##",    WarpCheat},
-    {"swgreed",     EveryCheatToggle},
-    {"swghost",      ClipCheat},
+    {"swchan",      GodCheat, 0},
+    {"swgimme",     ItemCheat, 0},
+    {"swtrek##",    WarpCheat, 0},
+    {"swgreed",     EveryCheatToggle, 0},
+    {"swghost",      ClipCheat, 0},
 
-    {"swstart",     RestartCheat},
+    {"swstart",     RestartCheat, 0},
     
-    {"swres",       ResCheatOn},
-    {"swloc",       LocCheat},
-    {"swmap",       MapCheat},
+    {"swres",       ResCheatOn, 0},
+    {"swloc",       LocCheat, 0},
+    {"swmap",       MapCheat, 0},
     {"swsave",      SaveCheat, CF_ALL},
-    #ifndef SW_SHAREWARE
-    {"swroom",      RoomCheat}, // Room above room dbug
-    #endif
+    {"swroom",      RoomCheat, CF_NOTSW}, // Room above room dbug
     #if DEBUG
     {"swsecret",    SecretCheat, CF_ALL},
     #endif
@@ -347,6 +346,9 @@ void CheatInput(void)
                 match = TRUE;    
                 CheatInputMode = FALSE;    
                 
+		if (TEST(ci[i].flags, CF_NOTSW) && SW_SHAREWARE)
+		    return;
+
                 if (!TEST(ci[i].flags, CF_ALL))
                     {
                     if (CommEnabled)

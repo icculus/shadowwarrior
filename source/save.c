@@ -592,24 +592,21 @@ int SaveGame(short save_num)
         memcpy(a,&Anim[i],sizeof(ANIM));
         
         // maintain compatibility with sinking boat which points to user data
-
-STUBBED("I think Charlie's change is broken (pointer arithmatic below!)");
-#if 0
         for (j=0; j<MAXSPRITES; j++)
             {
             if (User[j])
                 {
-				// CTW MODIFICATION
-				//BYTEp bp = User[j];
-				USERp bp = User[j];
-				// CTW MODIFICATION END
+                                // CTW MODIFICATION
+                                BYTEp bp = (BYTEp)User[j];
+                                //USERp bp = User[j];
+                                // CTW MODIFICATION END
                 
                 if (a->ptr >= bp && a->ptr < bp + sizeof(USER))
                     {
                     // CTW MODIFICATION
-                    // offset = (char*)a->ptr - bp; // offset from user data
-                    offset = (long*)a->ptr - bp; // offset from user data
-					// CTW MODIFICATION END
+                     offset = (long)((BYTEp)a->ptr - bp); // offset from user data
+                    //offset = (long*)a->ptr - bp; // offset from user data
+                                        // CTW MODIFICATION END
                     a->ptr = -2;
                     break;
                     }
@@ -622,17 +619,17 @@ STUBBED("I think Charlie's change is broken (pointer arithmatic below!)");
                 {
                 if (SectUser[j])
                     {
-					// CTW MODIFICATION
-					//BYTEp bp = SectUser[j];
-					SECT_USERp bp = SectUser[j];
-					// CTW MODIFICATION END
+                                        // CTW MODIFICATION
+                                        BYTEp bp = (BYTEp)SectUser[j];
+                                        //SECT_USERp bp = SectUser[j];
+                                        // CTW MODIFICATION END
                     
                     if (a->ptr >= bp && a->ptr < bp + sizeof(SECT_USER))
                         {
-						// CTW MODIFICATION
-                        // offset = (char*)a->ptr - bp; // offset from user data
-                        offset = (long*)a->ptr - bp; // offset from user data
-						// CTW MODIFICATION END
+                                                // CTW MODIFICATION
+                        offset = (long)((BYTEp)a->ptr - bp); // offset from user data
+                        //offset = (long*)a->ptr - bp; // offset from user data
+                                                // CTW MODIFICATION END
                         a->ptr = -3;
                         break;
                         }
@@ -640,7 +637,6 @@ STUBBED("I think Charlie's change is broken (pointer arithmatic below!)");
                 }
             }    
         MWRITE(a,sizeof(ANIM),1,fil);
-#endif
             
         if (a->ptr == -2 || a->ptr == -3)
             {
@@ -1129,10 +1125,10 @@ int LoadGame(short save_num)
             long offset;
             MREAD(&j, sizeof(j),1,fil);
             MREAD(&offset, sizeof(offset),1,fil);
-			// CTW MODIFICATION
-			//a->ptr = ((char *)User[j]) + offset;
-			a->ptr = ((long *)User[j]) + offset;
-			// CTW MODIFICATION END
+                        // CTW MODIFICATION
+                        a->ptr = (long*)(((char *)User[j]) + offset);
+                        //a->ptr = ((long *)User[j]) + offset;
+                        // CTW MODIFICATION END
             }
         else
         if (a->ptr == -3)
@@ -1141,10 +1137,10 @@ int LoadGame(short save_num)
             long offset;
             MREAD(&j, sizeof(j),1,fil);
             MREAD(&offset, sizeof(offset),1,fil);
-			// CTW MODIFICATION
-			//a->ptr = ((char *)SectUser[j]) + offset;
-			a->ptr = ((long *)SectUser[j]) + offset;
-			// CTW MODIFICATION END
+                        // CTW MODIFICATION
+                        a->ptr = (long*)(((char *)SectUser[j]) + offset);
+                        //a->ptr = ((long *)SectUser[j]) + offset;
+                        // CTW MODIFICATION END
             }
         else   
             {
@@ -1390,21 +1386,21 @@ int LoadGame(short save_num)
     screenpeek = myconnectindex;
     PlayingLevel = Level;
 
-    #ifdef SW_SHAREWARE
-    if (gs.MusicOn)
-        PlaySong(LevelSong);
-    #else
-    if (gs.MusicOn)
-        CDAudio_Play(RedBookSong[Level], TRUE);  // track, loop - Level songs are looped
-    #endif
+    if (SW_SHAREWARE) {
+        if (gs.MusicOn)
+            PlaySong(LevelSong);
+    } else {
+        if (gs.MusicOn)
+            CDAudio_Play(RedBookSong[Level], TRUE);  // track, loop - Level songs are looped
+    }
     if (gs.Ambient)    
         StartAmbientSound();
     FX_SetVolume(gs.SoundVolume);
-    #ifndef SW_SHAREWARE
-    CDAudio_SetVolume(gs.MusicVolume);
-    #else
-    MUSIC_SetVolume(gs.MusicVolume);
-    #endif    
+    if (!SW_SHAREWARE) {
+        CDAudio_SetVolume(gs.MusicVolume);
+    } else {
+        MUSIC_SetVolume(gs.MusicVolume);
+    }
 
     TRAVERSE_CONNECT(i)
         {

@@ -421,7 +421,7 @@ STATEp *Special[2];
     
 ACTOR_ACTION_SET LavaActionSet =
   {
-  {sg_LavaStand},
+  sg_LavaStand,
   sg_LavaRun,
   NULL,//sg_LavaJump,  
   NULL,//sg_LavaFall, 
@@ -442,7 +442,9 @@ ACTOR_ACTION_SET LavaActionSet =
   {1024},
   {sg_LavaFlame, sg_LavaThrow, sg_LavaThrow, sg_LavaThrow},
   {256, 512, 768, 1024},
-  {NULL}
+  {NULL},
+  NULL,
+  NULL
   };
  
 int 

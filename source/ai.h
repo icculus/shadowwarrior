@@ -108,7 +108,7 @@ int __export InitActorDuck(short SpriteNum);
 int __export DoActorDuck(short SpriteNum);
 int __export DoActorMoveJump(short SpriteNum);
 int __export move_scan(short SpriteNum,short ang,long dist,long *stopx,long *stopy,long *stopz,short *stopsect);
-int __export FindNewAngle(short SpriteNum,char dir,long DistToMove);
+int __export FindNewAngle(short SpriteNum,signed char dir,long DistToMove);
 int __export InitActorReposition(short SpriteNum);
 int __export DoActorReposition(short SpriteNum);
 int __export InitActorPause(short SpriteNum);

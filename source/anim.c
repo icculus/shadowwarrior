@@ -264,10 +264,6 @@ char * LoadAnm(short anim_num)
     char *animbuf, *palptr;
     long i,j,k;
     
-   assert(sizeof(lp_descriptor) == 6);
-   assert(sizeof(lpfileheader) == 128);
-   assert(sizeof(anim->LpArray) == 1536);
-
     DSPRINTF(ds,"LoadAnm");
     MONO_PRINT(ds);
 
@@ -444,9 +440,6 @@ playanm(short anim_num)
     char tempbuf[256];
     char *palook_bak = palookup[0];
 
-STUBBED("playanm is broken right now.");
-return;
-
     ANIMnum = anim_num;
 
     KB_FlushKeyboardQueue();    
@@ -477,12 +470,18 @@ return;
     palptr = ANIM_GetPalette();
     for (i = 0; i < 256; i++)
         {
+	/*
         j = (i << 2);
         k = j - i;
         ANIMvesapal[j + 0] = (palptr[k + 2] >> 2);
         ANIMvesapal[j + 1] = (palptr[k + 1] >> 2);
         ANIMvesapal[j + 2] = (palptr[k + 0] >> 2);
         ANIMvesapal[j + 3] = 0;
+	*/
+	j = i*3;
+        ANIMvesapal[j + 0] = (palptr[j + 0] >> 2);
+        ANIMvesapal[j + 1] = (palptr[j + 1] >> 2);
+        ANIMvesapal[j + 2] = (palptr[j + 2] >> 2);
         }
 
     tilesizx[ANIM_TILE(ANIMnum)] = 200;
@@ -496,9 +495,11 @@ return;
         {
         // draw the first frame
         waloff[ANIM_TILE(ANIMnum)] = FP_OFF(ANIM_DrawFrame(1));
+	invalidatetile(ANIM_TILE(ANIMnum), 0, 1<<4);
         rotatesprite(0 << 16, 0 << 16, 65536L, 512, ANIM_TILE(ANIMnum), 0, 0, 2 + 4 + 8 + 16 + 64, 0, 0, xdim - 1, ydim - 1);
              }
-    VBE_setPalette(0L, 256L, ANIMvesapal);
+    //VBE_setPalette(0L, 256L, ANIMvesapal);
+    setbrightness(0,ANIMvesapal);
 
     SoundState = 0;
     //ototalclock = totalclock + 120*2;
@@ -545,6 +546,7 @@ return;
             }    
             
         waloff[ANIM_TILE(ANIMnum)] = FP_OFF(ANIM_DrawFrame(i));
+	invalidatetile(ANIM_TILE(ANIMnum), 0, 1<<4);
 
         rotatesprite(0 << 16, 0 << 16, 65536L, 512, ANIM_TILE(ANIMnum), 0, 0, 2 + 4 + 8 + 16 + 64, 0, 0, xdim - 1, ydim - 1);
         nextpage();

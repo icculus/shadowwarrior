@@ -51,11 +51,12 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 #include "stdio.h"    // This has to be here is memcheck.h is out.
 #endif
 
-// TENSW: we build shareware right now
-//#define SW_SHAREWARE 1     // This determines whether game is shareware compile or not!
+#define NET_MODE_MASTER_SLAVE 1
 // CTW REMOVED
 //#define UK_VERSION 1
 // CTW REMOVED END
+extern char isShareware;
+#define SW_SHAREWARE (isShareware)
 
 /*
 #pragma aux set_pal =       \
@@ -104,9 +105,9 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 
     VOID PokeStringMono(BYTE Attr, BYTEp String);
     
-    #if 0  // !JIM! Frank, I redirect this for me you'll want to set this back for you
+    #if 1  // !JIM! Frank, I redirect this for me you'll want to set this back for you
         extern int DispMono;
-        #define MONO_PRINT(str) if (DispMono) PokeStringMono(MDA_NORMAL, str)
+        #define MONO_PRINT(str) if (DispMono) PokeStringMono(/*MDA_NORMAL*/0, str)
     #else
         void adduserquote(char *daquote);
         extern int DispMono;                   
@@ -971,7 +972,7 @@ void CON_ConMessage(BYTEp message, ...);
 void CON_StoreArg(BYTEp userarg);
 BOOL CON_CheckParm(BYTEp userarg);
 void CON_CommandHistory(signed char dir);
-BOOL CON_AddCommand(BYTEp command, BOOL (*function)(void));
+BOOL CON_AddCommand(BYTEp command,void /*BOOL*/ (*function)(void ));
 void CON_ProcessUserCommand( void );
 void CON_InitConsole( void );
 
@@ -1057,11 +1058,9 @@ extern VOID (*InitWeapon[MAX_WEAPONS])(PLAYERp);
 //
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-#ifdef SW_SHAREWARE
-#define MAX_SW_PLAYERS (4)
-#else
-#define MAX_SW_PLAYERS (8)
-#endif
+#define MAX_SW_PLAYERS_SW  (4)
+#define MAX_SW_PLAYERS_REG (8)
+#define MAX_SW_PLAYERS (isShareware ? MAX_SW_PLAYERS_SW : MAX_SW_PLAYERS_REG)
 
 typedef struct
     {
@@ -1076,11 +1075,9 @@ typedef struct
     long x,y,z;
     }DEMO_START_POS, *DEMO_START_POSp;
 
-#ifndef SW_SHAREWARE
-#define MAX_LEVELS 29
-#else
-#define MAX_LEVELS 4
-#endif
+#define MAX_LEVELS_REG 29
+#define MAX_LEVELS_SW 4
+#define MAX_LEVELS (isShareware ? MAX_LEVELS_SW : MAX_LEVELS_REG)
 
 typedef struct
 {
@@ -1091,7 +1088,7 @@ char *BestTime;
 char *ParTime;
 }LEVEL_INFO, *LEVEL_INFOp, **LEVEL_INFOpp;
 
-extern LEVEL_INFO LevelInfo[MAX_LEVELS+2];
+extern LEVEL_INFO LevelInfo[MAX_LEVELS_REG+2];
 
 typedef struct 
     {
@@ -1309,7 +1306,7 @@ typedef struct PLAYERstruct
     short DeathType;
     short Kills;
     short Killer;  //who killed me
-    short KilledPlayer[MAX_SW_PLAYERS];
+    short KilledPlayer[MAX_SW_PLAYERS_REG];
     short SecretsFound;
     
     // Health
@@ -1355,7 +1352,7 @@ typedef struct PLAYERstruct
     long PlayerVersion;
     } PLAYER, *PLAYERp;
     
-extern PLAYER Player[MAX_SW_PLAYERS+1];
+extern PLAYER Player[MAX_SW_PLAYERS_REG+1];
 
 typedef struct
     {
@@ -2360,7 +2357,7 @@ extern long *lastpacket2clock;
 extern char username[MAXPLAYERS][50];
 
 // save player info when moving to a new level
-extern USER puser[MAX_SW_PLAYERS];
+extern USER puser[MAX_SW_PLAYERS_REG];
 
 ///////////////////////////
 //

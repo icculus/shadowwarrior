@@ -4599,14 +4599,14 @@ NewStateGroup(short SpriteNum, STATEp StateGroup[])
     //    return;
 
     if (!StateGroup)
-        return;
+        return 0;
+
+    ASSERT(u);
 
     // Kind of a goofy check, but it should catch alot of invalid states!
     // BTW, 6144 is the max tile number allowed in editart.
-    if (u->State->Pic < 0 || u->State->Pic > 6144)
-        return;
-
-    ASSERT(u);
+    if (u->State && (u->State->Pic < 0 || u->State->Pic > 6144))	// JBF: verify this!
+        return 0;
 
     u->Rot = StateGroup;
     u->State = u->StateStart = StateGroup[0];
@@ -4617,6 +4617,7 @@ NewStateGroup(short SpriteNum, STATEp StateGroup[])
     // turn anims off because people keep setting them in the
     // art file
     RESET(picanm[sprite[SpriteNum].picnum], TILE_ANIM_TYPE);
+    return 0;
     }
 
 
@@ -5143,8 +5144,11 @@ DoGrating(short SpriteNum)
     if (sp->hitag <= 0)
         {
         change_sprite_stat(SpriteNum, STAT_DEFAULT);
+	if (User[SpriteNum])
+	    {
         FreeMem(User[SpriteNum]);
         User[SpriteNum] = 0;
+        }
         }
             
     setsprite(SpriteNum, sp->x, sp->y, sp->z);
@@ -6138,8 +6142,8 @@ DoGet(short SpriteNum)
             break;
         #endif    
 
-        #ifndef SW_SHAREWARE
         case ICON_RAIL_GUN:
+	    if (SW_SHAREWARE) { KillSprite(SpriteNum); break; }
         
             if (!CanGetWeapon(pp, SpriteNum, WPN_RAIL))
                 break;
@@ -6174,6 +6178,8 @@ DoGet(short SpriteNum)
             break;
 
         case ICON_RAIL_AMMO:
+	    if (SW_SHAREWARE) { KillSprite(SpriteNum); break; }
+
             if (pp->WpnAmmo[WPN_RAIL] >= DamageData[WPN_RAIL].max_ammo)
                 break;            
             sprintf(ds,"Rail Gun Rods");
@@ -6184,7 +6190,6 @@ DoGet(short SpriteNum)
                 PlaySound(DIGI_ITEM, &sp->x, &sp->y, &sp->z, v3df_dontpan);
             KillGetAmmo(SpriteNum);
             break;
-        #endif
 
         case ICON_SHOTGUN:
             if (!CanGetWeapon(pp, SpriteNum, WPN_SHOTGUN))
@@ -6248,8 +6253,8 @@ DoGet(short SpriteNum)
             break;
         #endif
             
-        #ifndef SW_SHAREWARE
         case ICON_GUARD_HEAD:
+	    if (SW_SHAREWARE) { KillSprite(SpriteNum); break; }
         
             if (!CanGetWeapon(pp, SpriteNum, WPN_HOTHEAD))
                 break;
@@ -6278,6 +6283,8 @@ DoGet(short SpriteNum)
             break;
 
         case ICON_FIREBALL_LG_AMMO:
+	    if (SW_SHAREWARE) { KillSprite(SpriteNum); break; }
+
             if (pp->WpnAmmo[WPN_HOTHEAD] >= DamageData[WPN_HOTHEAD].max_ammo)
                 break;            
             sprintf(ds,"Firebursts");
@@ -6290,6 +6297,7 @@ DoGet(short SpriteNum)
             break;
 
         case ICON_HEART:
+	    if (SW_SHAREWARE) { KillSprite(SpriteNum); break; }
         
             if (!CanGetWeapon(pp, SpriteNum, WPN_HEART))
                 break;
@@ -6320,6 +6328,8 @@ DoGet(short SpriteNum)
             break;
 
         case ICON_HEART_LG_AMMO:
+	    if (SW_SHAREWARE) { KillSprite(SpriteNum); break; }
+
             if (pp->WpnAmmo[WPN_HEART] >= DamageData[WPN_HEART].max_ammo)
                 break;            
             sprintf(ds,"Deathcoils");
@@ -6330,7 +6340,6 @@ DoGet(short SpriteNum)
                 PlaySound(DIGI_ITEM, &sp->x, &sp->y, &sp->z, v3df_dontpan);
             KillGetAmmo(SpriteNum);
             break;
-        #endif
         
         #if 0    
         case ICON_SPELL:

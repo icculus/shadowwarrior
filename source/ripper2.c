@@ -828,7 +828,7 @@ STATEp *Special[2];
 
 ACTOR_ACTION_SET Ripper2ActionSet =
     {
-    {sg_Ripper2Stand},
+    sg_Ripper2Stand,
     sg_Ripper2Run,
     sg_Ripper2Jump,
     sg_Ripper2Fall,
@@ -849,12 +849,14 @@ ACTOR_ACTION_SET Ripper2ActionSet =
     {1024},
     {sg_Ripper2JumpAttack, sg_Ripper2Kong},
     {500, 1024},
-    {sg_Ripper2Heart, sg_Ripper2Hang}
+    {sg_Ripper2Heart, sg_Ripper2Hang},
+    NULL,
+    NULL
     };
 
 ACTOR_ACTION_SET Ripper2BrownActionSet =
     {
-    {sg_Ripper2Stand},
+    sg_Ripper2Stand,
     sg_Ripper2Run,
     sg_Ripper2Jump,
     sg_Ripper2Fall,
@@ -875,7 +877,9 @@ ACTOR_ACTION_SET Ripper2BrownActionSet =
     {1024},
     {sg_Ripper2JumpAttack, sg_Ripper2Kong},
     {400, 1024},
-    {sg_Ripper2Heart, sg_Ripper2Hang}
+    {sg_Ripper2Heart, sg_Ripper2Hang},
+    NULL,
+    NULL
     };
 
 int
@@ -1219,7 +1223,7 @@ int DoRipper2Pain(short SpriteNum)
 }    
 
 
-int DoRipper2RipHeart(SpriteNum)
+int DoRipper2RipHeart(short SpriteNum)
     {
     SPRITEp sp = &sprite[SpriteNum];
     USERp u = User[SpriteNum];

@@ -24,7 +24,6 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 */
 //-------------------------------------------------------------------------
 
-#ifndef SW_SHAREWARE
 #include <stdlib.h>
 #include "shadow.h" // added for unix port.  --ryan.
 #include "proto.h"
@@ -474,7 +473,7 @@ STATEp *Special[2];
 
 ACTOR_ACTION_SET SkelActionSet =
   {
-  {sg_SkelStand},
+  sg_SkelStand,
   sg_SkelRun,
   NULL,//sg_SkelJump,  
   NULL,//sg_SkelFall, 
@@ -496,7 +495,8 @@ ACTOR_ACTION_SET SkelActionSet =
   {sg_SkelSpell},
   {1024},
   {NULL},
-  sg_SkelTeleport
+  sg_SkelTeleport,
+  NULL
   };
  
 int 
@@ -635,4 +635,3 @@ int DoSkelMove(short SpriteNum)
     return(0);
 }    
 
-#endif

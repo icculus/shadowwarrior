@@ -465,7 +465,7 @@ STATEp *Special[2];
     
 ACTOR_ACTION_SET CoolgActionSet =
   {
-  {sg_CoolgStand},
+  sg_CoolgStand,
   sg_CoolgRun,
   NULL, 
   NULL, 
@@ -486,7 +486,10 @@ ACTOR_ACTION_SET CoolgActionSet =
   {sg_CoolgAttack},
   {1024},
   {sg_CoolgAttack},
-  {1024}
+  {1024},
+  {NULL,NULL},
+  NULL,
+  NULL
   };
 
 void
@@ -552,12 +555,12 @@ NewCoolg(short SpriteNum)
     ANIMATOR DoActorDecide;
     short new;
 
-    new = SpawnSprite(STAT_ENEMY, COOLG_RUN_R0, &s_CoolgBirth, sp->sectnum, sp->x, sp->y, sp->z, sp->ang, 50);
+    new = SpawnSprite(STAT_ENEMY, COOLG_RUN_R0, &s_CoolgBirth[0], sp->sectnum, sp->x, sp->y, sp->z, sp->ang, 50);
 
     nu = User[new];
     np = &sprite[new];
 
-    ChangeState(new, &s_CoolgBirth);
+    ChangeState(new, &s_CoolgBirth[0]);
     nu->StateEnd = s_CoolgDie;
     nu->Rot = sg_CoolgRun;
     np->pal = nu->spal = u->spal;

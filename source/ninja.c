@@ -329,27 +329,27 @@ STATE s_NinjaRise[5][3] =
     {
     {NINJA_KNEEL_R0 + 0, NINJA_RISE_RATE, NullNinja, &s_NinjaRise[0][1]},
     {NINJA_STAND_R0 + 0, NINJA_STAND_RATE, NullNinja, &s_NinjaRise[0][2]},
-    {NULL, NULL, NULL, sg_NinjaRun},
+    {0, 0, NULL, sg_NinjaRun},
     },
     {
     {NINJA_KNEEL_R1 + 0, NINJA_RISE_RATE, NullNinja, &s_NinjaRise[1][1]},
     {NINJA_STAND_R1 + 0, NINJA_STAND_RATE, NullNinja, &s_NinjaRise[1][2]},
-    {NULL, NULL, NULL, sg_NinjaRun},
+    {0, 0, NULL, sg_NinjaRun},
     },
     {
     {NINJA_KNEEL_R2 + 0, NINJA_RISE_RATE, NullNinja, &s_NinjaRise[2][1]},
     {NINJA_STAND_R2 + 0, NINJA_STAND_RATE, NullNinja, &s_NinjaRise[2][2]},
-    {NULL, NULL, NULL, sg_NinjaRun},
+    {0, 0, NULL, sg_NinjaRun},
     },
     {
     {NINJA_KNEEL_R3 + 0, NINJA_RISE_RATE, NullNinja, &s_NinjaRise[3][1]},
     {NINJA_STAND_R3 + 0, NINJA_STAND_RATE, NullNinja, &s_NinjaRise[3][2]},
-    {NULL, NULL, NULL, sg_NinjaRun},
+    {0, 0, NULL, sg_NinjaRun},
     },
     {
     {NINJA_KNEEL_R4 + 0, NINJA_RISE_RATE, NullNinja, &s_NinjaRise[4][1]},
     {NINJA_STAND_R4 + 0, NINJA_STAND_RATE, NullNinja, &s_NinjaRise[4][2]},
-    {NULL, NULL, NULL, sg_NinjaRun},
+    {0, 0, NULL, sg_NinjaRun},
     },
     };    
 
@@ -1574,7 +1574,7 @@ STATEp sg_NinjaDeathFall[] =
 
 ACTOR_ACTION_SET NinjaSniperActionSet =
     {
-    {sg_NinjaDuck},
+    sg_NinjaDuck,
     sg_NinjaCrawl,
     sg_NinjaJump,
     sg_NinjaFall,
@@ -1602,7 +1602,7 @@ ACTOR_ACTION_SET NinjaSniperActionSet =
     
 ACTOR_ACTION_SET NinjaActionSet =
     {
-    {sg_NinjaStand},
+    sg_NinjaStand,
     sg_NinjaRun,
     sg_NinjaJump,
     sg_NinjaFall,
@@ -1630,7 +1630,7 @@ ACTOR_ACTION_SET NinjaActionSet =
 
 ACTOR_ACTION_SET NinjaRedActionSet =
     {
-    {sg_NinjaStand},
+    sg_NinjaStand,
     sg_NinjaRun,
     sg_NinjaJump,
     sg_NinjaFall,
@@ -1658,7 +1658,7 @@ ACTOR_ACTION_SET NinjaRedActionSet =
 
 ACTOR_ACTION_SET NinjaSeekerActionSet =
     {
-    {sg_NinjaStand},
+    sg_NinjaStand,
     sg_NinjaRun,
     sg_NinjaJump,
     sg_NinjaFall,
@@ -1686,7 +1686,7 @@ ACTOR_ACTION_SET NinjaSeekerActionSet =
 
 ACTOR_ACTION_SET NinjaGrenadeActionSet =
     {
-    {sg_NinjaStand},
+    sg_NinjaStand,
     sg_NinjaRun,
     sg_NinjaJump,
     sg_NinjaFall,
@@ -1714,7 +1714,7 @@ ACTOR_ACTION_SET NinjaGrenadeActionSet =
 
 ACTOR_ACTION_SET NinjaGreenActionSet =
     {
-    {sg_NinjaStand},
+    sg_NinjaStand,
     sg_NinjaRun,
     sg_NinjaJump,
     sg_NinjaFall,
@@ -1750,7 +1750,7 @@ extern STATEp sg_PlayerNinjaCrawl[];
 extern STATEp sg_PlayerNinjaSwim[];
 ACTOR_ACTION_SET PlayerNinjaActionSet =
     {
-    {sg_PlayerNinjaStand},
+    sg_PlayerNinjaStand,
     sg_PlayerNinjaRun,
     sg_PlayerNinjaJump,
     sg_PlayerNinjaFall,

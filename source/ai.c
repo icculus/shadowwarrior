@@ -733,7 +733,7 @@ DoActorActionDecide(short SpriteNum)
     // everybody on fire acts like this
     if (ActorFlaming(SpriteNum))
        {
-       action = ChooseAction(&GenericFlaming);
+       action = ChooseAction(&GenericFlaming[0]);
        //CON_Message("On Fire");
        return(action);
        }
@@ -779,7 +779,7 @@ DoActorActionDecide(short SpriteNum)
         pu = User[GetPlayerSpriteNum(SpriteNum)];
         // check for short range attack possibility
         if ((dist < CloseRangeDist(sp, u->tgt_sp) && ICanSee) ||
-            (pu->WeaponNum == WPN_FIST && u->ID != RIPPER2_RUN_R0 && u->ID != RIPPER_RUN_R0))
+            (pu && pu->WeaponNum == WPN_FIST && u->ID != RIPPER2_RUN_R0 && u->ID != RIPPER_RUN_R0))
             {
             if ((u->ID == COOLG_RUN_R0 && TEST(sp->cstat, CSTAT_SPRITE_TRANSLUCENT)) || TEST(sp->cstat, CSTAT_SPRITE_INVISIBLE))
                 action = ChooseAction(u->Personality->Evasive);
@@ -1853,7 +1853,7 @@ int move_scan(short SpriteNum, short ang, long dist, long *stopx, long *stopy, l
 #define AWAY -1
 
 int 
-FindNewAngle(short SpriteNum, char dir, long DistToMove)
+FindNewAngle(short SpriteNum, signed char dir, long DistToMove)
     {
     USERp u = User[SpriteNum];
     SPRITEp sp = User[SpriteNum]->SpriteP;
@@ -1881,6 +1881,7 @@ FindNewAngle(short SpriteNum, char dir, long DistToMove)
     short new_ang, oang;
     short save_ang = -1;
     unsigned short ret;
+    int set;
     
     long dist, stopx, stopy, stopz;
     short stopsect;
@@ -1898,21 +1899,21 @@ FindNewAngle(short SpriteNum, char dir, long DistToMove)
     switch (dir)
         {
         case TOWARD:
-            adp = &toward_angle_delta[RANDOM_P2(4<<8)>>8][0];
+            set = RANDOM_P2(4<<8)>>8;
+            adp = &toward_angle_delta[set][0];
             break;
         case AWAY:
-            if(CanHitPlayer(SpriteNum))
-                adp = &toward_angle_delta[RANDOM_P2(4<<8)>>8][0];
-            else        
-                adp = &away_angle_delta[RANDOM_P2(4<<8)>>8][0];
+	    set = RANDOM_P2(4<<8)>>8;
+            if(CanHitPlayer(SpriteNum)) {
+                adp = &toward_angle_delta[set][0];
+	    } else {
+                adp = &away_angle_delta[set][0];
+	    }
             break;
+	default:
+	    printf("FindNewAngle called with dir=%d!\n",dir);
+	    return 0;
         }
-
-if (!adp)
-{
-STUBBED("hit a null in the AI code...");
-return -1;
-}
 
     for (; *adp != -99; adp++)
         {

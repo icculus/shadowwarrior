@@ -228,27 +228,27 @@ STATE s_GirlNinjaRise[5][3] =
     {
     {GIRLNINJA_KNEEL_R0 + 0, GIRLNINJA_RISE_RATE, NullGirlNinja, &s_GirlNinjaRise[0][1]},
     {GIRLNINJA_STAND_R0 + 0, GIRLNINJA_STAND_RATE, NullGirlNinja, &s_GirlNinjaRise[0][2]},
-    {NULL, NULL, NULL, sg_GirlNinjaRun},
+    {0, 0, NULL, sg_GirlNinjaRun},	//JBF: what is actually intended here?
     },
     {
     {GIRLNINJA_KNEEL_R1 + 0, GIRLNINJA_RISE_RATE, NullGirlNinja, &s_GirlNinjaRise[1][1]},
     {GIRLNINJA_STAND_R1 + 0, GIRLNINJA_STAND_RATE, NullGirlNinja, &s_GirlNinjaRise[1][2]},
-    {NULL, NULL, NULL, sg_GirlNinjaRun},
+    {0, 0, NULL, sg_GirlNinjaRun},
     },
     {
     {GIRLNINJA_KNEEL_R2 + 0, GIRLNINJA_RISE_RATE, NullGirlNinja, &s_GirlNinjaRise[2][1]},
     {GIRLNINJA_STAND_R2 + 0, GIRLNINJA_STAND_RATE, NullGirlNinja, &s_GirlNinjaRise[2][2]},
-    {NULL, NULL, NULL, sg_GirlNinjaRun},
+    {0, 0, NULL, sg_GirlNinjaRun},
     },
     {
     {GIRLNINJA_KNEEL_R3 + 0, GIRLNINJA_RISE_RATE, NullGirlNinja, &s_GirlNinjaRise[3][1]},
     {GIRLNINJA_STAND_R3 + 0, GIRLNINJA_STAND_RATE, NullGirlNinja, &s_GirlNinjaRise[3][2]},
-    {NULL, NULL, NULL, sg_GirlNinjaRun},
+    {0, 0, NULL, sg_GirlNinjaRun},
     },
     {
     {GIRLNINJA_KNEEL_R4 + 0, GIRLNINJA_RISE_RATE, NullGirlNinja, &s_GirlNinjaRise[4][1]},
     {GIRLNINJA_STAND_R4 + 0, GIRLNINJA_STAND_RATE, NullGirlNinja, &s_GirlNinjaRise[4][2]},
-    {NULL, NULL, NULL, sg_GirlNinjaRun},
+    {0, 0, NULL, sg_GirlNinjaRun},
     },
     };    
 
@@ -685,7 +685,7 @@ STATEp sg_GirlNinjaDeathFall[] =
     
 ACTOR_ACTION_SET GirlNinjaActionSet =
     {
-    {sg_GirlNinjaStand},
+    sg_GirlNinjaStand,
     sg_GirlNinjaRun,
     sg_GirlNinjaJump,
     sg_GirlNinjaFall,

@@ -249,7 +249,7 @@ void ReadGameSetup( int32 scripthandle )
     SCRIPT_GetNumber( scripthandle, "Options", "PlayCD",&dummy);
     if (dummy != -1) gs.PlayCD = dummy;
    
-#ifdef SW_SHAREWARE   
+    if (SW_SHAREWARE) {
    dummy = -1;
    SCRIPT_GetNumber( scripthandle, "Options", "Chickens",&dummy);
    if (dummy != -1) GamePlays = dummy;
@@ -273,10 +273,9 @@ void ReadGameSetup( int32 scripthandle )
             if (difftime(new_time, start_time) > 1.0)
                 break;
             }
-   
+    }
     GamePlays++;
     }
-#endif    
     }
 
 /*
@@ -350,8 +349,6 @@ void WriteGameSetup( int32 scripthandle)
    SCRIPT_PutNumber( scripthandle, "Options", "Voxels",dummy,FALSE,FALSE);
    dummy = gs.MouseAimingOn;
    SCRIPT_PutNumber( scripthandle, "Options", "MouseAimingOn",dummy,FALSE,FALSE);
-   dummy = gs.MouseAimingOn;
-   SCRIPT_PutNumber( scripthandle, "Options", "MouseAimingOn",dummy,FALSE,FALSE);
    dummy = gs.MouseInvert;
    SCRIPT_PutNumber( scripthandle, "Options", "MouseInvert",dummy,FALSE,FALSE);
    dummy = gs.Stats;
@@ -367,10 +364,10 @@ void WriteGameSetup( int32 scripthandle)
    dummy = gs.PlayCD;
    SCRIPT_PutNumber( scripthandle, "Options", "PlayCD",dummy,FALSE,FALSE);
    
-#ifdef SW_SHAREWARE   
+   if (SW_SHAREWARE) {
    dummy = GamePlays;
    SCRIPT_PutNumber( scripthandle, "Options", "Chickens",dummy,FALSE,FALSE);
-#endif   
+   }
    }
 
 void TermSetup(void)

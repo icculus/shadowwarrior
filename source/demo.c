@@ -385,10 +385,10 @@ DemoPlayBack(VOID)
     ControlInfo info;
     long Xdim, Ydim, ScreenSize;
 
-    #ifdef SW_SHAREWARE
+    if (SW_SHAREWARE) {
     // code here needs to be similar to RunLevel startup code
     PlaySong(LevelSong);
-    #endif
+    }
     
     
     // Initialize Game part of network code (When ready2send != 0)
@@ -582,11 +582,11 @@ ScenePlayBack(VOID)
     long buf_ndx, pnum, cnt;
     PLAYERp pp;
 
-    #ifdef SW_SHAREWARE
+    if (SW_SHAREWARE) {
     // code here needs to be similar to RunLevel startup code
     strcpy(LevelSong,"yokoha03.mid");
     PlaySong(LevelSong);
-    #endif
+    }
 
     // IMPORTANT - MUST be right before game loop
     InitTimingVars();
