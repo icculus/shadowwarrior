@@ -3969,9 +3969,12 @@ int main(int argc, char **argv)
     }    
     #endif
     
-    if (!stricmp(argv[1], "help") || !strcmp(argv[1], "?"))
-        goto HELP;
-    
+    if (argc > 1)
+    {
+        if (!stricmp(argv[1], "help") || !strcmp(argv[1], "?"))
+            goto HELP;
+    }
+
     for (cnt = 1; cnt < argc; cnt++)
         {
         // lowercase the whole argument
