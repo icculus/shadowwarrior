@@ -26,14 +26,18 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 
 #define MAIN
 #define QUIET
+
+#if PLATFORM_DOS
 #include <dos.h>
-#include <fcntl.h>
 #include <io.h>
+#endif
+
+#include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include "condef.h"
-#include "build.h"
+#include "shadow.h" // added for unix port.  --ryan.
 #include "proto.h"
 #include "keys.h"
 #include "names2.h"
@@ -70,9 +74,9 @@ TO DO
 extern long lastUpdate;
 extern BYTE RedBookSong[40];
 extern char UserMapName[80];
-extern char palette[256*3];
-extern char palette_data[256][3];
-extern char opalette_data[256][3];
+extern unsigned char palette[256*3];
+extern unsigned char palette_data[256][3];
+extern unsigned char opalette_data[256][3];
 extern char LevelSong[16];
 extern char SaveGameDescr[10][80];
 extern long PlayClock;
@@ -572,6 +576,9 @@ int SaveGame(short save_num)
         memcpy(a,&Anim[i],sizeof(ANIM));
         
         // maintain compatibility with sinking boat which points to user data
+
+STUBBED("I think Charlie's change is broken (pointer arithmatic below!)");
+#if 0
         for (j=0; j<MAXSPRITES; j++)
             {
             if (User[j])
@@ -592,7 +599,7 @@ int SaveGame(short save_num)
                     }
                 }    
             }
-        
+
         if (a->ptr != -2)
             {
             for (j=0; j<numsectors; j++)
@@ -617,6 +624,7 @@ int SaveGame(short save_num)
                 }
             }    
         MWRITE(a,sizeof(ANIM),1,fil);
+#endif
             
         if (a->ptr == -2 || a->ptr == -3)
             {
@@ -1403,19 +1411,21 @@ int LoadGame(short save_num)
 VOID
 ScreenSave(MFILE fout)
     {
-    long num;
-    num = MWRITE((void*)waloff[SAVE_SCREEN_TILE], SAVE_SCREEN_XSIZE * SAVE_SCREEN_YSIZE, 1, fout);
-    ASSERT(num == 1);
+    //long num;
+    //num = MWRITE((void*)waloff[SAVE_SCREEN_TILE], SAVE_SCREEN_XSIZE * SAVE_SCREEN_YSIZE, 1, fout);
+    //ASSERT(num == 1);
+    MWRITE((void*)waloff[SAVE_SCREEN_TILE], SAVE_SCREEN_XSIZE * SAVE_SCREEN_YSIZE, 1, fout);
     }
     
 VOID
 ScreenLoad(MFILE fin)
     {
-    long num;
+    //long num;
     
     setviewtotile(SAVE_SCREEN_TILE, SAVE_SCREEN_YSIZE, SAVE_SCREEN_XSIZE);
     
-    num = MREAD((void*)waloff[SAVE_SCREEN_TILE], SAVE_SCREEN_XSIZE * SAVE_SCREEN_YSIZE, 1, fin);
+    //num = MREAD((void*)waloff[SAVE_SCREEN_TILE], SAVE_SCREEN_XSIZE * SAVE_SCREEN_YSIZE, 1, fin);
+    MREAD((void*)waloff[SAVE_SCREEN_TILE], SAVE_SCREEN_XSIZE * SAVE_SCREEN_YSIZE, 1, fin);
     
     setviewback();
     }

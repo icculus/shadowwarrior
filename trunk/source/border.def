@@ -41,11 +41,11 @@ extern void BorderShade(PLAYERp pp,BOOL refresh);
 //#line "border.c" 269
 extern void DrawBorder(PLAYERp pp,short x,short y,short x2,short y2);
 //#line "border.c" 312
-extern void BorderSetView(PLAYERp pp,long *Xdim,long *Ydim,long *ScreenSize);
+//extern void BorderSetView(PLAYERp pp,long *Xdim,long *Ydim,long *ScreenSize);
 //#line "border.c" 338
 extern void SetBorder(PLAYERp pp,int value);
 //#line "border.c" 455
-extern void BorderRefresh(PLAYERp pp);
+//extern void BorderRefresh(PLAYERp pp);
 //#line "border.c" 505
 extern void PanelRefresh(PLAYERp pp);
 //#line "border.c" 522

@@ -29,15 +29,22 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 
 // I N C L U D E S ////////////////////////////////////////////////////////////////////////////
 
-#include <process.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#if PLATFORM_DOS
+#include <process.h>
 #include <dos.h>
 #include <conio.h>
-#include <string.h>
-#include <malloc.h>
-#include <fcntl.h>
 #include <io.h>
+#endif
+
+#if !PLATFORM_MACOSX
+#include <malloc.h>
+#endif
+
+#include <fcntl.h>
 #include "types.h"
 //#include "cmdlib.h"
 //#include "vga.h"

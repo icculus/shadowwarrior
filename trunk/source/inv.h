@@ -24,34 +24,7 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 */
 //-------------------------------------------------------------------------
 
-enum InventoryNames
-    {
-    INVENTORY_MEDKIT, 
-    INVENTORY_REPAIR_KIT,
-    INVENTORY_CLOAK,        // de-cloak when firing
-    INVENTORY_NIGHT_VISION, 
-    INVENTORY_CHEMBOMB,
-    INVENTORY_FLASHBOMB, 
-    INVENTORY_CALTROPS,  
-    MAX_INVENTORY
-    };    
+// (moved into game.h.  --ryan.)
 
-typedef struct
-    {
-    char *Name;
-    VOID (*Init)(PLAYERp);
-    VOID (*Stop)(PLAYERp, short);
-    PANEL_STATEp State;
-    short DecPerSec;
-    short MaxInv;
-    long  Scale;
-    short Flags;
-    } INVENTORY_DATA, *INVENTORY_DATAp;
-
-extern INVENTORY_DATA InventoryData[MAX_INVENTORY+1];
-
-#define INVF_AUTO_USE (BIT(0))
-#define INVF_TIMED (BIT(1))
-#define INVF_COUNT (BIT(2))
-
+#error do not include this file anymore.
 

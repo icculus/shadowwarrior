@@ -45,18 +45,22 @@ Things required to make savegames work:
 #ifdef SW_3DFX
 //#define __3DFX_ACC__
 #endif
+
+#if PLATFORM_DOS
 #include <dos.h>
+#include <io.h>
+#include <graph.h>
+#endif
+
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
 #include <malloc.h>
-#include <sys\types.h>
-#include <sys\stat.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <fcntl.h>
-#include <io.h>
-#include <graph.h>
-#include "build.h"
+#include "shadow.h" // added for unix port.  --ryan.
 #include "proto.h"
 #include "keys.h"
 #include "names2.h"
@@ -94,7 +98,7 @@ Things required to make savegames work:
 //#include "debuglib.h"
 // CTW REMOVED END
 #include "anim.h"
-#include "engine.h"
+#include "buildengine/engine.h"
 // CTW REMOVED
 //#include "tenutils.h"
 //extern void *gTenLog;
@@ -449,7 +453,10 @@ CacheFree(void **ptr, char *lock_byte)
 
 void HeapCheck(char *file, int line)
 {
-    switch( _heapchk() ) 
+#if PLATFORM_UNIX
+    STUBBED("heap check");
+#else
+    switch( _heapchk() )
         {
         case _HEAPOK:
             //printf( "OK - heap is good\n" );
@@ -474,6 +481,7 @@ void HeapCheck(char *file, int line)
             exit(0);
             break;
         }
+#endif
 }
     
 
@@ -1012,7 +1020,7 @@ VOID InitAutoNet(VOID)
 
 void AnimateCacheCursor(void)
     {    
-    struct rccoord old_pos;
+    //struct rccoord old_pos;
     static short cursor_num = 0;
     static char cache_cursor[] =  {'|','/','-','\\'};
     
@@ -3430,12 +3438,15 @@ void move_cursor(long row, long column);
 
 void swexit(int exitval)        
     {
+    #if PLATFORM_DOS
     _displaycursor( _GCURSORON );
+    #endif
     exit(exitval);
     }
 
 VOID DosScreen(VOID)
     {
+#if PLATFORM_DOS
     #ifdef SW_SHAREWARE
     #define DOS_SCREEN_NAME "SHADSW.BIN"
     #else
@@ -3457,6 +3468,7 @@ VOID DosScreen(VOID)
     kclose(fin);
     move_cursor(23,0);
     _displaycursor( _GCURSORON );
+#endif
     }
 
 #if PLOCK_VERSION
@@ -3727,6 +3739,9 @@ VOID AlphaMessage(VOID)
 #ifndef SW_SHAREWARE
 VOID AlphaMessage(VOID)
     {
+#if !PLATFORM_DOS
+    STUBBED("AlphaMessage");
+#else
     _clearscreen( _GCLEARSCREEN );
     _displaycursor( _GCURSOROFF );
     
@@ -3752,6 +3767,7 @@ VOID AlphaMessage(VOID)
     
 //    while (!getch());
     
+#endif
     }
 #else
 VOID AlphaMessage(VOID)
@@ -3843,6 +3859,7 @@ CLI_ARG cli_arg[] =
 };
 
 #if 0
+/*
 Command line help.  O:\DUKE\REG14\DUKE3D.EXE [/flags...]
  ?, /?         This help message
  /l##          Level (1-11)
@@ -3886,6 +3903,7 @@ Nuke      ->    0=Off 1=On
 Example Command Line:
 sw -map testmap.map -autonet 0,0,1,1,1,0,3,2,1,1 -f4 -name 1234567890 -net 12345678
 commit -map grenade -autonet 0,0,1,1,1,0,3,2,1,1 -name frank
+*/
 #endif
 
 main(short int argc, char *argv[])

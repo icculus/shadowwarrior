@@ -32,10 +32,14 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 #include <stdio.h>
 #include <stdarg.h>
 #include <string.h>
+
+#if PLATFORM_DOS
 #include <i86.h>
+#endif
+
 #include <ctype.h>
 #include "mytypes.h"
-#include "build.h"
+#include "shadow.h" // added for unix port.  --ryan.
 #include "proto.h"
 #include "keys.h"
 #include "names2.h"
@@ -1316,7 +1320,11 @@ void CON_Bunny( void )
 
 void CON_CheckHeap( void )
     {
-    switch( _heapchk() ) 
+#if PLATFORM_UNIX
+    STUBBED("heap check code");
+    CON_ConMessage( "Heap check not implemented on this platform.\n" );
+#else
+    switch( _heapchk() )
         {
         case _HEAPOK:
           CON_ConMessage( "OK - heap is good\n" );
@@ -1331,10 +1339,14 @@ void CON_CheckHeap( void )
           CON_ConMessage( "ERROR - bad node in heap\n" );
           break;
         }
+#endif
     }
 
 void heap_dump( void )
   {
+#if PLATFORM_UNIX
+    STUBBED("heap walk code");
+#else
     struct _heapinfo h_info;
     int heap_status;
 
@@ -1365,6 +1377,7 @@ void heap_dump( void )
 
       printf( "ERROR - bad node in heap\n" );
     }
+#endif
   }
 
 void CON_DumpHeap( void )

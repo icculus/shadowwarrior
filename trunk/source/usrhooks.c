@@ -38,7 +38,7 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "build.h"
+#include "shadow.h" // added for unix port.  --ryan.
 #include "keys.h"
 #include "game.h"
 #include "usrhooks.h"

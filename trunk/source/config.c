@@ -33,7 +33,11 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 #include <stdlib.h>
 #include <ctype.h>
 #include <time.h>
+
+#if PLATFORM_DOS
 #include <dos.h>
+#endif
+
 #include "settings.h"
 #include "types.h"
 #include "develop.h"
@@ -549,7 +553,7 @@ void CONFIG_ReadSetup( void )
    {
    int32 dummy;
    int32 scripthandle;
-   extern char palette[256*3];
+   extern unsigned char palette[256*3];
    extern char palette_data[256][3];
    char ret;
    extern char ds[];

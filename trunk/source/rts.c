@@ -27,12 +27,19 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 // rts.c
 
 #include <stdio.h>
-#include <conio.h>
 #include <string.h>
-#include <malloc.h>
-#include <io.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+
+#if PLATFORM_DOS
+#include <conio.h>
+#include <io.h>
+#endif
+
+#if !PLATFORM_MACOSX
+#include <malloc.h>
+#endif
+
 #include "types.h"
 #include "develop.h"
 #include "util_lib.h"

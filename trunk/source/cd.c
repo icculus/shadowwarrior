@@ -29,11 +29,15 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
+#if PLATFORM_DOS
 #include <i86.h>
 #include <dos.h>
 #include <conio.h>
+#endif
+
 #include "mytypes.h"
-#include "build.h"
+#include "shadow.h" // added for unix port.  --ryan.
 #include "proto.h"
 #include "keys.h"
 #include "names2.h"
@@ -289,6 +293,7 @@ BYTE RedBookSong[40] =
     };
 
 
+#if PLATFORM_DOS
 union  REGS  regs;
 struct SREGS sregs;
 
@@ -339,6 +344,7 @@ void dos_getmemory(short size)
     selector=regs.w.dx;     
         
 }
+#endif
 
 // Prototypes
 VOID PutStringInfo(PLAYERp pp, char *string);
@@ -362,6 +368,9 @@ RedBookToSector(int rb)
 static void 
 CDAudio_Reset(void)
     {
+#if !PLATFORM_DOS
+    STUBBED("CD audio reset");
+#else
     cdRequest->headerLength = 13;
     cdRequest->unit = 0;
     cdRequest->command = COMMAND_WRITE;
@@ -392,12 +401,16 @@ CDAudio_Reset(void)
     sregs.es   = FP_SEG(&RMI);
     regs.x.edi = FP_OFF(&RMI);
     int386x( interrupt_no, &regs, &regs, &sregs );
+#endif
     }
 
 
 void 
 CDAudio_Eject(void)
     {
+#if !PLATFORM_DOS
+    STUBBED("CD audio eject");
+#else
     if (playing)
         CDAudio_Stop();
 
@@ -430,14 +443,18 @@ CDAudio_Eject(void)
     sregs.es   = FP_SEG(&RMI);
     regs.x.edi = FP_OFF(&RMI);
     int386x( interrupt_no, &regs, &regs, &sregs );
+#endif
     }
 
 
 static int 
 CDAudio_GetAudioTrackInfo(BYTE track, int *start)
     {
-    BYTE control;
+    BYTE control = 0;
 
+#if !PLATFORM_DOS
+    STUBBED("CD audio track info");
+#else
     cdRequest->headerLength = 13;
     cdRequest->unit = 0;
     cdRequest->command = COMMAND_READ;
@@ -477,6 +494,7 @@ CDAudio_GetAudioTrackInfo(BYTE track, int *start)
 
     *start = readInfo->audioTrackInfo.start;
     control = readInfo->audioTrackInfo.control & AUDIO_CONTROL_MASK;
+#endif
     return (control & AUDIO_CONTROL_DATA_TRACK);
     }
 
@@ -484,6 +502,9 @@ CDAudio_GetAudioTrackInfo(BYTE track, int *start)
 static int 
 CDAudio_GetAudioDiskInfo(void)
     {
+#if !PLATFORM_DOS
+    STUBBED("CD audio disc info");
+#else
     int n;
 
     cdRequest->headerLength = 13;
@@ -542,6 +563,7 @@ CDAudio_GetAudioDiskInfo(void)
             }
         }
 
+#endif
 
     return 0;
     }
@@ -550,6 +572,9 @@ CDAudio_GetAudioDiskInfo(void)
 static int 
 CDAudio_GetAudioStatus(void)
     {
+#if !PLATFORM_DOS
+    STUBBED("CD audio status");
+#else
     cdRequest->headerLength = 13;
     cdRequest->unit = 0;
     cdRequest->command = COMMAND_READ;
@@ -582,6 +607,7 @@ CDAudio_GetAudioStatus(void)
 
     if (cdRequest->status & STATUS_ERROR_BIT)
         return -1;
+#endif
     return 0;
     }
 
@@ -589,6 +615,10 @@ CDAudio_GetAudioStatus(void)
 static int 
 CDAudio_MediaChange(void)
     {
+#if !PLATFORM_DOS
+    STUBBED("CD audio media change");
+    return 0;
+#else
     cdRequest->headerLength = 13;
     cdRequest->unit = 0;
     cdRequest->command = COMMAND_READ;
@@ -620,6 +650,7 @@ CDAudio_MediaChange(void)
     int386x( interrupt_no, &regs, &regs, &sregs );
 
     return readInfo->mediaChange.status;
+#endif
     }
 
 
@@ -635,6 +666,9 @@ CDAudio_GetVolume(void)
 void 
 CDAudio_SetVolume(BYTE volume)
     {
+#if !PLATFORM_DOS
+    STUBBED("CD audio set volume");
+#else
     if (!initialized || !enabled)
         return;
 
@@ -698,12 +732,16 @@ CDAudio_SetVolume(BYTE volume)
 
 
     cdvolume = volume;
+#endif
     }
 
 
 void 
 CDAudio_Play(BYTE track, BOOL looping)
     {
+#if !PLATFORM_DOS
+    STUBBED("CD audio play");
+#else
     BYTE volume;
 
     //if (!gs.PlayCD)
@@ -783,12 +821,16 @@ CDAudio_Play(BYTE track, BOOL looping)
         }
 
     playing = TRUE;
+#endif
     }
 
 
 void 
 CDAudio_Stop(void)
     {
+#if !PLATFORM_DOS
+    STUBBED("CD audio stop");
+#else
     if (!initialized || !enabled)
         return;
 
@@ -815,12 +857,16 @@ CDAudio_Stop(void)
 
     wasPlaying = playing;
     playing = FALSE;
+#endif
     }
 
 
 void 
 CDAudio_Resume(void)
     {
+#if !PLATFORM_DOS
+    STUBBED("CD audio resume");
+#else
     if (!initialized || !enabled)
         return;
 
@@ -852,6 +898,7 @@ CDAudio_Resume(void)
     int386x( interrupt_no, &regs, &regs, &sregs );
 
     playing = TRUE;
+#endif
     }
 
 
@@ -1017,6 +1064,9 @@ CD_f(void)
 char
 CDAudio_CheckEnable(void)
     {
+#if !PLATFORM_DOS
+    STUBBED("CD audio check enable");
+#else
     if (!initialized)
         {
         if (!CDAudio_GetAudioDiskInfo())
@@ -1026,6 +1076,7 @@ CDAudio_CheckEnable(void)
             return(TRUE);
             }
         }
+#endif
     return(FALSE);
     }
     
@@ -1034,6 +1085,9 @@ long lastUpdate=0;
 void 
 CDAudio_Update(void)
     {
+#if !PLATFORM_DOS
+    STUBBED("CD audio update");
+#else
     int ret;
     unsigned char newVolume;
 
@@ -1111,6 +1165,7 @@ CDAudio_Update(void)
                 }
             }
         }
+#endif
     }
 
 
@@ -1124,6 +1179,9 @@ CDAudio_Playing(void)
 int 
 CDAudio_Init(void)
     {
+#if !PLATFORM_DOS
+    STUBBED("CD audio init");
+#else
     int n;
 
     if(!enabled) return -1;
@@ -1284,6 +1342,7 @@ CDAudio_Init(void)
         }
 
     return 0;
+#endif
     }
 
 

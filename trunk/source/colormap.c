@@ -28,8 +28,12 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 #ifdef SW_3DFX
 //#define __3DFX_ACC__
 #endif
+
+#if PLATFORM_DOS
 #include <mem.h>
-#include "build.h"
+#endif
+
+#include "shadow.h" // added for unix port.  --ryan.
 #include "proto.h"
 #include "keys.h"
 #include "pal.h"
@@ -374,6 +378,7 @@ InitPalette(VOID)
 
 
 #if 0
+/*
 2. You must now use my function to set or get any palette
  registers.This means that the keywords "3c7", "3c8", and "3c9" should not even exist in your code.I really
  didn 't want to force you to use my palette functions, but
@@ -411,6 +416,7 @@ for (i = 0; i < 256; i++)
     mypalette[i * 4 + 3] = 0;           // reserved
     }
 VBE_setPalette(0, 256, mypalette);
+*/
 #endif
 
 #define ORED 0
