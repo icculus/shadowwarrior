@@ -2309,7 +2309,7 @@ MNU_DoButton(MenuItem_p item, BOOL draw)
             if (gs.FxOn != last_value)
                 {
                 if (!gs.FxOn)
-                    StopFx();
+                    StopFX();
                 }    
             break;
         case btn_music:

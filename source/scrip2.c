@@ -77,6 +77,7 @@ ParentalStruct aVoxelArray[MAXTILES];
 
 =============================================================================
 */
+#if 0  // use the one in global.c instead...  --ryan.
 void Error (char *error, ...)
 {
     va_list argptr;
@@ -87,7 +88,7 @@ void Error (char *error, ...)
     printf ("\n");
     exit (1);
 }
-
+#endif
 
 
 /*

@@ -117,8 +117,10 @@ CFLAGS += -w
 ifeq ($(strip $(macosx)),true)
 OPTIMIZE = -O3 -mdynamic-no-pic -falign-loops=16
 else
-OPTIMIZE = -O2
+#OPTIMIZE = -O3
 endif
+
+OPTIMIZE = -O0
 
 # Always turn OFF strict aliasing, even when optimizing. Otherwise, this is
 #  just an accident waiting to happen...  --ryan.
@@ -133,7 +135,8 @@ LDLIBS = $(SDL_LDFLAGS) -lSDL -lSDL_mixer $(EXTRALDFLAGS)
 # !!! FIXME: Do we even need this? It doesn't fly on MacOS X.  --ryan.
 #LDLIBS += -Wl,-E
 
-all: shadow build
+#all: shadow build
+all: shadow
 
 
 %.o : %.c
@@ -238,8 +241,8 @@ shadow: 	\
 	audiolib/audiolib.a
 	$(CC) $^ $(BUILDOBJS) $(LDLIBS) -o $@
 
-build: astub.o
-	$(CC) $^ $(BUILDOBJS) buildengine/build.o $(LDLIBS) -o $@
+#build: astub.o
+#	$(CC) $^ $(BUILDOBJS) buildengine/build.o $(LDLIBS) -o $@
 
 clean:
 	$(MAKE) -C audiolib clean

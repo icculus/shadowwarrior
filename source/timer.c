@@ -105,7 +105,7 @@ void uninittimer(void)
 #else
 void timerhandler(void)
 {
-    TimeFunc(&Timer1);
+    TimerFunc(&Timer1);
 }
 #endif  // PLATFORM_DOS
 
