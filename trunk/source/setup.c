@@ -124,7 +124,7 @@ void InitSetup(void)
    //RegisterShutdownFunction( ShutDown );
 
    //StartWindows();
-   initkeys();
+   _initkeys();
    CONFIG_GetSetupFilename();
    //InitializeKeyDefList();
    CONFIG_ReadSetup();

@@ -24,6 +24,8 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 */
 //-------------------------------------------------------------------------
 
+#error do not compile this...use the one in buildengine instead.  --ryan.
+
 #if PLATFORM_DOS
 #include <dos.h>
 #endif

@@ -226,7 +226,7 @@ int GodMode = FALSE;
 int BotMode = FALSE;
 short Skill = 2;
 short BetaVersion = 900;
-short moustat;
+//short moustat;
 short TotalKillable;
 
 AUTO_NET Auto;    
@@ -385,6 +385,8 @@ MONO_PRINT(str);
     
 
 extern BOOL DrawScreen;
+
+#if 0  // this is in buildengine. --ryan.
 #if RANDOM_DEBUG
 FILE *fout_err;
 BOOL RandomPrint;
@@ -416,6 +418,7 @@ int krand(void)
     return (randomseed);
     }
 
+#endif
 #endif
 
 VOID *
@@ -761,7 +764,7 @@ TerminateGame(VOID)
         }
 
     ////--->>>> sound stuff was there
-    uninitkeys();
+    _uninitkeys();
 
 #ifdef __3DFX_ACC__
     terminateGlide();
@@ -917,7 +920,7 @@ void Set_GameMode(void)
                                 //if (!gTenActivated)                     // TENSW
 								// CTW REMOVED END
                                         uninitmultiplayers();
-                uninitkeys();
+                _uninitkeys();
                 uninitengine();
                 //setvmode(0x3);                      // Set back to text mode
                 TermSetup();
@@ -943,7 +946,7 @@ void MultiSharewareCheck(void)
                 //if (!gTenActivated)                             // TENSW
 				// CTW REMOVED END
                         uninitmultiplayers();
-        uninitkeys();
+        _uninitkeys();
         uninitengine();
         TermSetup();
         UnInitSound();
@@ -3906,7 +3909,7 @@ commit -map grenade -autonet 0,0,1,1,1,0,3,2,1,1 -name frank
 */
 #endif
 
-main(short int argc, char *argv[])
+int main(int argc, char **argv)
     {
     int i;
     int stat, nexti;
@@ -3916,7 +3919,12 @@ main(short int argc, char *argv[])
     VOID gameinput(VOID);
     int cnt;
     ULONG TotalMemory;
-    
+
+// This is needed for the icculus.org ported Build Engine.
+#if !PLATFORM_DOS
+    _platform_init(argc, argv, "Shadow Warrior", "Shadow");
+#endif
+
 #ifdef __3DFX_ACC__
     // Initialize glide stuff
     initglide();
@@ -6315,6 +6323,8 @@ loadtile (short tilenume)
 }
 #endif
 
+
+#if 0  // (also in ai.c ... )
 #if RANDOM_DEBUG
 int 
 RandomRange(int range, char *file, unsigned line)
@@ -6393,4 +6403,5 @@ StdRandomRange(int range)
         
     return(value);
     }
+#endif
 

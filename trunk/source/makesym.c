@@ -272,7 +272,7 @@ void SaveSymTable(char *name, SYM_TABLEp SymTable, int num_elem)
 ////////////////////////////////////////////////////////////////////////////////    
 
 
-void main(short int argc, char *argv[])
+int main(int argc, char **argv)
     {
     char *base_ptr;
     long count = 0;
@@ -300,5 +300,7 @@ void main(short int argc, char *argv[])
         {
         printf("ERROR: Unable to save symbol table");
         }    
-    }    
+
+    return 0;
+    }
 

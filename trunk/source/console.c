@@ -1147,7 +1147,7 @@ void CON_LoadSetup( void )
         {
         strcpy(setupfilename,command);
         }
-    initkeys();
+    _initkeys();
     CONFIG_ReadSetup();
     CONTROL_Startup( ControllerType, &GetTime, 120 );
     SetupGameButtons();

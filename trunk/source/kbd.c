@@ -41,11 +41,13 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 #include "control.h"
 #include "function.h"
 
-VOID initkeys(VOID)
+VOID _initkeys(VOID)
     {
     keyfifoplc = 0;
     keyfifoend = 0;
-    
+
+    initkeys();
+
     #if MACT_INPUT
     KB_Startup();
     #else
@@ -59,10 +61,12 @@ VOID initkeys(VOID)
     #endif
     }
 
-VOID uninitkeys(VOID)
+VOID _uninitkeys(VOID)
     {
     short *ptr;
-    
+
+    uninitkeys();
+
     #if MACT_INPUT
     KB_Shutdown();
     #else
