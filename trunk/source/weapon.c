@@ -5843,6 +5843,12 @@ PlayerTakeDamage(PLAYERp pp, short Weapon)
     SPRITEp wp = &sprite[Weapon];
     USERp   wu = User[Weapon];
 
+	 // Special case for fist attacks.
+    if (Weapon < 0)
+	 {
+        return(TRUE);
+	 }
+    
     if (gNet.MultiGameType == MULTI_GAME_NONE)
         {
         // ZOMBIE special case for single play
@@ -5855,9 +5861,6 @@ PlayerTakeDamage(PLAYERp pp, short Weapon)
             
         return(TRUE);
         }
-    
-    if (Weapon < 0)
-        return(TRUE);
     
     if (gNet.MultiGameType == MULTI_GAME_COOPERATIVE)
         {
@@ -12499,6 +12502,11 @@ DoBloodWorm(SHORT Weapon)
                 tsp = &sprite[i];
                 tu = User[i];
         
+					 if (tu == NULL)
+					 {
+						 return 0;
+					 }
+
                 ASSERT(tu);
                 
                 if (tu->ID == ZOMBIE_RUN_R0 && tsp->owner == sp->owner)
@@ -12614,6 +12622,11 @@ DoBloodWorm(SHORT Weapon)
             tsp = &sprite[i];
             tu = User[i];
     
+				if (tu == NULL)
+				{
+					return 0;
+				}
+
             ASSERT(tu);
             
             if (tu->ID == ZOMBIE_RUN_R0 && tsp->owner == sp->owner)
@@ -13995,12 +14008,11 @@ InitSwordAttack(PLAYERp pp)
                 SPRITEp hsp = &sprite[hitsprite];
                 tu = User[hitsprite];
 
-if (tu == NULL)
-{
-    STUBBED("should have hit a NULL here.");
-    return 0;
-}
-
+					 if (tu == NULL)
+					 {
+						 //STUBBED("should have hit a NULL here.");
+						 return 0;
+					 }
 
                 switch(tu->ID)
                     {    
@@ -14191,6 +14203,11 @@ InitFistAttack(PLAYERp pp)
                 extern STATE s_TrashCanPain[];
                 SPRITEp hsp = &sprite[hitsprite];
                 tu = User[hitsprite];
+
+					 if (tu == NULL)
+					 {
+						 return 0;
+					 }
                 
                 switch(tu->ID)
                     {    
