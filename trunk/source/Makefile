@@ -4,7 +4,7 @@
 
 linux_ppc := false
 beos := false
-macosx := false
+macosx := true
 solaris := false
 shareware := false
 controls_menu := true

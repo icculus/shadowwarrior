@@ -400,7 +400,7 @@ DisplayFragNumbers(PLAYERp pp)
     short frag_bar;
     short pnum = pp - Player;
     
-    static xoffs[] = 
+    static int xoffs[] = 
         {
         69, 147, 225, 303
         };
@@ -440,7 +440,7 @@ DisplayFragNames(PLAYERp pp)
     short frag_bar;
     short pnum = pp - Player;
     
-    static xoffs[] = 
+    static int xoffs[] = 
         {
         7, 85, 163, 241
         };

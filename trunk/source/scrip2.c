@@ -69,6 +69,7 @@ extern char **_argv;
 
 ParentalStruct aVoxelArray[MAXTILES];
 
+extern int nextvoxid;	// JBF: in game.c
 
 /*
 =============================================================================
@@ -318,10 +319,7 @@ void LoadKVXFromScript( char *filename )
     ASSERT(sName != NULL);
 
     // zero out the array memory with -1's for pics not being voxelized
-	// CTW MODIFICATION
-	//memset(&aVoxelArray[0],-1,sizeof(TILE_INFO_TYPE)*MAXTILES);
-    memset(&aVoxelArray[0],-1,sizeof(ParentalStruct)*MAXTILES);
-	// CTW MODIFICATION END
+    memset(&aVoxelArray[0],-1,sizeof(struct TILE_INFO_TYPE)*MAXTILES);
     for(grabbed = 0; grabbed < MAXTILES; grabbed++)
     {
         aVoxelArray[grabbed].Voxel = -1;
@@ -349,11 +347,14 @@ void LoadKVXFromScript( char *filename )
         strcpy(sName,token);            // Copy the whole token as a file name and path
 
         // Load the voxel file into memory
-		qloadkvx(lNumber,sName);
+        if (!qloadkvx(lNumber,sName)) {
+            // Store the sprite and voxel numbers for later use
+            aVoxelArray[lTile].Voxel = lNumber; // Voxel num
+	}
 
-        // Store the sprite and voxel numbers for later use
-        aVoxelArray[lTile].Voxel = lNumber; // Voxel num
-
+	if (lNumber >= nextvoxid)	// JBF: so voxels in the def file append to the list
+		nextvoxid = lNumber + 1;
+	
         grabbed++;
         ASSERT(grabbed < MAXSPRITES);
 

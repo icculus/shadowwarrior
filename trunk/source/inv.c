@@ -81,14 +81,14 @@ extern PANEL_STATE ps_PanelCaltrops[];
 
 INVENTORY_DATA InventoryData[MAX_INVENTORY+1] =
     {
-    {"PORTABLE MEDKIT",  UseInventoryMedkit,      NULL,                 &ps_PanelMedkit,        0,   1, (1<<16),     0},
-    {"REPAIR KIT",       NULL,                    NULL,                 &ps_PanelRepairKit,     100, 1, (1<<16),     INVF_AUTO_USE},
-    {"SMOKE BOMB",       UseInventoryCloak,       StopInventoryCloak,   &ps_PanelCloak,         4,   1, (1<<16),     INVF_TIMED},
-    {"NIGHT VISION",     UseInventoryNightVision, StopInventoryNightVision, &ps_PanelNightVision,3,  1, (1<<16),     INVF_TIMED},
-    {"GAS BOMB",         UseInventoryChemBomb,    NULL,                 &ps_PanelChemBomb,      0,   1, (1<<16),     INVF_COUNT},
-    {"FLASH BOMB",       UseInventoryFlashBomb,   NULL,                 &ps_PanelFlashBomb,     0,   2, (1<<16),     INVF_COUNT},
-    {"CALTROPS",         UseInventoryCaltrops,    NULL,                 &ps_PanelCaltrops,      0,   3, (1<<16),     INVF_COUNT},
-    {NULL}
+    {"PORTABLE MEDKIT",  UseInventoryMedkit,      NULL,                 ps_PanelMedkit,        0,   1, (1<<16),     0},
+    {"REPAIR KIT",       NULL,                    NULL,                 ps_PanelRepairKit,     100, 1, (1<<16),     INVF_AUTO_USE},
+    {"SMOKE BOMB",       UseInventoryCloak,       StopInventoryCloak,   ps_PanelCloak,         4,   1, (1<<16),     INVF_TIMED},
+    {"NIGHT VISION",     UseInventoryNightVision, StopInventoryNightVision, ps_PanelNightVision,3,  1, (1<<16),     INVF_TIMED},
+    {"GAS BOMB",         UseInventoryChemBomb,    NULL,                 ps_PanelChemBomb,      0,   1, (1<<16),     INVF_COUNT},
+    {"FLASH BOMB",       UseInventoryFlashBomb,   NULL,                 ps_PanelFlashBomb,     0,   2, (1<<16),     INVF_COUNT},
+    {"CALTROPS",         UseInventoryCaltrops,    NULL,                 ps_PanelCaltrops,      0,   3, (1<<16),     INVF_COUNT},
+    {NULL, NULL, NULL, NULL, 0, 0, 0, 0}
     };
 
 VOID PanelInvTestSuicide(PANEL_SPRITEp psp);

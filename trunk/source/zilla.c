@@ -614,7 +614,7 @@ STATEp *Dive;
 
 ACTOR_ACTION_SET ZillaActionSet =
   {
-  {sg_ZillaStand},
+  sg_ZillaStand,
   sg_ZillaRun,
   NULL, 
   NULL, 
@@ -775,14 +775,14 @@ int DoZillaDeathMelt(short SpriteNum)
     RESET(u->Flags, SPR_JUMPING|SPR_FALLING|SPR_MOVED);    
 
     //DoMatchEverything(NULL, sp->lotag, ON);
-    #ifndef SW_SHAREWARE
+    if (!SW_SHAREWARE) {
     if(gs.MusicOn && !alreadydid)
         {
         CDAudio_Stop();
         CDAudio_Play(RedBookSong[Level], TRUE);
         alreadydid = TRUE;
         }
-    #endif
+    }
 
     //KeepActorOnFloor(SpriteNum);
     getzsofslope(sp->sectnum, sp->x, sp->y, &u->hiz, &u->loz);

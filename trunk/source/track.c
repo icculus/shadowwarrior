@@ -1194,8 +1194,8 @@ SetupSectorObject(short sectnum, short tag)
                         KillSprite(SpriteNum);
                         break;
 
-                    #ifndef SW_SHAREWARE
                     case SO_TORNADO:
+			if (SW_SHAREWARE) break;
                         sop->vel = 120;
                         SET(sop->flags, SOBJ_DYNAMIC);
                         sop->scale_type = SO_SCALE_CYCLE;
@@ -1217,6 +1217,7 @@ SetupSectorObject(short sectnum, short tag)
                         KillSprite(SpriteNum);
                         break;
                     case SO_FLOOR_MORPH:
+			if (SW_SHAREWARE) break;
                         SET(sop->flags, SOBJ_DYNAMIC);
                         sop->scale_type = SO_SCALE_NONE;
                         sop->morph_speed = 120;
@@ -1226,7 +1227,7 @@ SetupSectorObject(short sectnum, short tag)
                         sop->morph_rand_freq = 8;
                         KillSprite(SpriteNum);
                         break;
-                    #endif
+
                     case SO_AMOEBA:
                         SET(sop->flags, SOBJ_DYNAMIC);
                         //sop->scale_type = SO_SCALE_CYCLE;

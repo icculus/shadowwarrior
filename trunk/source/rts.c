@@ -152,10 +152,11 @@ void RTS_Init (char *filename)
    lumpinfo = SafeMalloc(5);   // will be realloced as lumps are added
 
 //   printf("RTS Manager Started\n");
+   if (SafeFileExists(filename))
    RTS_AddFile (filename);
 
-   if (!numlumps)
-      Error ("RTS_Init: no files found");
+   if (!numlumps) return;
+//      Error ("RTS_Init: no files found");
 
    //
    // set up caching
@@ -288,7 +289,7 @@ void *RTS_GetSound (int32 lump)
    if (lumpcache[lump] == NULL)
    {
       lumplockbyte[lump] = CACHE_LOCK_START;
-      allocache((char *)&lumpcache[lump],(long)RTS_SoundLength(lump-1),&lumplockbyte[lump]);
+      allocache((long *)&lumpcache[lump],(long)RTS_SoundLength(lump-1),&lumplockbyte[lump]);
       RTS_ReadLump(lump, lumpcache[lump]);
    }
    else

@@ -64,7 +64,7 @@ short mirrorcnt;//, floormirrorcnt;
 //short floormirrorsector[MAXMIRRORS];
 BOOL mirrorinview;
 
-static char tempbuf[max(576, MAXXDIM)];
+static char tempbuf[/*max(576, */MAXXDIM/*)*/];
 
 BOOL MirrorMoveSkip16 = 0;
 
@@ -514,6 +514,8 @@ void drawroomstotile(long daposx, long daposy, long daposz,
 	setviewback();
 
 	squarerotatetile(tilenume);
+
+	invalidatetile(tilenume, -1, -1);
 }
 #else
 void
@@ -677,9 +679,9 @@ JS_DrawMirrors(PLAYERp pp, long tx, long ty, long tz, short tpang, long tphoriz)
             camplayerview = 1;
         }
 
-    // WARNING!  Assuming (MIRRORLABEL&31) = 0 and MAXMIRRORS = 64
+    // WARNING!  Assuming (MIRRORLABEL&31) = 0 and MAXMIRRORS = 64 <-- JBF: wrong
     longptr = (long *) FP_OFF(&gotpic[MIRRORLABEL >> 3]);
-    if ((longptr) && (longptr[0] | longptr[1]))
+    if (longptr && (longptr[0] || longptr[1]))
         {
         for (cnt = MAXMIRRORS - 1; cnt >= 0; cnt--)
             //if (TEST_GOTPIC(cnt + MIRRORLABEL) || TEST_GOTPIC(cnt + CAMSPRITE))

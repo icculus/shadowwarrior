@@ -566,7 +566,7 @@ _PlayerSound(char *file, int line, int num, long *x, long *y, long *z, Voc3D_Fla
     VOC_INFOp vp;
 
     if (Prediction)
-        return;
+        return 0;
 
     if (pp < Player || pp >= Player + MAX_SW_PLAYERS)   
         {
@@ -578,7 +578,7 @@ _PlayerSound(char *file, int line, int num, long *x, long *y, long *z, Voc3D_Fla
     PRODUCTION_ASSERT(pp >= Player && pp < Player+MAX_SW_PLAYERS);
     PRODUCTION_ASSERT(num >= 0 && num < DIGI_MAX);
         
-    if (TEST(pp->Flags, PF_DEAD)) return; // You're dead, no talking!
+    if (TEST(pp->Flags, PF_DEAD)) return 0; // You're dead, no talking!
 
     // If this is a player voice and he's already yacking, forget it.
     vp = &voc[num];
@@ -591,7 +591,7 @@ _PlayerSound(char *file, int line, int num, long *x, long *y, long *z, Voc3D_Fla
 
     // Not a player voice, bail.
     if(vp->priority != PRI_PLAYERVOICE && vp->priority != PRI_PLAYERDEATH) 
-        return;
+        return 0;
 
     // He wasn't talking, but he will be now.
     if(!pp->PlayerTalking)
@@ -606,6 +606,8 @@ _PlayerSound(char *file, int line, int num, long *x, long *y, long *z, Voc3D_Fla
             pp->TalkVocHandle = -1;
         }
     }
+
+    return 0;
 }
 
 void LockSound(int num)
@@ -1455,7 +1457,7 @@ DeleteNoSoundOwner(short spritenum)
     
 // This is called from KillSprite to kill a follow sound with no valid sprite owner
 // Stops and active sound with the follow bit set, even play once sounds.
-DeleteNoFollowSoundOwner(short spritenum)
+void DeleteNoFollowSoundOwner(short spritenum)
     {
     VOC3D_INFOp vp, dp;
     SPRITEp sp = &sprite[spritenum];
@@ -1539,6 +1541,7 @@ Delete3DSounds(void)
             //MONO_PRINT(ds);
             // Reset Player talking flag if a voice was deleted
             //if(vp->num > DIGI_FIRSTPLAYERVOICE && vp->num < DIGI_LASTPLAYERVOICE) 
+	    if (!vp->vp) printf("Delete3DSounds(): NULL vp->vp\n"); else	// JBF: added null check
             if(vp->vp->priority == PRI_PLAYERVOICE || vp->vp->priority == PRI_PLAYERDEATH)
             {
                 SHORT pnum;
@@ -1709,8 +1712,6 @@ typedef struct {
 void
 DoUpdateSounds3D(void)
     {
-STUBBED("hit infinite loop here.");
-return;
     VOC3D_INFOp p;
     BOOL looping;
     int pitch = 0, pitchmax;

@@ -45,7 +45,7 @@ extern int NullRipper2(short SpriteNum);
 //#line "ripper2.c" 1167
 extern int DoRipper2Pain(short SpriteNum);
 //#line "ripper2.c" 1180
-extern int DoRipper2RipHeart(int SpriteNum);
+extern int DoRipper2RipHeart(short SpriteNum);
 //#line "ripper2.c" 1195
 // CTW MODIFICATION
 //extern int DoRipper2StandHeart(int SpriteNum);

@@ -661,7 +661,7 @@ STATEp *Special[2];
 
 ACTOR_ACTION_SET BunnyActionSet =
     {
-    {sg_BunnyStand},
+    sg_BunnyStand,
     sg_BunnyRun,
     sg_BunnyJump,
     sg_BunnyFall,
@@ -682,12 +682,14 @@ ACTOR_ACTION_SET BunnyActionSet =
     {1024},
     {NULL},
     {1024},
-    {sg_BunnyHeart, sg_BunnyRun}
+    {sg_BunnyHeart, sg_BunnyRun},
+    NULL,
+    NULL
     };
 
 ACTOR_ACTION_SET BunnyWhiteActionSet =
     {
-    {sg_BunnyStand},
+    sg_BunnyStand,
     sg_BunnyRun,
     sg_BunnyJump,
     sg_BunnyFall,
@@ -710,7 +712,9 @@ ACTOR_ACTION_SET BunnyWhiteActionSet =
 //    {800, 1024},
     {sg_BunnySwipe},
     {1024},
-    {sg_BunnyHeart, sg_BunnySwipe}
+    {sg_BunnyHeart, sg_BunnySwipe},
+    NULL,
+    NULL
     };
 
 int
@@ -1134,7 +1138,7 @@ int DoBunnyPain(short SpriteNum)
     return(0);
 }    
 
-int DoBunnyRipHeart(SpriteNum)
+int DoBunnyRipHeart(short SpriteNum)
     {
     SPRITEp sp = &sprite[SpriteNum];
     USERp u = User[SpriteNum];

@@ -24,8 +24,6 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 */
 //-------------------------------------------------------------------------
 
-#ifndef SW_SHAREWARE
-
 #include <stdlib.h>
 #include "shadow.h" // added for unix port.  --ryan.
 #include "proto.h"
@@ -455,7 +453,7 @@ STATEp *Special[2];
 
 ACTOR_ACTION_SET GoroActionSet =
   {
-  {sg_GoroStand},
+  sg_GoroStand,
   sg_GoroRun,
   NULL,//sg_GoroJump,  
   NULL,//sg_GoroFall, 
@@ -475,7 +473,10 @@ ACTOR_ACTION_SET GoroActionSet =
   {sg_GoroChop},
   {1024},
   {sg_GoroSpell},
-  {1024}
+  {1024},
+  {NULL,NULL},
+  NULL,
+  NULL
   };
  
 int 
@@ -563,5 +564,3 @@ int DoGoroMove(short SpriteNum)
     return(0);
 }    
 
-
-#endif

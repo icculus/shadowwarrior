@@ -110,7 +110,7 @@ DoActorDie(short SpriteNum, short weapon)
                     InitPlasmaFountain(wp, sp);
                     InitPlasmaFountain(wp, sp);
                     PlaySound(DIGI_NINJAINHALF,&sp->x,&sp->y,&sp->z,v3df_none);
-                    ChangeState(SpriteNum, &s_NinjaDieSliced);
+                    ChangeState(SpriteNum, &s_NinjaDieSliced[0]);
                     } else
                     {
                     if(RANDOM_RANGE(1000) > 500)
@@ -412,7 +412,7 @@ DoActorDebris(short SpriteNum)
                 }
             }
 
-        if (SectUser[sp->sectnum]->depth > 10)
+        if (SectUser[sp->sectnum] && SectUser[sp->sectnum]->depth > 10)	// JBF: added null check
             {
             u->WaitTics = (u->WaitTics + (ACTORMOVETICS << 3)) & 1023;
             //sp->z = Z(2) + u->loz + ((Z(4) * (long) sintable[u->WaitTics]) >> 14);
@@ -471,7 +471,7 @@ DoGenerateSewerDebris(short SpriteNum)
         {
         u->Tics = u->WaitTics;
 
-        n = SpawnSprite(STAT_DEAD_ACTOR, NULL, Debris[RANDOM_P2(4<<8)>>8], sp->sectnum, sp->x, sp->y, sp->z, sp->ang, 200);
+        n = SpawnSprite(STAT_DEAD_ACTOR, 0, Debris[RANDOM_P2(4<<8)>>8], sp->sectnum, sp->x, sp->y, sp->z, sp->ang, 200);
         np = &sprite[n];
         nu = User[n];
 

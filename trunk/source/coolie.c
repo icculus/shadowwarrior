@@ -376,7 +376,7 @@ STATEp *Dive;
 
 ACTOR_ACTION_SET CoolieActionSet =
   {
-  {sg_CoolieStand},
+  sg_CoolieStand,
   sg_CoolieRun,
   NULL, 
   NULL, 

@@ -698,7 +698,7 @@ analyzesprites(long viewx, long viewy, long viewz, BOOL mirror)
     long smr4, smr2;
     SPRITEp tsp;
     USERp tu;
-    static ang = 0;
+    static int ang = 0;
     PLAYERp pp = Player + screenpeek;
     short newshade=0;
 
@@ -1024,6 +1024,7 @@ post_analyzesprites(void)
     for (tSpriteNum = spritesortcnt - 1; tSpriteNum >= 0; tSpriteNum--)
         {
         SpriteNum = tsprite[tSpriteNum].owner;
+	if (SpriteNum < 0) continue;	// JBF: verify this is safe
         tsp = &tsprite[tSpriteNum];
         tu = User[SpriteNum];
 
@@ -1429,7 +1430,7 @@ VOID PrintLocationInfo(PLAYERp pp)
             sprintf(buffer, "POSY:%ld", pp->posy);
             printext256(x, y, 1, -1, buffer, 1);
             y += Y_STEP;
-            sprintf(buffer, "POSZ:%ld", pp->posz, 80);
+            sprintf(buffer, "POSZ:%ld", pp->posz);
             printext256(x, y, 1, -1, buffer, 1);
             y += Y_STEP;
             sprintf(buffer, "ANG:%ld", (LONG) pp->pang);
@@ -2412,6 +2413,8 @@ drawscreen(PLAYERp pp)
         }
     #endif    
     
+    if (getrendermode() >= 3)
+	RedrawScreen = TRUE;
 
     DrawScreen = TRUE;
     PreDraw();
@@ -2574,7 +2577,7 @@ drawscreen(PLAYERp pp)
         {
         gotpic[SLIME >> 3] &= ~(1 << (SLIME & 7));
 
-        if (waloff[SLIME] != NULL)
+        if (waloff[SLIME])
             movelava((char *) waloff[SLIME]);
         }
 

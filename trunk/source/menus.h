@@ -176,14 +176,12 @@ typedef enum
 #define SLDR_MUSICVOLMAX                16
 #define SLDR_SCRSIZEMAX                 14
 #define SLDR_BRIGHTNESSMAX              8
-#define SLDR_BORDERTILEMAX              20
+#define SLDR_BORDERTILEMAX              20 //(isShareware ? 21 : 40)	// counted from border.c
 #define SLDR_GAMETYPEMAX                3   
 
-#ifndef SW_SHAREWARE
-#define SLDR_NETLEVELMAX                28
-#else
-#define SLDR_NETLEVELMAX                4
-#endif
+#define SLDR_NETLEVELMAX_REG             28
+#define SLDR_NETLEVELMAX_SW              4
+#define SLDR_NETLEVELMAX                (isShareware ? SLDR_NETLEVELMAX_SW : SLDR_NETLEVELMAX_REG)
 
 #define SLDR_MONSTERSMAX                5   // Skill Levels
 #define SLDR_KILLLIMITMAX               11  // Increments of 10 up to 100, 1 is no limit
@@ -307,6 +305,7 @@ BOOL MNU_ParentalCustom(void);
 #define DefLayer(key,text,child)    mt_layer,mf_normal,sldr_none,btn_none,key,text,child
 
 #define DefDisabled(key,text,child)    mt_layer,mf_disabled,sldr_none,btn_none,key,text,child
+#define DefNone mt_none,0,0,0,0,NULL,NULL,0,0,0,0,0,NULL,NULL,NULL
 
 #define OPT_XS 30   
 #define OPT_YS 30   

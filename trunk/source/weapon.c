@@ -1020,7 +1020,7 @@ ANIMATOR DoLaser;
 
 STATE s_Laser[] =
     {
-    ROCKET_R0 + 0, LASER_RATE, DoLaser, &s_Laser[0],
+	{ROCKET_R0 + 0, LASER_RATE, DoLaser, &s_Laser[0]}
     };
 
 //////////////////////
@@ -2878,7 +2878,7 @@ SpawnShrap(short ParentNum, short Secondary)
         {s_MetalShrapA, METAL_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_MetalShrapB, METAL_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_MetalShrapC, METAL_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP GlassShrap[] =
@@ -2886,7 +2886,7 @@ SpawnShrap(short ParentNum, short Secondary)
         {s_GlassShrapA, GLASS_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_GlassShrapB, GLASS_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_GlassShrapC, GLASS_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP WoodShrap[] =
@@ -2894,7 +2894,7 @@ SpawnShrap(short ParentNum, short Secondary)
         {s_WoodShrapA, WOOD_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_WoodShrapB, WOOD_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_WoodShrapC, WOOD_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP StoneShrap[] =
@@ -2902,7 +2902,7 @@ SpawnShrap(short ParentNum, short Secondary)
         {s_StoneShrapA, STONE_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_StoneShrapB, STONE_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_StoneShrapC, STONE_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP PaperShrap[] =
@@ -2910,7 +2910,7 @@ SpawnShrap(short ParentNum, short Secondary)
         {s_PaperShrapA, PAPER_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_PaperShrapB, PAPER_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_PaperShrapC, PAPER_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP MetalShrap[] =
@@ -2918,7 +2918,7 @@ SpawnShrap(short ParentNum, short Secondary)
         {s_MetalShrapA, METAL_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_MetalShrapB, METAL_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_MetalShrapC, METAL_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP MetalMix[] =
@@ -2929,7 +2929,7 @@ SpawnShrap(short ParentNum, short Secondary)
         {s_MetalShrapA, METAL_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_MetalShrapB, METAL_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_MetalShrapC, METAL_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
         
     static SHRAP WoodMix[] =
@@ -2940,7 +2940,7 @@ SpawnShrap(short ParentNum, short Secondary)
         {s_MetalShrapA, METAL_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_MetalShrapB, METAL_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_MetalShrapC, METAL_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP PaperMix[] =
@@ -2951,7 +2951,7 @@ SpawnShrap(short ParentNum, short Secondary)
         {s_PaperShrapA, PAPER_SHRAP_A, 2, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_PaperShrapB, PAPER_SHRAP_A, 2, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_PaperShrapC, PAPER_SHRAP_A, 2, Z_MID, 200, 600, 100, 500, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
         
     static SHRAP Marbels[] =
@@ -2960,7 +2960,7 @@ SpawnShrap(short ParentNum, short Secondary)
         {s_GlassShrapA, GLASS_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_GlassShrapB, GLASS_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
         {s_GlassShrapC, GLASS_SHRAP_A, 1, Z_MID, 200, 600, 100, 500, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     #if 0        
@@ -2978,7 +2978,7 @@ SpawnShrap(short ParentNum, short Secondary)
     static SHRAP EMPShrap[] =
         {
         {s_EMPShrap, EMP, 1, Z_MID, 500, 1100, 300, 600, FALSE, 128},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP StdShrap[] =
@@ -2989,7 +2989,7 @@ SpawnShrap(short ParentNum, short Secondary)
         {s_GoreArm, GORE_Arm, 1, Z_MID, 300, 500, 250, 500, TRUE, 2048},
         {s_GoreSkullCap, GORE_SkullCap, 1, Z_TOP, 300, 500, 250, 500, TRUE, 2048},
         {s_FastGoreDrip, GORE_Drip, 8, Z_BOT, 600, 800, 50, 70, FALSE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP HeartAttackShrap[] = // fewer gibs because of the plasma fountain sprites
@@ -2997,7 +2997,7 @@ SpawnShrap(short ParentNum, short Secondary)
         {s_GoreLung,     GORE_Lung,       2, Z_TOP, 500, 1100, 300, 600, TRUE, 2048},
         {s_GoreLiver,   GORE_Liver,     1, Z_MID, 500, 1100, 300, 500, TRUE, 2048},
         {s_GoreArm,     GORE_Arm,       2, Z_MID, 500, 1100, 350, 600, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
         
     static SHRAP SkelGore[] =
@@ -3009,7 +3009,7 @@ SpawnShrap(short ParentNum, short Secondary)
         {s_GoreArm, GORE_Arm, 1, Z_MID, 300, 500, 250, 500, TRUE, 2048},
         {s_GoreLeg, GORE_Leg, 2, Z_BOT, 200, 400, 250, 500, TRUE, 2048},
         {s_GoreChunkS, GORE_ChunkS, 4, Z_BOT, 200, 400, 250, 400, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP UpperGore[] =
@@ -3019,20 +3019,20 @@ SpawnShrap(short ParentNum, short Secondary)
         {s_GoreLiver, GORE_Liver, 1, Z_MID, 300, 500, 100, 150, TRUE, 2048},
         {s_GoreSkullCap, GORE_SkullCap, 1, Z_TOP, 300, 500, 100, 150, TRUE, 2048},
         {s_GoreArm, GORE_Arm, 1, Z_MID, 300, 500, 250, 500, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP LowerGore[] =
         {
         {s_GoreLeg, GORE_Leg, 4, Z_BOT, 300, 500, 100, 200, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP SmallGore[] =
         {
         {s_GoreDrip, GORE_Drip, 3, Z_TOP, 600, 800, 50, 70, FALSE, 2048},
         {s_FastGoreDrip, GORE_Drip, 3, Z_BOT, 600, 800, 70, 100, FALSE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP FlamingGore[] =
@@ -3040,32 +3040,32 @@ SpawnShrap(short ParentNum, short Secondary)
         {s_GoreFlame, GORE_Drip, 2, Z_TOP, 600, 800, 100, 200, FALSE, 2048},
         {s_GoreFlameChunkB, GORE_Drip, 4, Z_MID, 300, 500, 100, 200, FALSE, 2048},
         {s_GoreFlame, GORE_Drip, 2, Z_BOT, 100, 200, 100, 200, FALSE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP BoltExpShrap[] =
         {
         {s_GoreFlame, GORE_Drip, 4, Z_MID, 300, 700, 300, 600, TRUE, 2048},
         {s_GoreFlame, GORE_Drip, 4, Z_BOT, 300, 700, 300, 600, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
         
     static SHRAP TracerExpShrap[] =
         {
         {s_TracerShrap, GORE_Drip, 3, Z_MID, 300, 700, 300, 600, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP FireballExpShrap1[] =
         {
         {s_GoreFlame, GORE_Drip, 1, Z_MID, 100, 300, 100, 200, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
         
     static SHRAP FireballExpShrap2[] =
         {
         {s_GoreFlame, GORE_Drip, 2, Z_MID, 100, 300, 100, 200, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAPp FireballExpShrap[] = 
@@ -3079,7 +3079,7 @@ SpawnShrap(short ParentNum, short Secondary)
     static SHRAP ElectroShrap[] =
         {
         {s_ElectroShrap, ELECTRO_SHARD, 12, Z_TOP, 200, 600, 100, 500, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     // state, id, num, zlevel, min_jspeed, max_jspeed, min_vel, max_vel,
@@ -3087,13 +3087,13 @@ SpawnShrap(short ParentNum, short Secondary)
     static SHRAP LavaShrap1[] =
         {
         {s_GoreFlame, GORE_Drip, 1, Z_TOP, 400, 1400, 100, 400, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP LavaShrap2[] =
         {
         {s_GoreFlameChunkB, GORE_Drip, 1, Z_TOP, 400, 1400, 100, 400, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
         
     static SHRAP *LavaShrapTable[] = 
@@ -3105,13 +3105,13 @@ SpawnShrap(short ParentNum, short Secondary)
     static SHRAP LavaBoulderShrap[] =
         {
         {s_LavaShard, LAVA_SHARD, 16, Z_MID, 400, 900, 200, 600, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
         
     static SHRAP SectorSquishGore[] =
         {
         {s_FastGoreDrip,    GORE_Drip,   24, Z_MID, -400, -200, 600, 800, FALSE, 2048},
-        {NULL},              
+        {NULL,0,0,0,0,0,0,0,0,0},              
         };
 
         
@@ -3130,7 +3130,7 @@ SpawnShrap(short ParentNum, short Secondary)
         {s_GoreDrip,    GORE_Drip,      10, Z_MID, 200, 300, 100, 200, FALSE, 2048},
         {s_GoreArm,     GORE_Arm,       1, Z_MID, 200, 300, 100, 200, TRUE, 2048},
         {s_FastGoreDrip,    GORE_Drip,      10, Z_BOT, 200, 300, 100, 200, FALSE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP PlayerGoreFly[] =
@@ -3141,14 +3141,14 @@ SpawnShrap(short ParentNum, short Secondary)
         {s_GoreArm,     GORE_Arm,       1, Z_MID, 500, 1100, 350, 600, TRUE, 2048},
         {s_FastGoreDrip,    GORE_Drip,      16, Z_MID, 500, 1100, 350, 600, FALSE, 2048},
         {s_FastGoreDrip,    GORE_Drip,      16, Z_BOT, 500, 1100, 350, 600, FALSE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
         
     static SHRAP PlayerDeadHead[] =
         {
         {s_GoreDrip, GORE_Drip, 2, Z_TOP, 150, 400, 40, 80, TRUE, 2048},
         {s_GoreDrip, GORE_Drip, 2, Z_MID, 150, 400, 40, 80, TRUE, 2048},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     // state, id, num, zlevel, min_jspeed, max_jspeed, min_vel, max_vel,
@@ -3156,7 +3156,7 @@ SpawnShrap(short ParentNum, short Secondary)
     static SHRAP PlayerHeadHurl1[] =
         {
         {s_Vomit1, Vomit1, 1, Z_BOT, 250, 400, 100, 200, TRUE, 256},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     #define WALL_FLOOR_SHRAP 4097        
@@ -3164,7 +3164,7 @@ SpawnShrap(short ParentNum, short Secondary)
     static SHRAP SectorExpShrap[] =
         {
         {NULL, WALL_FLOOR_SHRAP, 1, Z_BOT, 550, 800, 200, 400, TRUE, 512},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
         
     long hz[3];
@@ -4113,49 +4113,49 @@ SpawnBlood(short SpriteNum, short Weapon, short hitang, long hitx, long hity, lo
         {
         {s_GoreDrip, GORE_Drip, 1, Z_MID, 100, 250, 10, 20, TRUE, 512},  // 70,200 vels
         //{s_GoreSplash, PLASMA_Drip, 1, Z_BOT, 0, 0, 0, 0, FALSE, 512},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
         
     static SHRAP SmallBlood[] =
         {
         {s_GoreDrip, GORE_Drip, 1, Z_TOP, 100, 250, 10, 20, TRUE, 512},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
         
     static SHRAP PlasmaFountainBlood[] =
         {
         {s_PlasmaDrip, PLASMA_Drip, 1, Z_TOP, 200, 500, 100, 300, TRUE, 16},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
         
     static SHRAP SomeBlood[] =
         {                
         {s_GoreDrip, GORE_Drip, 1, Z_TOP, 100, 250, 10, 20, TRUE, 512},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP MoreBlood[] =
         {
         {s_GoreDrip, GORE_Drip, 2, Z_TOP, 100, 250, 10, 20, TRUE, 512},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP ExtraBlood[] =
         {
         {s_GoreDrip, GORE_Drip, 4, Z_TOP, 100, 250, 10, 20, TRUE, 512},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
         
     static SHRAP HariKariBlood[] =
         {
         {s_FastGoreDrip, GORE_Drip, 32, Z_TOP, 200, 650, 70, 100, TRUE, 1024},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
 
     static SHRAP SwordPowerup[] =
         {
         {s_ElectroShrap, ELECTRO_SHARD, 16, Z_TOP, 75, 200, 70, 150, TRUE, 512},
-        {NULL},
+        {NULL,0,0,0,0,0,0,0,0,0},
         };
         
     long hz;
@@ -5147,7 +5147,7 @@ ActorChooseDeath(short SpriteNum, short Weapon)
                 u->ID == WASHGIRL_R0 && wu->ID == NINJA_RUN_R0 && wu->PlayerP)    
                 {
                 PLAYERp pp = wu->PlayerP;
-                if (!TEST(pp->Flags, PF_DIVING))
+                if (pp && !TEST(pp->Flags, PF_DIVING))	// JBF: added null test
                     pp->Bloody = TRUE;
                 PlaySound(DIGI_TOILETGIRLSCREAM, &sp->x, &sp->y, &sp->z, v3df_none);    
                 }    
@@ -5398,7 +5398,7 @@ ActorHealth(short SpriteNum, short amt)
         u->LastDamage = -amt;
 
     // Do alternate Death2 if it exists    
-    if (u->ActorActionSet->Death2)
+    if (u->ActorActionSet && u->ActorActionSet->Death2)	// JBF: added null check
         {
         #define DEATH2_HEALTH_VALUE 15
         
@@ -5930,7 +5930,7 @@ StarBlood(short SpriteNum, short Weapon)
         blood_num = 4;
         
     for (i = 0; i < blood_num; i++)
-        SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
+        SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
     return(0);    
     } 
 
@@ -5957,7 +5957,7 @@ DoDamage(short SpriteNum, short Weapon)
     // don't hit a dead player
     if (u->PlayerP && TEST(u->PlayerP->Flags, PF_DEAD))
         {
-        SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
+        SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
         return(0);
         }
 
@@ -5978,7 +5978,7 @@ DoDamage(short SpriteNum, short Weapon)
 
     if (TEST(u->Flags, SPR_DEAD))
         {
-        SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
+        SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
         return(0);
         }
 
@@ -6059,7 +6059,7 @@ DoDamage(short SpriteNum, short Weapon)
                     ActorChooseDeath(SpriteNum, Weapon);
                     }
                     
-                SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
+                SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
                 break;
             }
         }
@@ -6125,7 +6125,7 @@ DoDamage(short SpriteNum, short Weapon)
                 ActorChooseDeath(SpriteNum, Weapon);
                 }
                 
-            SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
+            SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
             
             break;    
                 
@@ -6158,7 +6158,7 @@ DoDamage(short SpriteNum, short Weapon)
                 ActorChooseDeath(SpriteNum, Weapon);
                 }
                 
-            SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
+            SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
             
             break;
             
@@ -6189,7 +6189,7 @@ DoDamage(short SpriteNum, short Weapon)
                 ActorChooseDeath(SpriteNum, Weapon);
                 }
                 
-            //SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
+            //SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
             
             break;
             
@@ -6220,7 +6220,7 @@ DoDamage(short SpriteNum, short Weapon)
             ActorChooseDeath(SpriteNum, Weapon);
             }
 
-        SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
+        SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
         
         break;
 
@@ -6257,7 +6257,7 @@ DoDamage(short SpriteNum, short Weapon)
             ActorChooseDeath(SpriteNum, Weapon);
             }
 
-        SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
+        SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
         
         break;
 
@@ -6293,7 +6293,7 @@ DoDamage(short SpriteNum, short Weapon)
             ActorChooseDeath(SpriteNum, Weapon);
             }
 
-        SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
+        SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
         
         break;
 
@@ -6328,7 +6328,7 @@ DoDamage(short SpriteNum, short Weapon)
             ActorChooseDeath(SpriteNum, Weapon);
             }
 
-        SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
+        SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
         
         break;
 
@@ -6357,9 +6357,9 @@ DoDamage(short SpriteNum, short Weapon)
             ActorChooseDeath(SpriteNum, Weapon);
             }
 
-        SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
-        SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
-        SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
+        SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
+        SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
+        SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
         
         break;
         
@@ -6403,7 +6403,7 @@ DoDamage(short SpriteNum, short Weapon)
             ActorChooseDeath(SpriteNum, Weapon);
             }
 
-        SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
+        SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
         
         break;
 
@@ -6443,7 +6443,7 @@ DoDamage(short SpriteNum, short Weapon)
 
         StarBlood(SpriteNum, Weapon);    
             
-        wu->ID = NULL;
+        wu->ID = 0;
         SetSuicide(Weapon);
         break;
         
@@ -6475,9 +6475,9 @@ DoDamage(short SpriteNum, short Weapon)
             ActorChooseDeath(SpriteNum, Weapon);
             }
 
-        SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
+        SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
         
-        wu->ID = NULL;
+        wu->ID = 0;
         SetSuicide(Weapon);
         break;
         
@@ -6507,9 +6507,9 @@ DoDamage(short SpriteNum, short Weapon)
             ActorChooseDeath(SpriteNum, Weapon);
             }
 
-        SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
+        SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
         
-        wu->ID = NULL;
+        wu->ID = 0;
         SetSuicide(Weapon);
         break;
         
@@ -6539,9 +6539,9 @@ DoDamage(short SpriteNum, short Weapon)
             ActorChooseDeath(SpriteNum, Weapon);
             }
 
-        SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
+        SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
         
-        wu->ID = NULL;
+        wu->ID = 0;
         SetSuicide(Weapon);
         break;
         
@@ -6595,7 +6595,7 @@ DoDamage(short SpriteNum, short Weapon)
                 }
             }
 
-        //SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
+        //SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
         // reset id so no more damage is taken
         wu->ID = 0;
         break;
@@ -6628,7 +6628,7 @@ DoDamage(short SpriteNum, short Weapon)
             ActorChooseDeath(SpriteNum, Weapon);
             }
 
-        //SpawnBlood(SpriteNum, Weapon, NULL, NULL, NULL, NULL);
+        //SpawnBlood(SpriteNum, Weapon, 0, 0, 0, 0);
         switch(u->ID)
             {
             case TRASHCAN:
@@ -7008,8 +7008,7 @@ DoDamage(short SpriteNum, short Weapon)
         else
             {
             // Don't let it hurt the SUMO
-            if (wp->owner != -1)
-                if (User[wp->owner]->ID == SUMO_RUN_R0) break;
+            if (wp->owner >=0 && User[wp->owner] && User[wp->owner]->ID == SUMO_RUN_R0) break;	// JBF: added sanity check for wp->owner and User[wp->owner]
             ActorHealth(SpriteNum, damage);
             ActorPain(SpriteNum);
             ActorDamageSlide(SpriteNum, damage, ANG2SPRITE(sp, wp));
@@ -7079,10 +7078,12 @@ DoDamage(short SpriteNum, short Weapon)
             }
         else
             {
+	    if (wp->owner >= 0) {
             // Don't let serp skulls hurt the Serpent God
             if (User[wp->owner]->ID == SERP_RUN_R0) break;
             // Don't let it hurt the SUMO
             if (User[wp->owner]->ID == SUMO_RUN_R0) break;
+	    }
             if(u->ID == TRASHCAN)
                 ActorHealth(SpriteNum, -500);
             else    
@@ -7377,7 +7378,7 @@ DoDamage(short SpriteNum, short Weapon)
         else
             {
             // Don't let it hurt the SUMO
-            if (User[wp->owner]->ID == SUMO_RUN_R0) break;
+            if (wp->owner >= 0 && User[wp->owner]->ID == SUMO_RUN_R0) break;	// JBF: added owner check
             ActorHealth(SpriteNum, damage);
             ActorPain(SpriteNum);
             ActorChooseDeath(SpriteNum, Weapon);
@@ -7616,7 +7617,7 @@ char *DeathString(short SpriteNum)
         case CALTROPS:
             return("caltrops");
         }
-
+	return "";
      }
 #endif     
     
@@ -8272,15 +8273,8 @@ DoStar(SHORT Weapon)
         if (hitsprite != -1)
             {
             su = User[hitsprite];
-if (su == NULL)
-{
-    STUBBED("Should have accessed NULL here.");
-}
-else
-{
-            if (su->ID == TRASHCAN || su->ID == ZILLA_RUN_R0)
+            if (su && (su->ID == TRASHCAN || su->ID == ZILLA_RUN_R0))	// JBF: added null test
                 PlaySound(DIGI_STARCLINK, &sp->x, &sp->y, &sp->z, v3df_none);
-}
             }
             
         if (TEST(u->ret, HIT_MASK) != HIT_SPRITE) // Don't clank on sprites
@@ -8790,7 +8784,7 @@ DoPlasmaFountain(SHORT Weapon)
               
         if (!u->Counter)                    
             {
-            SpawnBlood(ap-sprite, Weapon, NULL, NULL, NULL, NULL);
+            SpawnBlood(ap-sprite, Weapon, 0, 0, 0, 0);
             if(RANDOM_RANGE(1000) > 600)
                 InitBloodSpray(ap-sprite, FALSE, 105);
             }
@@ -10140,14 +10134,14 @@ DoTracerStart(SHORT Weapon)
 int
 DoLaser(SHORT Weapon)
     {
-#ifndef SW_SHAREWARE    
-    
     SPRITEp sp = &sprite[Weapon];
     USERp u = User[Weapon];
     SPRITEp np;
     USERp nu;
     short new;
     short spawn_count = 0;
+
+    if (SW_SHAREWARE) return FALSE;	// JBF: verify
 
     while (TRUE)
         {
@@ -10184,17 +10178,18 @@ DoLaser(SHORT Weapon)
             nu->xchange = nu->ychange = nu->zchange = 0;
             }
         }
-#endif        
     }
 
 int
 DoLaserStart(SHORT Weapon)
     {
-#ifndef SW_SHAREWARE    
     SPRITEp sp = &sprite[Weapon];
     USERp u = User[Weapon];
     SPRITEp np;
     USERp nu;
+
+    if (SW_SHAREWARE) return FALSE;	// JBF: verify
+    
     u->ret = move_missile(Weapon, u->xchange, u->ychange, u->zchange, u->ceiling_dist, u->floor_dist, CLIPMASK_MISSILE, MISSILEMOVETICS);
 
     MissileHitDiveArea(Weapon);
@@ -10208,14 +10203,13 @@ DoLaserStart(SHORT Weapon)
             return (TRUE);
             }
         }
-#endif        
+
     return(0);
     }
     
 int
 DoRail(SHORT Weapon)
     {
-#ifndef SW_SHAREWARE    
     SPRITEp sp = &sprite[Weapon];
     USERp u = User[Weapon];
     LONG dax, day, daz;
@@ -10224,6 +10218,8 @@ DoRail(SHORT Weapon)
     USERp nu;
     short new;
     short spawn_count = 0;
+
+    if (SW_SHAREWARE) return FALSE;	// JBF: verify
 
     while (TRUE)
         {
@@ -10302,19 +10298,19 @@ DoRail(SHORT Weapon)
                 SET(nu->Flags, SPR_UNDERWATER);
             }    
         }
-    #endif    
     }
 
 int
 DoRailStart(SHORT Weapon)
     {
-#ifndef SW_SHAREWARE    
     SPRITEp sp = &sprite[Weapon];
     USERp u = User[Weapon];
     LONG dax, day, daz;
     SPRITEp np;
     USERp nu;
     short new;
+
+    if (SW_SHAREWARE) return FALSE;	// JBF: verify
 
     u->ret = move_missile(Weapon, u->xchange, u->ychange, u->zchange, u->ceiling_dist, u->floor_dist, CLIPMASK_MISSILE, MISSILEMOVETICS);
 
@@ -10330,7 +10326,7 @@ DoRailStart(SHORT Weapon)
             return (TRUE);
             }
         }
-    #endif
+
     return(0);    
     }
 
@@ -10498,11 +10494,12 @@ SpawnExtraMicroMini(SHORT Weapon)
 int
 DoMicro(SHORT Weapon)
     {
-#ifndef SW_SHAREWARE    
     SPRITEp sp = &sprite[Weapon];
     USERp u = User[Weapon];
     LONG dax, day, daz;
     short new;
+
+    if (SW_SHAREWARE) return FALSE;	// JBF: verify
 
     u->ret = move_missile(Weapon, u->xchange, u->ychange, u->zchange, 
         u->ceiling_dist, u->floor_dist, CLIPMASK_MISSILE, MISSILEMOVETICS);
@@ -10568,7 +10565,7 @@ DoMicro(SHORT Weapon)
             return (TRUE);
             }
         }
-#endif
+
     return (FALSE);
     }
     
@@ -11183,7 +11180,7 @@ SpawnGoroFireballExp(SHORT Weapon)
 
     PlaySound(DIGI_MEDIUMEXP, &sp->x, &sp->y, &sp->z, v3df_none);
     
-    explosion = SpawnSprite(STAT_MISSILE, NULL, s_FireballExp, sp->sectnum, 
+    explosion = SpawnSprite(STAT_MISSILE, 0, s_FireballExp, sp->sectnum, 
         sp->x, sp->y, sp->z, sp->ang, 0);
     exp = &sprite[explosion];
     eu = User[explosion];
@@ -11556,7 +11553,7 @@ AddSpriteToSectorObject(short SpriteNum, SECTOR_OBJECTp sop)
     // make sure it has a user
     if (!u)
         {
-        u = SpawnUser(SpriteNum, NULL, NULL);
+        u = SpawnUser(SpriteNum, 0, NULL);
         }
     
     // find a free place on this list
@@ -12502,11 +12499,6 @@ DoBloodWorm(SHORT Weapon)
                 tsp = &sprite[i];
                 tu = User[i];
         
-					 if (tu == NULL)
-					 {
-						 return 0;
-					 }
-
                 ASSERT(tu);
                 
                 if (tu->ID == ZOMBIE_RUN_R0 && tsp->owner == sp->owner)
@@ -12622,11 +12614,6 @@ DoBloodWorm(SHORT Weapon)
             tsp = &sprite[i];
             tu = User[i];
     
-				if (tu == NULL)
-				{
-					return 0;
-				}
-
             ASSERT(tu);
             
             if (tu->ID == ZOMBIE_RUN_R0 && tsp->owner == sp->owner)
@@ -13107,9 +13094,8 @@ InitSpellRing(PLAYERp pp)
 
     ang_start = NORM_ANGLE(pp->pang - DIV2(2048));
 
-#ifndef SW_SHAREWARE
+    if (!SW_SHAREWARE)
     PlaySound(DIGI_RFWIZ, &pp->posx, &pp->posy, &pp->posz, v3df_none);
-#endif    
 
     for (missiles = 0, ang = ang_start; missiles < max_missiles; ang += ang_diff, missiles++)
         {
@@ -13429,9 +13415,8 @@ InitSerpRing(short SpriteNum)
 
     ang_start = NORM_ANGLE(sp->ang - DIV2(2048));
 
-#ifndef SW_SHAREWARE
+    if (!SW_SHAREWARE)
     PlaySound(DIGI_RFWIZ, &sp->x, &sp->y, &sp->z, v3df_none);
-#endif    
 
     for (missiles = 0, ang = ang_start; missiles < max_missiles; ang += ang_diff, missiles++)
         {
@@ -14008,12 +13993,7 @@ InitSwordAttack(PLAYERp pp)
                 SPRITEp hsp = &sprite[hitsprite];
                 tu = User[hitsprite];
 
-					 if (tu == NULL)
-					 {
-						 //STUBBED("should have hit a NULL here.");
-						 return 0;
-					 }
-
+		if (tu)	// JBF: added null check
                 switch(tu->ID)
                     {    
                     case ZILLA_RUN_R0:
@@ -14203,12 +14183,8 @@ InitFistAttack(PLAYERp pp)
                 extern STATE s_TrashCanPain[];
                 SPRITEp hsp = &sprite[hitsprite];
                 tu = User[hitsprite];
-
-					 if (tu == NULL)
-					 {
-						 return 0;
-					 }
                 
+		if (tu)		// JBF: added null check
                 switch(tu->ID)
                     {    
                     case ZILLA_RUN_R0:
@@ -15449,7 +15425,6 @@ InitLaser(PLAYERp pp)
 int
 InitRail(PLAYERp pp)
     {
-#ifndef SW_SHAREWARE
     USERp u = User[pp->PlayerSprite];
     USERp wu;
     SPRITEp wp;
@@ -15457,6 +15432,8 @@ InitRail(PLAYERp pp)
     short w, hitsprite;
     short oclipdist;
     long zvel;
+    
+    if (SW_SHAREWARE) return FALSE;	// JBF: verify
     
     DoPlayerBeginRecoil(pp, RAIL_RECOIL_AMT);
     
@@ -15531,13 +15508,11 @@ InitRail(PLAYERp pp)
     wu->zchange = zvel;
     
     return (0);
-#endif    
     }
 
 int
 InitZillaRail(short SpriteNum)
     {
-#ifndef SW_SHAREWARE
     SPRITEp sp = &sprite[SpriteNum];
     USERp u = User[SpriteNum];
     USERp wu;
@@ -15547,6 +15522,7 @@ InitZillaRail(short SpriteNum)
     short oclipdist;
     long zvel;
     
+    if (SW_SHAREWARE) return FALSE;	// JBF: verify
 
     PlaySound(DIGI_RAILFIRE, &sp->x, &sp->y, &sp->z, v3df_dontpan|v3df_doppler);
 
@@ -15617,7 +15593,6 @@ InitZillaRail(short SpriteNum)
     wu->zchange = zvel;
     
     return (0);
-#endif    
     }
     
 int
@@ -16799,7 +16774,6 @@ InitEnemyRocket(short SpriteNum)
 int
 InitEnemyRail(short SpriteNum)
     {
-#ifndef SW_SHAREWARE    
     USERp u = User[SpriteNum];
     SPRITEp sp = u->SpriteP;
     USERp wu;
@@ -16807,6 +16781,8 @@ InitEnemyRail(short SpriteNum)
     long nx, ny, nz, dist, nang;
     short w, hitsprite;
     short oclipdist,pnum=0;
+
+    if (SW_SHAREWARE) return FALSE;	// JBF: verify
 
     // if co-op don't hurt teammate
     if (gNet.MultiGameType == MULTI_GAME_COOPERATIVE && u->ID == ZOMBIE_RUN_R0)    
@@ -16887,7 +16863,6 @@ InitEnemyRail(short SpriteNum)
         wu->zchange = wp->zvel = (wp->xvel * (SPRITEp_UPPER(u->tgt_sp) - wp->z)) / dist;
         
     return (w);
-#endif
     }
     
 
@@ -18183,7 +18158,6 @@ InitUzi(PLAYERp pp)
 int
 InitEMP(PLAYERp pp)
     {
-#ifndef SW_SHAREWARE    
     USERp u = User[pp->PlayerSprite];
     SPRITEp wp, hsp=NULL;
     USERp wu;
@@ -18193,6 +18167,8 @@ InitEMP(PLAYERp pp)
     long nx,ny;
     short cstat = 0;
     BYTE pal = 0;
+
+    if (SW_SHAREWARE) return FALSE;	// JBF: verify
 
 
     PlayerUpdateAmmo(pp, u->WeaponNum, -1);
@@ -18351,7 +18327,6 @@ InitEMP(PLAYERp pp)
             }
 
         }    
-    #endif    
     return (0);
     }
 
@@ -18365,9 +18340,8 @@ InitTankShell(short SpriteNum, PLAYERp pp)
     long dist, nang;
     short hitsprite, w;
 
-    #ifndef SW_SHAREWARE
+    if (!SW_SHAREWARE)
     PlaySound(DIGI_CANNON, &pp->posx, &pp->posy, &pp->posz, v3df_dontpan|v3df_doppler);
-    #endif
     
     w = SpawnSprite(STAT_MISSILE, NULL, s_TankShell, sp->sectnum, 
     sp->x, sp->y, sp->z, sp->ang, TANK_SHELL_VELOCITY);
@@ -18411,7 +18385,6 @@ InitTankShell(short SpriteNum, PLAYERp pp)
 int
 InitTurretMicro(short SpriteNum, PLAYERp pp)
     {
-#ifndef SW_SHAREWARE    
     USERp u = User[SpriteNum];
     SPRITEp sp = u->SpriteP;
     
@@ -18424,6 +18397,9 @@ InitTurretMicro(short SpriteNum, PLAYERp pp)
     short i,ang;
     TARGET_SORTp ts = TargetSort;
     
+    if (SW_SHAREWARE) return FALSE;	// JBF: verify
+
+
     nx = sp->x;
     ny = sp->y;
     
@@ -18514,14 +18490,12 @@ InitTurretMicro(short SpriteNum, PLAYERp pp)
         }
    
     return (0);
-#endif    
     }
 
     
 int
 InitTurretRocket(short SpriteNum, PLAYERp pp)
     {
-#ifndef SW_SHAREWARE    
     USERp u = User[SpriteNum];
     SPRITEp sp = u->SpriteP;
     SPRITEp wp, hsp;
@@ -18529,6 +18503,9 @@ InitTurretRocket(short SpriteNum, PLAYERp pp)
     long dist, nang;
     short hitsprite, w;
 
+    if (SW_SHAREWARE) return FALSE;	// JBF: verify
+
+    
     w = SpawnSprite(STAT_MISSILE, BOLT_THINMAN_R0, s_Rocket, sp->sectnum, 
     sp->x, sp->y, sp->z, sp->ang, ROCKET_VELOCITY);
 
@@ -18561,14 +18538,13 @@ InitTurretRocket(short SpriteNum, PLAYERp pp)
 
     if (SpriteInUnderwaterArea(wp))
         SET(wu->Flags, SPR_UNDERWATER);
-#endif
+
     return (0);
     }
 
 int
 InitTurretFireball(short SpriteNum, PLAYERp pp)
     {
-#ifndef SW_SHAREWARE    
     USERp u = User[SpriteNum];
     SPRITEp sp = u->SpriteP;
     SPRITEp wp, hsp;
@@ -18576,6 +18552,8 @@ InitTurretFireball(short SpriteNum, PLAYERp pp)
     long dist, nang;
     short hitsprite, w;
 
+    if (SW_SHAREWARE) return FALSE;	// JBF: verify
+    
     w = SpawnSprite(STAT_MISSILE, FIREBALL, s_Fireball, sp->sectnum, 
     sp->x, sp->y, sp->z, sp->ang, FIREBALL_VELOCITY);
 
@@ -18609,14 +18587,13 @@ InitTurretFireball(short SpriteNum, PLAYERp pp)
 
     if (SpriteInUnderwaterArea(wp))
         SET(wu->Flags, SPR_UNDERWATER);
-#endif
+
     return (0);
     }
     
 int
 InitTurretRail(short SpriteNum, PLAYERp pp)
     {
-#ifndef SW_SHAREWARE    
     USERp u = User[SpriteNum];
     SPRITEp sp = u->SpriteP;
     USERp wu;
@@ -18624,6 +18601,8 @@ InitTurretRail(short SpriteNum, PLAYERp pp)
     long nx, ny, nz;
     short w, hitsprite;
     short oclipdist;
+    
+    if (SW_SHAREWARE) return FALSE;	// JBF: verify
     
     nx = sp->x;
     ny = sp->y;
@@ -18665,14 +18644,12 @@ InitTurretRail(short SpriteNum, PLAYERp pp)
     wu->ychange = MOVEy(wp->xvel, wp->ang);
     wu->zchange = wp->zvel;
 
-#endif    
     return (0);
     }
     
 int
 InitTurretLaser(short SpriteNum, PLAYERp pp)
     {
-#ifndef SW_SHAREWARE    
     USERp u = User[SpriteNum];
     SPRITEp sp = u->SpriteP;
     USERp wu;
@@ -18680,6 +18657,9 @@ InitTurretLaser(short SpriteNum, PLAYERp pp)
     long nx, ny, nz;
     short w, hitsprite;
     short oclipdist;
+    
+    if (SW_SHAREWARE) return FALSE;	// JBF: verify
+
     
     nx = sp->x;
     ny = sp->y;
@@ -18719,7 +18699,7 @@ InitTurretLaser(short SpriteNum, PLAYERp pp)
     wu->xchange = MOVEx(wp->xvel, wp->ang);
     wu->ychange = MOVEy(wp->xvel, wp->ang);
     wu->zchange = wp->zvel;
-#endif    
+
     return (0);
     }
 
@@ -18896,8 +18876,8 @@ InitSobjGun(PLAYERp pp)
                     else    
                         pp->FirePause = SP_TAG5(sp);
                     break;
-                #ifndef SW_SHAREWARE    
                 case 2:
+		    if (SW_SHAREWARE) break;
                     SpawnVis(sp - sprite, -1, -1, -1, -1, 32);
                     InitTurretLaser(sp - sprite, pp);
                     if (!SP_TAG5(sp))
@@ -18906,6 +18886,7 @@ InitSobjGun(PLAYERp pp)
                         pp->FirePause = SP_TAG5(sp);
                     break;
                 case 3:
+		    if (SW_SHAREWARE) break;
                     SpawnVis(sp - sprite, -1, -1, -1, -1, 32);
                     InitTurretRail(sp - sprite, pp);
                     if (!SP_TAG5(sp))
@@ -18914,6 +18895,7 @@ InitSobjGun(PLAYERp pp)
                         pp->FirePause = SP_TAG5(sp);
                     break;
                 case 4:
+		    if (SW_SHAREWARE) break;
                     SpawnVis(sp - sprite, -1, -1, -1, -1, 32);
                     InitTurretFireball(sp - sprite, pp);
                     if (!SP_TAG5(sp))
@@ -18922,6 +18904,7 @@ InitSobjGun(PLAYERp pp)
                         pp->FirePause = SP_TAG5(sp);
                     break;
                 case 5:
+		    if (SW_SHAREWARE) break;
                     SpawnVis(sp - sprite, -1, -1, -1, -1, 32);
                     InitTurretRocket(sp - sprite, pp);
                     if (!SP_TAG5(sp))
@@ -18930,6 +18913,7 @@ InitSobjGun(PLAYERp pp)
                         pp->FirePause = SP_TAG5(sp);
                     break;
                 case 6:
+		    if (SW_SHAREWARE) break;
                     SpawnVis(sp - sprite, -1, -1, -1, -1, 32);
                     InitTurretMicro(sp - sprite, pp);
                     if (!SP_TAG5(sp))
@@ -18937,7 +18921,6 @@ InitSobjGun(PLAYERp pp)
                     else    
                         pp->FirePause = SP_TAG5(sp);
                     break;
-                #endif    
                 }
             }
         }

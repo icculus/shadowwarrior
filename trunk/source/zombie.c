@@ -716,7 +716,7 @@ STATEp *Special[2];
 
 ACTOR_ACTION_SET ZombieActionSet =
     {
-    {sg_ZombieStand},
+    sg_ZombieStand,
     sg_ZombieRun,
     NULL,
     sg_ZombieFall,

@@ -38,7 +38,7 @@ extern BOOL CON_CheckParm(BYTEp userarg);
 extern void CON_CommandHistory(signed char dir);
 // CTW MODIFICATION END
 //#line "console.c" 184
-extern BOOL CON_AddCommand(BYTEp command,BOOL (*function)(void ));
+extern BOOL CON_AddCommand(BYTEp command,void /*BOOL*/ (*function)(void ));
 //#line "console.c" 207
 extern void CON_ProcessUserCommand(void );
 //#line "console.c" 231

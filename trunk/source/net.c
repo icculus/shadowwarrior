@@ -1226,7 +1226,7 @@ checkmasterslaveswitch(VOID)
 VOID
 getpackets(VOID)
     {
-    short otherconnectindex, packbufleng;
+    long otherconnectindex, packbufleng;
     long i, j, k, l, fifoCheck;
     PLAYERp pp;
     SW_PACKET tempinput;

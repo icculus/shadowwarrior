@@ -126,7 +126,7 @@ CON_COMMAND pre_commands[] = {
 {"swvox",       CheatInput},
 {"swsave",      CheatInput},
 #endif
-#if 0
+#if DEBUG
 {"george",      CheatInput},
 {"blackburn",   CheatInput},
 {"reverb",      CON_Reverb},
@@ -164,7 +164,7 @@ CON_COMMAND pre_commands[] = {
 {"config",      CON_LoadSetup},
 {"swtrix",      CON_Bunny},
 {"swname",      CON_MultiNameChange},
-{NULL} 
+{NULL, NULL} 
 };
 
 
@@ -309,7 +309,7 @@ void CON_CommandHistory(signed char dir)
     if(curr_history < 0) curr_history = 0;
     if(curr_history > MAX_HISTORY) curr_history = MAX_HISTORY;
 
-    strcpy(MessageInputString, &command_history[curr_history]);
+    strcpy(MessageInputString, command_history[curr_history]);
 }
 
 void CON_AddHistory(char *commandstr)
@@ -328,7 +328,7 @@ void CON_AddHistory(char *commandstr)
 //
 // Adds a command name to the command list and assigns the appropriate function pointer
 // 
-BOOL CON_AddCommand(BYTEp command, BOOL (*function)(void))
+BOOL CON_AddCommand(BYTEp command, /*BOOL*/void (*function)(void))
 {
     if(command != NULL && function != NULL && numcommands < MAX_CONSOLE_COMMANDS)
     {

@@ -255,7 +255,7 @@ STATEp *Special[2];
 
 ACTOR_ACTION_SET HornetActionSet =
   {
-  {sg_HornetStand},
+  sg_HornetStand,
   sg_HornetRun,
   NULL, 
   NULL, 
@@ -273,8 +273,16 @@ ACTOR_ACTION_SET HornetActionSet =
   NULL,
   NULL,
   {NULL},
-  {NULL}
+  {0},
+  {NULL},
+  {0},
+  {NULL},
+  NULL,
+  NULL
   };
+
+int DoHornetMatchPlayerZ(short SpriteNum);
+
 
 int 
 SetupHornet(short SpriteNum)    

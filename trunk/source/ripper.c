@@ -759,7 +759,7 @@ STATEp *Special[2];
 
 ACTOR_ACTION_SET RipperActionSet =
     {
-    {sg_RipperStand},
+    sg_RipperStand,
     sg_RipperRun,
     sg_RipperJump,
     sg_RipperFall,
@@ -780,12 +780,14 @@ ACTOR_ACTION_SET RipperActionSet =
     {800,1024},
     {sg_RipperJumpAttack, sg_RipperSpew},
     {400, 1024},
-    {sg_RipperHeart, sg_RipperHang}
+    {sg_RipperHeart, sg_RipperHang},
+    NULL,
+    NULL
     };
 
 ACTOR_ACTION_SET RipperBrownActionSet =
     {
-    {sg_RipperStand},
+    sg_RipperStand,
     sg_RipperRun,
     sg_RipperJump,
     sg_RipperFall,
@@ -806,7 +808,9 @@ ACTOR_ACTION_SET RipperBrownActionSet =
     {1024},
     {sg_RipperJumpAttack, sg_RipperSwipe},
     {800, 1024},
-    {sg_RipperHeart, sg_RipperHang}
+    {sg_RipperHeart, sg_RipperHang},
+    NULL,
+    NULL
     };
 
 int

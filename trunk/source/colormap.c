@@ -442,7 +442,6 @@ VOID SetPaletteToVESA(char *pal)
         }
 
      VBE_setPalette(0, 256, pal_buff);
-
     }
 
 VOID set_pal(char *pal)
@@ -464,3 +463,4 @@ VOID GetPaletteFromVESA(char *pal)
         pal[i * 3 + OBLUE] = pal_buff[i * 4 + NBLUE];
         }
     }
+

@@ -657,7 +657,7 @@ VOID FAFgetzrangepoint(LONG x, LONG y, LONG z, SHORT sectnum,
         }           
     }
     
-OLDsetsprite(short spritenum, long newx, long newy, long newz)
+long OLDsetsprite(short spritenum, long newx, long newy, long newz)
     {
     short bad, j, tempsectnum;
 

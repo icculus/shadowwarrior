@@ -3045,7 +3045,10 @@ AnimClear(VOID)
     for (i = AnimCnt - 1; i >= 0; i--)
         {
         if (Anim[i].extra)
+	    {
             FreeMem(Anim[i].extra);
+	    Anim[i].extra = 0;
+        }
         }
 
     AnimCnt = 0;

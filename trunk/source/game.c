@@ -52,11 +52,14 @@ Things required to make savegames work:
 #include <graph.h>
 #endif
 
+#if !PLATFORM_MACOSX
+#include <malloc.h>
+#endif
+
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
-#include <malloc.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -150,11 +153,7 @@ char keys[NUMKEYS] =
     0x9c, 0x1c, 0xd, 0xc, 0xf,
     };
 
-#ifdef SW_SHAREWARE
 char DemoName[15][16];
-#else
-char DemoName[15][16];
-#endif
 
 extern long lastUpdate; // CD tic counter
 // Stupid WallMart version!
@@ -378,7 +377,7 @@ VOID DebugWriteLoc(char *fname, int line)
     fflush(debug_fout);
     }
 
-Mono_Print(char *str)
+void Mono_Print(char *str)
 {
 MONO_PRINT(str);
 }
@@ -776,9 +775,8 @@ TerminateGame(VOID)
 
     //Terminate3DSounds();                // Kill the sounds linked list
     UnInitSound();
-    #ifndef SW_SHAREWARE
-    CDAudio_Stop();
-    #endif
+    if (!SW_SHAREWARE)
+	CDAudio_Stop();
 
     uninittimer();
 
@@ -793,15 +791,11 @@ LoadLevel(char *filename)
     {
     char mapname[32];
     int pos;
-    
-    strcpy(mapname, filename);
-    #if SW_SHAREWARE == 1 && !DEBUG
-    pos = strlen(mapname);
-    mapname[pos++] = 255;
-    mapname[pos] = '\0';
-    #endif
-    
-    if (loadboard(mapname, &Player[0].posx, &Player[0].posy, &Player[0].posz, &Player[0].pang, &Player[0].cursectnum) == -1)
+    int from = SW_SHAREWARE ? 1 : 0;
+
+    STUBBED("What does JonoF's engine port use 'from' variable for?");
+
+    if (loadboard(filename, &Player[0].posx, &Player[0].posy, &Player[0].posz, &Player[0].pang, &Player[0].cursectnum) == -1)
         {
         TerminateGame();
         printf("Level Not Found: %s\n", filename);
@@ -818,7 +812,7 @@ LoadImages(TEXT filename)
     if (loadpics(filename) == -1)
         {
         TerminateGame();
-        printf("Images Not Found\n");
+        printf("Art not found. Please check your GRP file.\n");
         exit(-1);
         }
     }
@@ -834,7 +828,7 @@ void LoadDemoRun(void)
         memset(DemoName,'\0',sizeof(DemoName));
         for (i = 0; TRUE; i++)
             {
-            if (fscanf(fin, "%s", &DemoName[i]) == EOF)
+            if (fscanf(fin, "%s", DemoName[i]) == EOF)
                 break;
             }
 
@@ -934,9 +928,9 @@ void Set_GameMode(void)
         } 
      }
 
-#ifdef SW_SHAREWARE     
 void MultiSharewareCheck(void)
     {
+    if (!SW_SHAREWARE) return;
     if (numplayers > 4)
         {
         printf(
@@ -955,7 +949,6 @@ void MultiSharewareCheck(void)
         exit(0);
         }
      }
-#endif     
  
 VOID MakePal(VOID)
     {
@@ -1023,7 +1016,8 @@ VOID InitAutoNet(VOID)
 
 void AnimateCacheCursor(void)
     {    
-    //struct rccoord old_pos;
+#if 0
+    struct rccoord old_pos;
     static short cursor_num = 0;
     static char cache_cursor[] =  {'|','/','-','\\'};
     
@@ -1041,6 +1035,7 @@ void AnimateCacheCursor(void)
     sprintf(ds,"Loading sound and graphics %c", cache_cursor[cursor_num]);
     _outtext(ds);
     //_settextposition( old_pos.row, old_pos.col );
+#endif
     }
     
 void COVERsetbrightness(int bright, char *pal)
@@ -1053,7 +1048,10 @@ if (xdim == 800)
 #endif
 setbrightness(bright + adj, pal);
 }    
-    
+
+
+int nextvoxid = 0;	// JBF
+
 VOID
 InitGame(VOID)
     {
@@ -1064,19 +1062,11 @@ InitGame(VOID)
 	DSPRINTF(ds,"InitGame...");
     MONO_PRINT(ds);
 
-    initgroupfile("sw.grp");
+    //initgroupfile("sw.grp");	// JBF: moving this close to start of program to detect shareware
     InitSetup();
     
-    // This fixes the music startup bug for "SOME" AWE32's
-    #ifdef SW_SHAREWARE
-    InitMusic();
-    if (DoubleInitAWE32) // Double init AWE32 to fix music screw up
-        {                // This causes a page fault on some machines
-        PlaySong("theme.mid");
-        MusicShutdown();
-        InitMusic();
-        }
-    #endif
+    if (SW_SHAREWARE)
+	InitMusic();
     
     InitAutoNet();
 
@@ -1114,9 +1104,7 @@ InitGame(VOID)
         MovesPerPacket = 2;
         }
     
-    #ifdef SW_SHAREWARE
     MultiSharewareCheck();
-    #endif
     
     if (numplayers > 1)
         {
@@ -1141,7 +1129,7 @@ InitGame(VOID)
 
     LoadDemoRun();
     // Save off total heap for later calculations
-    TotalMemory = Z_AvailHeap();
+    //TotalMemory = Z_AvailHeap();
     //DSPRINTF(ds,"Available Heap before LoadImages =  %ld", TotalMemory);
     //MONO_PRINT(ds);
     // Reserve 1.5 megs for normal program use
@@ -1153,21 +1141,24 @@ InitGame(VOID)
     // when songs, etc., greater than the remaining heap were being loaded.
     // Even if you pre-cache songs, etc. to help, reserving some heap is
     // a very smart idea since the game uses malloc throughout execution.
-    ReserveMem = AllocMem(1L<<20);
-    if(ReserveMem == 0) MONO_PRINT("Could not allocate 1.5 meg reserve!");
+    //ReserveMem = AllocMem(1L<<20);
+    //if(ReserveMem == 0) MONO_PRINT("Could not allocate 1.5 meg reserve!");
 
     // LoadImages will now proceed to steal all the remaining heap space    
-    _outtext("\n\n\n\n\n\n\n\n");
-    AnimateCacheCursor();
+    //_outtext("\n\n\n\n\n\n\n\n");
+    //AnimateCacheCursor();
+    initprintf("Loading sound and graphics...\n");
     LoadImages("tiles000.art");
     
     // Now free it up for later use
+    /*
     if(ReserveMem)
         {
         // Recalc TotalMemory for later reference
         ActualHeap = Z_AvailHeap() + 1536000L;
         FreeMem(ReserveMem);
         }
+	*/
 
     //MakePal();    
     Connect();
@@ -1250,8 +1241,8 @@ YOKOHA03 MID
 
 char LevelSong[16];
 short SongLevelNum;
-#ifndef SW_SHAREWARE
-LEVEL_INFO LevelInfo[MAX_LEVELS+2] =
+//#ifndef SW_SHAREWARE
+LEVEL_INFO LevelInfo[MAX_LEVELS_REG+2] =
     {
     {"title.map",      "theme.mid", " ", " ", " "  },
     {"$bullet.map",    "e1l01.mid", "Seppuku Station", "0 : 55", "5 : 00"  },
@@ -1282,9 +1273,9 @@ LEVEL_INFO LevelInfo[MAX_LEVELS+2] =
     {"$rush.map",      "kotec2.mid",   "Lo Wang Rally (DM only)", "10 : 00", "10 : 00"     },
     {"shotgun.map",    "kotec2.mid",   "Ruins of the Ronin (CTF)", "10 : 00", "10 : 00"     },
     {"$dmdrop.map",    "kotec2.mid",   "Killing Fields (CTF)", "10 : 00", "10 : 00"     },
-    {NULL, NULL}
+    {NULL, NULL, NULL, NULL, NULL}
     };
-#else
+/*#else
 LEVEL_INFO LevelInfo[MAX_LEVELS+2] =  // Shareware
     {
     {"title.map",      "theme.mid", " ", " ", " "  },
@@ -1292,9 +1283,9 @@ LEVEL_INFO LevelInfo[MAX_LEVELS+2] =  // Shareware
     {"$dozer.map",     "e1l03.mid", "Zilla Construction", "4 : 59", "8 : 00"  },
     {"$shrine.map",    "e1l02.mid", "Master Leep's Temple", "3 : 16", "10 : 00"  },
     {"$woods.map",     "e1l04.mid", "Dark Woods of the Serpent", "7 : 06", "16 : 00"  },
-    {NULL, NULL}
+    {NULL, NULL, NULL, NULL, NULL}
     };
-#endif
+#endif*/
 
 VOID
 InitNewGame(VOID)
@@ -1635,7 +1626,7 @@ HEAP_CHECK();
         }
 
     // Clear the tracks
-    memset(Track, NULL, sizeof(Track));
+    memset(Track, 0, sizeof(Track));
 
     StopSound();
     Terminate3DSounds();        // Kill the 3d sounds linked list
@@ -1699,14 +1690,14 @@ HEAP_CHECK();
         pp->UnderSpriteP = NULL;
         pp->PlayerUnderSprite = -1;
 
-        memset(pp->HasKey, NULL, sizeof(pp->HasKey));
+        memset(pp->HasKey, 0, sizeof(pp->HasKey));
 
         //pp->WpnFlags = 0;
         pp->CurWpn = NULL;
 
-        memset(pp->Wpn, NULL, sizeof(pp->Wpn));
-        memset(pp->InventorySprite, NULL, sizeof(pp->InventorySprite));
-        memset(pp->InventoryTics, NULL, sizeof(pp->InventoryTics));
+        memset(pp->Wpn, 0, sizeof(pp->Wpn));
+        memset(pp->InventorySprite, 0, sizeof(pp->InventorySprite));
+        memset(pp->InventoryTics, 0, sizeof(pp->InventoryTics));
 
         pp->Killer = -1;
 
@@ -1779,13 +1770,13 @@ NewLevel(VOID)
     
     InGame = FALSE;
     
-    #ifdef SW_SHAREWARE
-    if (FinishAnim)
-        MenuLevel();
-    #else
-    if (FinishAnim == ANIM_ZILLA || FinishAnim == ANIM_SERP)
-        MenuLevel();
-    #endif    
+    if (SW_SHAREWARE) {
+	if (FinishAnim)
+		MenuLevel();
+    } else {
+	if (FinishAnim == ANIM_ZILLA || FinishAnim == ANIM_SERP)
+		MenuLevel();
+    }
     FinishAnim = 0;
     }
 
@@ -1863,19 +1854,19 @@ LogoLevel(VOID)
     MONO_PRINT(ds);
 
 
-    #ifdef SW_SHAREWARE
-    // start music at logo
-    strcpy(LevelSong,"theme.mid");
-    PlaySong(LevelSong);
-    #else
-    // Redbook audio theme song
-    if (gs.MusicOn) {
-      CDAudio_Play(RedBookSong[0], TRUE);  // track, loop - Level songs are looped
-      DSPRINTF(ds,"Tried to play redbook audio?...");
-      MONO_PRINT(ds);
-    }    
+    if (SW_SHAREWARE) {
+	// start music at logo
+	strcpy(LevelSong,"theme.mid");
+	PlaySong(LevelSong);
+    } else {
+	// Redbook audio theme song
+	if (gs.MusicOn) {
+		CDAudio_Play(RedBookSong[0], TRUE);  // track, loop - Level songs are looped
+		DSPRINTF(ds,"Tried to play redbook audio?...");
+		MONO_PRINT(ds);
+	}
+    }
 
-    #endif
     DSPRINTF(ds,"After music stuff...");
     MONO_PRINT(ds);    
 
@@ -2049,7 +2040,8 @@ CreditsLevel(VOID)
 VOID
 SybexScreen(VOID)
     {
-    #ifdef SW_SHAREWARE
+    if (!SW_SHAREWARE) return;
+
     if (CommEnabled)
         return;
 
@@ -2058,7 +2050,6 @@ SybexScreen(VOID)
     
     ResetKeys();
     while (!KeyPressed());
-    #endif
     }
 
 // CTW REMOVED
@@ -2268,14 +2259,13 @@ MenuLevel(VOID)
     DSPRINTF(ds,"MenuLevel...");
     MONO_PRINT(ds);
 
-    #ifndef SW_SHAREWARE    
-    if (gs.MusicOn)
+    if (SW_SHAREWARE) {
+	if (gs.MusicOn)
         {
-        if (!CDAudio_Playing())
-            CDAudio_Play(2,TRUE);
+	    if (!CDAudio_Playing())
+		CDAudio_Play(2,TRUE);
         }    
-    #endif
-    
+    }
     
     if (AutoNet /* CTW REMOVED || gTenActivated */)
         {
@@ -2355,17 +2345,17 @@ MenuLevel(VOID)
     
     ResetKeys();
     
-    #ifdef SW_SHAREWARE
-    // go to ordering menu only if shareware
-    if (FinishAnim)
-        {
-        KEY_PRESSED(KEYSC_ESC) = 1;
-        ControlPanelType = ct_ordermenu;
-        FinishAnim = 0;
-        }
-    #else
-    FinishAnim = 0;
-    #endif
+    if (SW_SHAREWARE) {
+	// go to ordering menu only if shareware
+	if (FinishAnim)
+	    {
+	    KEY_PRESSED(KEYSC_ESC) = 1;
+	    ControlPanelType = ct_ordermenu;
+	    FinishAnim = 0;
+	    }
+    } else {
+	FinishAnim = 0;
+    }
     
     while (TRUE)
         {
@@ -2676,18 +2666,18 @@ BonusScreen(PLAYERp pp)
     totalclock = ototalclock = lastUpdate = 0;
     limit = synctics;
 
-    #ifndef SW_SHAREWARE    
-    if (gs.MusicOn)
-        {
-        CDAudio_Stop();
-        CDAudio_Play(3, TRUE); 
-        }    
-    #else
-    if (gs.MusicOn)
-        {
-        handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
-        }
-    #endif
+    if (SW_SHAREWARE) {
+	if (gs.MusicOn)
+	    {
+	    CDAudio_Stop();
+	    CDAudio_Play(3, TRUE); 
+	    }    
+    } else {
+	if (gs.MusicOn)
+	    {
+	    handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
+	    }
+    }
         
     // special case code because I don't care any more!
     if (FinishAnim)
@@ -2707,24 +2697,24 @@ BonusScreen(PLAYERp pp)
         // taken from top of faketimerhandler
         if (totalclock < ototalclock + limit)
             {
-            #ifdef SW_SHAREWARE
-            if (gs.MusicOn)
-                {
-                if (handle >= 0 && !FX_SoundActive(handle))
-                    handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
-                }
-            #endif    
+            if (SW_SHAREWARE) {
+		if (gs.MusicOn)
+		    {
+		    if (handle >= 0 && !FX_SoundActive(handle))
+			handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
+		    }
+	    }
             continue;
             }
         ototalclock += limit;
         
-        #ifdef SW_SHAREWARE
-        if (gs.MusicOn)
-            {
-            if (handle >= 0 && !FX_SoundActive(handle))
-                handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
-            }    
-        #endif     
+        if (SW_SHAREWARE) {
+	    if (gs.MusicOn)
+		{
+		if (handle >= 0 && !FX_SoundActive(handle))
+		    handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
+		}
+	}
              
         if (KEY_PRESSED(KEYSC_SPACE))
             {
@@ -2739,10 +2729,10 @@ BonusScreen(PLAYERp pp)
         rotatesprite(0, 0, RS_SCALE, 0, 5120, 0, 0, TITLE_ROT_FLAGS, 0, 0, xdim - 1, ydim - 1);
         if (gs.MusicOn)
             {
-            #ifdef SW_SHAREWARE
-            if (handle >= 0 && !FX_SoundActive(handle))
-                handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
-            #endif    
+            if (SW_SHAREWARE) {
+		if (handle >= 0 && !FX_SoundActive(handle))
+		    handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
+            }
             }    
         
         if (UserMapName[0])
@@ -2764,21 +2754,21 @@ BonusScreen(PLAYERp pp)
         MNU_MeasureString(ds, &w, &h);
         MNU_DrawString(TEXT_TEST_COL(w), 30, ds,1,19);
 
-        #ifdef SW_SHAREWARE
-        if (gs.MusicOn)
-            {
-            if (handle >= 0 && !FX_SoundActive(handle))
-                handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
-            }    
-        #endif    
+        if (SW_SHAREWARE) {
+	    if (gs.MusicOn)
+                {
+                if (handle >= 0 && !FX_SoundActive(handle))
+                    handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
+                }    
+	}
         rotatesprite(158<<16, 86<<16, RS_SCALE, 0, State->Pic, 0, 0, TITLE_ROT_FLAGS, 0, 0, xdim - 1, ydim - 1);
-        if (gs.MusicOn)
-            {
-            #ifdef SW_SHAREWARE
-            if (handle >= 0 && !FX_SoundActive(handle))
-                handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
-            #endif    
-            }    
+	if (SW_SHAREWARE) {
+            if (gs.MusicOn)
+                {
+                if (handle >= 0 && !FX_SoundActive(handle))
+                    handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
+                }    
+	}
         
         #define BONUS_LINE(i) (50 + ((i)*20))
         
@@ -2820,22 +2810,22 @@ BonusScreen(PLAYERp pp)
         MNU_MeasureString(ds, &w, &h);
         MNU_DrawString(TEXT_TEST_COL(w), 185, ds,1,19);
 
-        if (gs.MusicOn)
-            {
-            #ifdef SW_SHAREWARE
-            if (handle >= 0 && !FX_SoundActive(handle))
-                handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
-            #endif    
-            }    
+	if (SW_SHAREWARE) {
+            if (gs.MusicOn)
+                {
+                if (handle >= 0 && !FX_SoundActive(handle))
+                    handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
+                }    
+	}
         nextpage();
         ScreenCaptureKeys();
-        if (gs.MusicOn)
-            {
-            #ifdef SW_SHAREWARE
-            if (handle >= 0 && !FX_SoundActive(handle))
-                handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
-            #endif    
-            }    
+	if (SW_SHAREWARE) {
+            if (gs.MusicOn)
+                {
+                if (handle >= 0 && !FX_SoundActive(handle))
+                    handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
+                }    
+	}
         
         if (State == State->NextState)
             BonusDone = TRUE;
@@ -2869,18 +2859,18 @@ VOID EndGameSequence(VOID)
     QuitFlag = FALSE;
     AutoNet = FALSE;
     
-    #ifdef SW_SHAREWARE
-    Level = 0;
-    #else
-    if (Level == 4 || Level == 20)
-        {
-        //CDAudio_Stop();
-        //CDAudio_Play(2,TRUE); // Play theme after game ends
-        Level=0;
-        }
-    else
-        Level++;        
-    #endif    
+    if (SW_SHAREWARE) {
+        Level = 0;
+    } else {
+        if (Level == 4 || Level == 20)
+            {
+            //CDAudio_Stop();
+            //CDAudio_Play(2,TRUE); // Play theme after game ends
+            Level=0;
+            }
+        else
+            Level++;        
+    }
     }
 
 VOID
@@ -2898,8 +2888,8 @@ StatScreen(PLAYERp mpp)
     short rows,cols,i,j;
     PLAYERp pp;
     long x,y;
-    short death_total[MAX_SW_PLAYERS];
-    short kills[MAX_SW_PLAYERS];
+    short death_total[MAX_SW_PLAYERS_REG];
+    short kills[MAX_SW_PLAYERS_REG];
     short pal;
     
     #define STAT_START_X 20
@@ -3048,29 +3038,28 @@ StatScreen(PLAYERp mpp)
     
     KEY_PRESSED(KEYSC_SPACE) = 0;
     
-    #ifndef SW_SHAREWARE    
-    if (gs.MusicOn)
-        {
-        CDAudio_Stop();
-        CDAudio_Play(3, TRUE); 
-        }    
-    #else
-    handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
-    #endif
+    if (!SW_SHAREWARE) {
+        if (gs.MusicOn)
+            {
+            CDAudio_Stop();
+            CDAudio_Play(3, TRUE); 
+            }    
+    } else {
+        handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
+    }
     
     while (!KEY_PRESSED(KEYSC_SPACE))
         {
         ScreenCaptureKeys();
-        #ifdef SW_SHAREWARE
-        if (handle >= 0 && !FX_SoundActive(handle))
-            handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
-        #endif
+        if (SW_SHAREWARE) {
+            if (handle >= 0 && !FX_SoundActive(handle))
+                handle = PlaySound(DIGI_ENDLEV, &pp->posx, &pp->posy, &pp->posz, v3df_none);
+        }    
         }    
 
     StopSound();
-    #ifndef SW_SHAREWARE
-    CDAudio_Stop();
-    #endif
+    if (!SW_SHAREWARE)
+        CDAudio_Stop();
     Terminate3DSounds();
     }
     
@@ -3340,17 +3329,17 @@ VOID InitRunLevel(VOID)
     // Initialize Game part of network code (When ready2send != 0)
     InitNetVars();
     
-    #ifndef SW_SHAREWARE
-    if (gs.MusicOn)
-        {
-        if (Level == 0) // For user maps
-            CDAudio_Play(RedBookSong[4+RANDOM_RANGE(10)], TRUE);  // track, loop - Level songs are looped
-        else
-            CDAudio_Play(RedBookSong[Level], TRUE);  // track, loop - Level songs are looped
-        }
-    #else
-    PlaySong(LevelSong);
-    #endif
+    if (!SW_SHAREWARE) {
+        if (gs.MusicOn)
+            {
+            if (Level == 0) // For user maps
+                CDAudio_Play(RedBookSong[4+RANDOM_RANGE(10)], TRUE);  // track, loop - Level songs are looped
+            else
+                CDAudio_Play(RedBookSong[Level], TRUE);  // track, loop - Level songs are looped
+            }
+    } else {
+        PlaySong(LevelSong);
+    }
 
     InitPrediction(&Player[myconnectindex]);
 
@@ -3382,11 +3371,10 @@ RunLevel(VOID)
     InitRunLevel();
     
     FX_SetVolume(gs.SoundVolume);
-    #ifndef SW_SHAREWARE
-    CDAudio_SetVolume(gs.MusicVolume);
-    #else
-    MUSIC_SetVolume(gs.MusicVolume);
-    #endif    
+    if (!SW_SHAREWARE)
+        CDAudio_SetVolume(gs.MusicVolume);
+    else
+        MUSIC_SetVolume(gs.MusicVolume);
 
 #if 0    
     waitforeverybody(); 
@@ -3739,7 +3727,6 @@ VOID AlphaMessage(VOID)
 #endif
 
 #if !SW_GT && !SW_SYBEX && !SW_FPGAMING && !BETA && !SW_SPACETEC && !SW_TEN && !SW_WIZARD && !UK_VERSION && !PLOCK_VERSION
-#ifndef SW_SHAREWARE
 VOID AlphaMessage(VOID)
     {
 #if !PLATFORM_DOS
@@ -3772,35 +3759,11 @@ VOID AlphaMessage(VOID)
     
 #endif
     }
-#else
-VOID AlphaMessage(VOID)
-    {
-    _clearscreen( _GCLEARSCREEN );
-    _displaycursor( _GCURSOROFF );
-    
-    _setbkcolor(_LIGHTGREEN);
-    _settextcolor(15);
-    _outtext(""
-    #ifdef SW_3DFX
-    "                SHADOW WARRIOR(tm) Version 1.2 (3Dfx Shareware v1.1)          \n"
-    #else
-    "                    SHADOW WARRIOR(tm) v1.2 (Shareware Version)               \n"
-    #endif
-    "                     Copyright (c)1997 3D Realms Entertainment                \n"
-// TENSW: warn if in debug mode
-#if DEBUG
-    "                              Compiled in debug mode                          \n"  
 #endif
-        );
-    
-    _setbkcolor(_BLACK);
-    _settextcolor(7);
-    }
-#endif    
-#endif    
 
 typedef struct
 {
+char	notshareware;
 char    *arg_switch;
 short   arg_match_len;
 char    *arg_fmt;
@@ -3810,86 +3773,56 @@ char    *arg_descr;
 #if DEBUG
 CLI_ARG cli_dbg_arg[] =
 {
-{"/demosyncrecord",     13,     "-demosyncrecord",      "Demo sync record"                      },
-{"/demosynctest",       13,     "-demosynctest",        "Demo sync test"                        },
-{"/cam",                4,      "-cam",                 "Camera test mode"                      },
-{"/debugactor",         11,     "-debugactor",          "No Actors"                             },
-{"/debuganim",          10,     "-debuganim",           "No Anims"                              },
-{"/debugso",            8,      "-debugso",             "No Sector Objects"                     },
-{"/debugsector",        12,     "-debugsector",         "No Sector Movement"                    },
-{"/debugpanel",         11,     "-debugpanel",          "No Panel"                              },
-{"/mono",               5,      "-mono",                "Mono"                                  },
+{0, "/demosyncrecord",     13,     "-demosyncrecord",      "Demo sync record"                      },
+{0, "/demosynctest",       13,     "-demosynctest",        "Demo sync test"                        },
+{0, "/cam",                4,      "-cam",                 "Camera test mode"                      },
+{0, "/debugactor",         11,     "-debugactor",          "No Actors"                             },
+{0, "/debuganim",          10,     "-debuganim",           "No Anims"                              },
+{0, "/debugso",            8,      "-debugso",             "No Sector Objects"                     },
+{0, "/debugsector",        12,     "-debugsector",         "No Sector Movement"                    },
+{0, "/debugpanel",         11,     "-debugpanel",          "No Panel"                              },
+{0, "/mono",               5,      "-mono",                "Mono"                                  },
 };
 #endif
 
 
 CLI_ARG cli_arg[] =
 {
-{"/?",                  2,      "-?",                   "This help message"                     },
-#ifndef SW_SHAREWARE
+{0, "/?",                  2,      "-?",                   "This help message"                     },
+//#ifndef SW_SHAREWARE
 //{"/l",                  2,      "-l#",                  "Level (1-11)"                          },
 //{"/v",                  2,      "-v#",                  "Volume (1-3)"                          },
-{"/map",                4,      "-map [mapname]",       "Load a map"                            },
-{"/nocdaudio",          5,      "-nocd<audio>",         "No CD Red Book Audio"                  },
-#endif
+{1, "/map",                4,      "-map [mapname]",       "Load a map"                            },
+{1, "/nocdaudio",          5,      "-nocd<audio>",         "No CD Red Book Audio"                  },
+//#endif
 
-#ifdef SW_SHAREWARE
-{"/win95awe32",         6,      "-win95<awe32>",        "Try this if you experience poor quality midi music.\n\t\t\t WARNING: It could crash your machine."},
-#endif
-{"/name",               5,      "-name [playername]",   "Player Name"                           },
-{"/s",                  2,      "-s#",                  "Skill (1-4)"                           },
-{"/f#",                 3,      "-f#",                  "Packet Duplication - 2, 4, 8"          },
-{"/nopredict",          7,      "-nopred<ict>",         "Disable Net Prediction Method"         },
-{"/level#",             5,      "-level#",              "Start at level# (Shareware: 1-4, full version 1-28)"      },
-{"/dr",                 3,      "-dr[filename.dmo]",    "Demo record. NOTE: Must use -level# with this option."           },
-{"/dp",                 3,      "-dp[filename.dmo]",    "Demo playback. NOTE: Must use -level# with this option."         },
-{"/m",                  6,      "-monst<ers>",          "No Monsters"                           },
-{"/nodemo",             6,      "-nodemo",              "No demos on game startup"              },
-{"/nometers",           9,      "-nometers",            "Don't show air or boss meter bars in game"},
-{"/movescale #",        9,      "-movescale",           "Adjust movement scale: 256 = 1 unit"},
-{"/turnscale #",        9,      "-turnscale",           "Adjust turning scale: 256 = 1 unit"},
-{"/extcompat",          9,      "-extcompat",           "Controller compatibility mode (with Duke 3D)"},
+{0, "/name",               5,      "-name [playername]",   "Player Name"                           },
+{0, "/s",                  2,      "-s#",                  "Skill (1-4)"                           },
+{0, "/f#",                 3,      "-f#",                  "Packet Duplication - 2, 4, 8"          },
+{0, "/nopredict",          7,      "-nopred<ict>",         "Disable Net Prediction Method"         },
+{0, "/level#",             5,      "-level#",              "Start at level# (Shareware: 1-4, full version 1-28)"      },
+{0, "/dr",                 3,      "-dr[filename.dmo]",    "Demo record. NOTE: Must use -level# with this option."           },
+{0, "/dp",                 3,      "-dp[filename.dmo]",    "Demo playback. NOTE: Must use -level# with this option."         },
+{0, "/m",                  6,      "-monst<ers>",          "No Monsters"                           },
+{0, "/nodemo",             6,      "-nodemo",              "No demos on game startup"              },
+{0, "/nometers",           9,      "-nometers",            "Don't show air or boss meter bars in game"},
+{0, "/movescale #",        9,      "-movescale",           "Adjust movement scale: 256 = 1 unit"},
+{0, "/turnscale #",        9,      "-turnscale",           "Adjust turning scale: 256 = 1 unit"},
+{0, "/extcompat",          9,      "-extcompat",           "Controller compatibility mode (with Duke 3D)"},
 #if DEBUG
-{"/coop",               5,      "-coop#",               "Single Player Cooperative Mode"        },
-{"/commbat",            8,      "-commbat#",            "Single Player Commbat Mode"            },
-{"/debug",              6,      "-debug",               "Debug Help Options"                    },
+{0, "/coop",               5,      "-coop#",               "Single Player Cooperative Mode"        },
+{0, "/commbat",            8,      "-commbat#",            "Single Player Commbat Mode"            },
+{0, "/debug",              6,      "-debug",               "Debug Help Options"                    },
 #endif
 
-#ifdef NET_MODE_MASTER_SLAVE    
-{"/broadcast",          6,      "-broad<cast>",         "Broadcast network method (default)"    },
-{"/masterslave",        7,      "-master<slave>",       "Master/Slave network method"           },
+#if 0 //def NET_MODE_MASTER_SLAVE    
+{0, "/broadcast",          6,      "-broad<cast>",         "Broadcast network method (default)"    },
+{0, "/masterslave",        7,      "-master<slave>",       "Master/Slave network method"           },
 #endif
 };
 
 #if 0
 /*
-Command line help.  O:\DUKE\REG14\DUKE3D.EXE [/flags...]
- ?, /?         This help message
- /l##          Level (1-11)
- /v#           Volume (1-4)
- /s#           Skill (1-4)
- /r            Record demo
- /dFILE        Start to play demo FILE
- /m            No monsters
- /ns           No sound
- /nm           No music
- /t#           Respawn, 1 = Monsters, 2 = Items, 3 = Inventory, x = All
- /c#           MP mode, 1 = DukeMatch(spawn), 2 = Coop, 3 = Dukematch(no spawn)
- /q#           Fake multiplayer (2-8 players)
- /a            Use player AI (fake multiplayer only)
- /i#           Network mode (1/0) (multiplayer only) (default == 1)
- /f#           Send fewer packets (1, 2, 4) (multiplayer only)
- /gFILE, /g... Use multiple group files (must be last on command line)
- /xFILE        Compile FILE (default GAME.CON)
- /u#########   User's favorite weapon order (default: 3425689071)
- /#            Load and run a game (slot 0-9)
- /z            Skip memory check
- -map FILE     Use a map FILE
- -name NAME    Foward NAME
- -net          Net mode game
-#endif
-
-#if 0
 Map       ->    User Map Name
 Auto      ->    Auto Start Game
 Rules     ->    0=WangBang 1=WangBang (No Respawn) 2=CoOperative
@@ -3908,6 +3841,32 @@ sw -map testmap.map -autonet 0,0,1,1,1,0,3,2,1,1 -f4 -name 1234567890 -net 12345
 commit -map grenade -autonet 0,0,1,1,1,0,3,2,1,1 -name frank
 */
 #endif
+
+char isShareware = FALSE;
+
+int DetectShareware(void)
+    {
+    #define DOS_SCREEN_NAME_SW  "SHADSW.BIN"
+    #define DOS_SCREEN_NAME_REG "SWREG.BIN"
+
+    int h;
+
+    h = kopen4load(DOS_SCREEN_NAME_SW,1);
+    if (h >= 0) {
+	isShareware = TRUE;
+	kclose(h);
+	return 0;
+    }
+
+    h = kopen4load(DOS_SCREEN_NAME_REG,1);
+    if (h >= 0) {
+	isShareware = FALSE;
+	kclose(h);
+	return 0;
+    }
+
+    return 1;	// heavens knows what this is...
+}
 
 int main(int argc, char **argv)
     {
@@ -3929,6 +3888,29 @@ int main(int argc, char **argv)
     // Initialize glide stuff
     initglide();
 #endif
+
+    const char *grpfile = "sw.grp";
+    
+    OSD_SetLogFile("sw.log");
+    {	// JBF: moved to here for shareware detection
+	char *newgrp;
+	newgrp = getenv("SWGRP");
+	if (newgrp) {
+		grpfile = newgrp;
+		initprintf("Using alternative GRP file: %s\n", newgrp);
+	}
+	initgroupfile(grpfile);
+    }
+
+    if (!DetectShareware()) {
+	if (SW_SHAREWARE) initprintf("Detected shareware GRP\n");
+	else initprintf("Detected registered GRP\n");
+    }
+    
+    if (SW_SHAREWARE) {
+	// Zero out the maps that aren't in shareware version
+	memset(&LevelInfo[MAX_LEVELS_SW+1], 0, sizeof(LEVEL_INFO)*(MAX_LEVELS_REG-MAX_LEVELS_SW));
+    }
 
     for (i = 0; i < MAX_SW_PLAYERS; i++)
         INITLIST(&Player[i].PanelSpriteList);
@@ -4070,16 +4052,16 @@ int main(int argc, char **argv)
         if (memcmp(argv[cnt], "-?",2) == 0)
             {
             HELP:
-            #ifndef SW_SHAREWARE
-            printf("Usage: %s [options] [map]\n", argv[0]);
-            #else
-            printf("Usage: %s [options]\n", argv[0]);
-            #endif
+            if (!SW_SHAREWARE)
+                printf("Usage: %s [options] [map]\n", argv[0]);
+            else
+                printf("Usage: %s [options]\n", argv[0]);
+            
             printf("options:  ('/' may be used instead of '-', <> text is optional)\n\n");
             
             for (i = 0; i < SIZ(cli_arg); i++)
                 {
-                if (cli_arg[i].arg_fmt)
+		if (cli_arg[i].arg_fmt && (!SW_SHAREWARE || (!cli_arg[i].notshareware && SW_SHAREWARE)))
                     {
                     printf(" %-20s   %-30s\n",cli_arg[i].arg_fmt, cli_arg[i].arg_descr);
                     }
@@ -4107,7 +4089,7 @@ int main(int argc, char **argv)
             {
             if (cnt <= argc-2)
                 {
-                memcpy(PlayerNameArg, argv[++cnt], 31);
+                strncpy(PlayerNameArg, argv[++cnt], SIZ(PlayerNameArg)-1);
                 PlayerNameArg[SIZ(PlayerNameArg)-1] = '\0';
                 }
             }
@@ -4255,13 +4237,6 @@ int main(int argc, char **argv)
                     strcat(DemoFileName, ".dmo");
                 }    
             }
-        #ifdef SW_SHAREWARE    
-        else    
-                if (memcmp(argv[cnt], "-win95awe32", 6) == 0)
-            {
-            DoubleInitAWE32 = TRUE;
-            }
-        #endif    
             
         #ifdef NET_MODE_MASTER_SLAVE    
         else    
@@ -4409,9 +4384,8 @@ int main(int argc, char **argv)
 
         #endif
             
-        #ifndef SW_SHAREWARE
         else
-                if (memcmp(argv[cnt], "-map", 4) == 0)
+                if ((memcmp(argv[cnt], "-map", 4) == 0) && (!SW_SHAREWARE))
 
             {
             long fil;
@@ -4429,7 +4403,6 @@ int main(int argc, char **argv)
             else    
                 kclose(fil);    
             }
-        #endif
         }
 
     #define MEG(num) ((1L<<20)*num)   
@@ -4588,8 +4561,7 @@ SinglePlayInput(PLAYERp pp)
         return;
 
         
-    #ifndef SW_SHAREWARE    
-    if (KEY_PRESSED(KEYSC_M))
+    if (!SW_SHAREWARE && KEY_PRESSED(KEYSC_M))
         {
         extern BOOL DebugActorFreeze;
 
@@ -4625,7 +4597,6 @@ SinglePlayInput(PLAYERp pp)
                 }
             }
         }
-    #endif    
 
 
     // Insert a player
@@ -4650,13 +4621,13 @@ SinglePlayInput(PLAYERp pp)
 
     // Move control to numbered player
 
-    if (kp = KeyPressedRange(&KEY_PRESSED(KEYSC_1), &KEY_PRESSED(KEYSC_9)) && numplayers > 1)
+    if ((kp = KeyPressedRange(&KEY_PRESSED(KEYSC_1), &KEY_PRESSED(KEYSC_9))) && numplayers > 1)
         {
         short save_myconnectindex;
 
         save_myconnectindex = myconnectindex;
 
-        myconnectindex = kp - &KEY_PRESSED(KEYSC_1);
+        myconnectindex = (long)kp - (long)(&KEY_PRESSED(KEYSC_1));
 
         if (myconnectindex >= numplayers)
             myconnectindex = save_myconnectindex;
@@ -4771,8 +4742,7 @@ DebugKeys(PLAYERp pp)
 VOID 
 ConKey( void )
     {
-    //#if DEBUG
-    #if 0
+    #if DEBUG
     // Console Input Panel
     if (!ConPanel && dimensionmode == 3)
         {
@@ -5365,12 +5335,12 @@ VOID GetHelpInput(PLAYERp pp)
         if (KEY_PRESSED(KEYSC_SPACE) || KEY_PRESSED(KEYSC_ENTER) || KEY_PRESSED(KEYSC_PGDN) || KEY_PRESSED(KEYSC_DOWN) || KEY_PRESSED(KEYSC_RIGHT) || KEY_PRESSED(sc_kpad_3) || KEY_PRESSED(sc_kpad_2) || KEY_PRESSED(sc_kpad_6))    
             {
             KEY_PRESSED(KEYSC_SPACE) = KEY_PRESSED(KEYSC_ENTER) = 0;
-            KEY_PRESSED(KEYSC_PGDN) = NULL;
-            KEY_PRESSED(KEYSC_DOWN) = NULL;
-            KEY_PRESSED(KEYSC_RIGHT) = NULL;
-            KEY_PRESSED(sc_kpad_3) = NULL;
-            KEY_PRESSED(sc_kpad_2) = NULL;
-            KEY_PRESSED(sc_kpad_6) = NULL;
+            KEY_PRESSED(KEYSC_PGDN) = 0;
+            KEY_PRESSED(KEYSC_DOWN) = 0;
+            KEY_PRESSED(KEYSC_RIGHT) = 0;
+            KEY_PRESSED(sc_kpad_3) = 0;
+            KEY_PRESSED(sc_kpad_2) = 0;
+            KEY_PRESSED(sc_kpad_6) = 0;
             
             HelpPage++;
             if (HelpPage >= SIZ(HelpPagePic))
@@ -5383,12 +5353,12 @@ VOID GetHelpInput(PLAYERp pp)
             
         if (KEY_PRESSED(KEYSC_PGUP) || KEY_PRESSED(KEYSC_UP) || KEY_PRESSED(KEYSC_LEFT) || KEY_PRESSED(sc_kpad_9) || KEY_PRESSED(sc_kpad_8) || KEY_PRESSED(sc_kpad_4))    
             {
-            KEY_PRESSED(KEYSC_PGUP) = NULL;
-            KEY_PRESSED(KEYSC_UP) = NULL;
-            KEY_PRESSED(KEYSC_LEFT) = NULL;
-            KEY_PRESSED(sc_kpad_8) = NULL;
-            KEY_PRESSED(sc_kpad_9) = NULL;
-            KEY_PRESSED(sc_kpad_4) = NULL;
+            KEY_PRESSED(KEYSC_PGUP) = 0;
+            KEY_PRESSED(KEYSC_UP) = 0;
+            KEY_PRESSED(KEYSC_LEFT) = 0;
+            KEY_PRESSED(sc_kpad_8) = 0;
+            KEY_PRESSED(sc_kpad_9) = 0;
+            KEY_PRESSED(sc_kpad_4) = 0;
             
             HelpPage--;
             if (HelpPage < 0)
