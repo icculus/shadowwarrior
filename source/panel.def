@@ -400,3 +400,4 @@ extern void pStateControl(PANEL_SPRITEp psp);
 extern void UpdatePanel(void );
 //#line "panel.c" 6157
 extern void rotatespritetile(long thex,long they,short tilenum,signed char shade,long cx1,long cy1,long cx2,long cy2,char dapalnum);
+

@@ -33,3 +33,4 @@ long RectClipMove(PLAYERp pp, long *qx, long *qy);
 long testpointinquad(long x, long y, long *qx, long *qy);
 //short RectClipTurn(PLAYERp pp, short new_ang, long z, long floor_dist, long *qx, long *qy);
 short RectClipTurn(PLAYERp pp, short new_ang, long *qx, long *qy, long *ox, long *oy);
+

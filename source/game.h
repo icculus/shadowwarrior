@@ -77,8 +77,9 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 
 // Turn warning off for unreferenced variables.
 // I really should fix them at some point
+#if (defined __WATCOMC__)
 #pragma off(unreferenced)
-
+#endif
 
 #define ERR_STD_ARG __FILE__, __LINE__
 
@@ -148,7 +149,7 @@ int krand(void);
 
 #define PRINT(line,str) DebugPrint(line,str)
 
-#include "pragmas.h"
+#include "buildengine/pragmas.h"
 
 
 //
@@ -2415,3 +2416,4 @@ int _PlayerSound(char *file, int line, int num, long *x, long *y, long *z, Voc3D
 
 #define MAXSO (MAXLONG)
     
+

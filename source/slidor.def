@@ -48,3 +48,4 @@ extern int DoSlidorInstantClose(short SpriteNum);
 extern int DoSlidorMove(short SpriteNum);
 //#line "slidor.c" 587
 extern int DoSlidor(short SpriteNum);
+

@@ -58,16 +58,12 @@ typedef enum
     v3df_nolookup   = 128   // don't use ambient table lookup                     
 } Voc3D_Flags;
 
-struct VOCstruct;
-typedef struct VOCstruct VOC_INFO, *VOC_INFOp;
-struct VOC3Dstruct;
-typedef struct VOC3Dstruct VOC3D_INFO, *VOC3D_INFOp;
-struct ambientstruct;
-typedef struct ambientstruct AMB_INFO, *AMB_INFOp;
-
-
-extern VOC3D_INFOp voc3dstart;
-extern VOC3D_INFOp voc3dend;
+//struct VOCstruct;
+//typedef struct VOCstruct VOC_INFO, *VOC_INFOp;
+//struct VOC3Dstruct;
+//typedef struct VOC3Dstruct VOC3D_INFO, *VOC3D_INFOp;
+//struct ambientstruct;
+//typedef struct ambientstruct AMB_INFO, *AMB_INFOp;
 
 void DoUpdateSounds3D( void );
 void Terminate3DSounds( void );
@@ -116,7 +112,12 @@ typedef enum
 //struct STATEstruct;
 //typedef struct VOCstruct VOC_INFO, *VOC_INFOp;
 
-struct VOCstruct
+// JIMSOUND3D(tm) variables section //////////////////////////////////////////
+
+struct VOCstruct;
+
+
+typedef struct VOCstruct
     {
     char name[14];                      // name of voc file on disk
     BYTEp data;                         // pointer to voc data
@@ -130,10 +131,7 @@ struct VOCstruct
     BYTE playing;                       // number of this type of sound currently playing
     } VOC_INFO, *VOC_INFOp;
 
-
-// JIMSOUND3D(tm) variables section //////////////////////////////////////////
-
-struct VOC3Dstruct
+typedef struct VOC3Dstruct
     {
     VOC_INFOp vp;                       // Pointer to the sound
     long *x;                            // Pointer to x coordinate
@@ -143,7 +141,7 @@ struct VOC3Dstruct
     Voc3D_Flags flags;                  // 3d voc sound flags
     int handle;                         // Current handle to the voc
     short doplr_delta;                  // Change in distance since last call
-    VOC3D_INFOp prev, next;             // Linked voc list
+    struct VOC3Dstruct *prev, *next;    // Linked voc list
     short owner;                        // Hold index into user array to
                                         // delete looping sounds
     int num;                            // Digital Entry number used for
@@ -157,7 +155,11 @@ struct VOC3Dstruct
     BOOL deleted;                       // Has sound been marked for deletion?
     BOOL FX_Ok;                         // Did this sound play ok?
     } VOC3D_INFO, *VOC3D_INFOp;
-    
+
+
+extern VOC3D_INFOp voc3dstart;
+extern VOC3D_INFOp voc3dend;
 extern VOC_INFO voc[];
 
 #endif
+

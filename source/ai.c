@@ -27,7 +27,7 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "build.h"
+#include "shadow.h"  // added for unix port.  --ryan.
 #include "proto.h"
 #include "keys.h"
 #include "names2.h"
@@ -1599,9 +1599,10 @@ DoActorAttack(short SpriteNum)
     DISTANCE(sp->x, sp->y, u->tgt_sp->x, u->tgt_sp->y, dist, a, b, c);
     
     pu = User[GetPlayerSpriteNum(SpriteNum)];
-    if (u->ActorActionSet->CloseAttack[0] && 
-        dist < CloseRangeDist(sp, u->tgt_sp) ||
-        pu->WeaponNum == WPN_FIST)
+    STUBBED("Verify order of operations for added parentheses.");
+    if (((u->ActorActionSet->CloseAttack[0]) &&
+        (dist < CloseRangeDist(sp, u->tgt_sp))) ||
+        (pu->WeaponNum == WPN_FIST))
         {
         rand_num = ChooseActionNumber(u->ActorActionSet->CloseAttackPercent);
             
@@ -1875,7 +1876,7 @@ FindNewAngle(short SpriteNum, char dir, long DistToMove)
         };
         
         
-    SHORTp adp;
+    SHORTp adp = NULL;
         
     short new_ang, oang;
     short save_ang = -1;

@@ -35,25 +35,25 @@ typedef struct TILE_INFO_TYPE {
                     // 0 = Invisible
 } ParentalStruct;
 
-struct ORG_TILE;
-typedef struct ORG_TILE OrgTile, *OrgTileP;
-struct ORG_TILE_LIST;
-typedef struct ORG_TILE_LIST OrgTileList, *OrgTileListP;
+//struct ORG_TILE;
+//typedef struct ORG_TILE OrgTile, *OrgTileP;
+//struct ORG_TILE_LIST;
+//typedef struct ORG_TILE_LIST OrgTileList, *OrgTileListP;
 
 void JS_InitLockouts (void);
 void JS_UnitInitLockouts (void);
 void JS_ToggleLockouts(void);
 
-struct ORG_TILE
+typedef struct ORG_TILE
     {
-    OrgTileP Next, Prev;
+    struct ORG_TILE *Next, *Prev;
     short index;
     short orgpicnum;
     } OrgTile, *OrgTileP;
 
-struct ORG_TILE_LIST
+typedef struct ORG_TILE_LIST
     {
-    OrgTileP Next, Prev;
+    struct ORG_TILE *Next, *Prev;
     } OrgTileList, *OrgTileListP;
 
 extern OrgTileList orgwalllist;                // The list containing orginal wall

@@ -233,3 +233,4 @@ static char * joystickdigitaldefaults[] =
    };
 #endif
 #endif
+

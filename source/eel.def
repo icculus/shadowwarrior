@@ -36,3 +36,4 @@ extern int DoEelMatchPlayerZ(short SpriteNum);
 extern int DoEelDeath(short SpriteNum);
 //#line "eel.c" 545
 extern int DoEelMove(short SpriteNum);
+

@@ -73,7 +73,9 @@ extern long FXDevice,MusicDevice,ControllerType;
 extern BOOL MultiPlayQuitFlag;
 
 // Make memcpy an intrinsic function for an easy frame rate boost
+#if (defined __WATCOMC__)
 #pragma intrinsic( memcpy );
+#endif
 
 // L O C A L   V A R I A B L E S ////////////////////////////////////////////////////////////////
 
@@ -318,3 +320,4 @@ long x,y;
 }VMODE;
 
 #endif
+

@@ -388,3 +388,4 @@ void rotatesprite (long sx, long sy, long z, short a, short picnum, signed char 
 
 #endif
 
+

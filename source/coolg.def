@@ -46,3 +46,4 @@ extern int DoCoolgDeath(short SpriteNum);
 extern int DoCoolgMove(short SpriteNum);
 //#line "coolg.c" 792
 extern int DoCoolgPain(short SpriteNum);
+

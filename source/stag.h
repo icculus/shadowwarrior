@@ -227,3 +227,4 @@ STAG_ENTRY(ECHOSPOT,                   1005,    0)
 STAG_ENTRY(DRIP_GENERATOR,             1006,    0)
 
 #undef STAG_ENTRY
+

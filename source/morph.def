@@ -44,3 +44,4 @@ extern void SOBJ_AlignCeilingToPoint(SECTOR_OBJECTp sop,long x,long y,long z);
 extern void SOBJ_AlignFloorCeilingToPoint(SECTOR_OBJECTp sop,long x,long y,long z);
 //#line "morph.c" 494
 extern void SpikeFloor(SECTOR_OBJECTp sop);
+

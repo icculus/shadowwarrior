@@ -42,3 +42,4 @@ extern int32 GetTime(void );
 extern void InitSetup(void );
 //#line "setup.c" 110
 extern void TermSetup(void );
+

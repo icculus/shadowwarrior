@@ -30,3 +30,4 @@ extern int SetupSerp(short SpriteNum);
 extern int NullSerp(short SpriteNum);
 //#line "serp.c" 645
 extern int DoSerpMove(short SpriteNum);
+

@@ -49,3 +49,4 @@ extern void sendpacket(long other,char *bufptr,long messleng);
 extern void dosendpackets(long other);
 //#line "mmulti.c" 245
 extern short getpacket(short *other,char *bufptr);
+

@@ -101,3 +101,4 @@ DAMAGE_ENTRY(DMG_BLADE,           NULL,                10,    20,   0, -1, -1, -
 DAMAGE_ENTRY(MAX_WEAPONS,         NULL,                10,    20,   0, -1, -1, -1 )
               
 #undef DAMAGE_ENTRY
+

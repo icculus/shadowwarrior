@@ -30,3 +30,4 @@ extern void InitPrediction(PLAYERp pp);
 extern void DoPrediction(PLAYERp ppp);
 //#line "predict.c" 122
 extern void CorrectPrediction(long actualfifoplc);
+

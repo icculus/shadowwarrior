@@ -64,3 +64,4 @@ extern BOOL FindFloorView(short match,LONGp x,LONGp y,LONG z,SHORTp sectnum);
 extern short ViewSectorInScene(short cursectnum,short type,short level);
 //#line "rooms.c" 1068
 extern void DrawOverlapRoom(long tx,long ty,long tz,short tang,long thoriz,short tsectnum);
+

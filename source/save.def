@@ -48,3 +48,4 @@ extern int LoadGame(short save_num);
 extern void ScreenSave(MFILE fout);
 //#line "save.c" 1030
 extern void ScreenLoad(MFILE fin);
+

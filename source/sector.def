@@ -158,3 +158,4 @@ extern void movelava(char *dapic);
 extern void DoPanning(void );
 //#line "sector.c" 3564
 extern void DoSector(void );
+

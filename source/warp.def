@@ -34,3 +34,4 @@ extern SPRITEp WarpToArea(SPRITEp sp_from,LONGp x,LONGp y,LONGp z,SHORTp sectnum
 extern BOOL WarpSectorInfo(short sectnum,SPRITEp *sp_warp);
 //#line "warp.c" 215
 extern SPRITEp Warp(LONGp x,LONGp y,LONGp z,SHORTp sectnum);
+

@@ -48,3 +48,4 @@ extern int DoVatorMove(short SpriteNum,long *lptr);
 extern int DoVator(short SpriteNum);
 //#line "vator.c" 541
 extern int DoVatorAuto(short SpriteNum);
+

@@ -64,3 +64,4 @@ extern int DoCarryFlagNoDet(SHORT Weapon);
 extern int SetCarryFlag(SHORT Weapon);
 //#line "jweapon.c" 1855
 extern int DoFlag(SHORT Weapon);
+

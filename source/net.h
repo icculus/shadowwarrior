@@ -158,3 +158,4 @@ typedef struct
 extern AUTO_NET Auto;
 extern BOOL AutoNet;
     
+

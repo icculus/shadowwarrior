@@ -28,3 +28,4 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 extern int USRHOOKS_GetMem(void **ptr,unsigned long size);
 //#line "usrhooks.c" 62
 extern int USRHOOKS_FreeMem(void *ptr);
+

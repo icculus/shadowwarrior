@@ -38,3 +38,4 @@ extern BOOL TokenAvailable(void );
 extern void LoadKVXFromScript(char *filename);
 //#line "scrip2.c" 338
 extern void LoadPLockFromScript(char *filename);
+

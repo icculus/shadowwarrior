@@ -50,3 +50,4 @@ extern int SetNuclearQuake(SHORT Weapon);
 extern int SetSumoQuake(SHORT SpriteNum);
 //#line "quake.c" 291
 extern int SetSumoFartQuake(SHORT SpriteNum);
+

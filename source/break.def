@@ -54,3 +54,4 @@ extern int AutoBreakSprite(short BreakSprite,short type);
 extern BOOL NullActor(USERp u);
 //#line "break.c" 719
 extern int HitBreakSprite(short BreakSprite,short type);
+

@@ -107,3 +107,4 @@ char * RTS_GetSoundName (int32 i);
 */
 void *RTS_GetSound (int32 lump);
 #endif
+

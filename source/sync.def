@@ -50,3 +50,4 @@ extern void GetSyncInfoFromPacket(char *packbuf,long packbufleng,long *j,long ot
 extern void demosync_record(void );
 //#line "sync.c" 419
 extern void demosync_test(long cnt);
+

@@ -766,3 +766,4 @@ VBE_getPalette(long start, long num, char *dapal)
 	if (i != 0x004f) return(0);
 	return(1);
 }
+

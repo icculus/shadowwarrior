@@ -301,3 +301,4 @@ int hitscan (long xs, long ys, long zs, short sectnum, long vx, long vy, long vz
 			short *hitsect, short *hitwall, short *hitsprite,
 			long *hitx, long *hity, long *hitz, unsigned long clipmask);
 // CTW MODIFICATION END
+

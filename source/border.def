@@ -50,3 +50,4 @@ extern void BorderRefresh(PLAYERp pp);
 extern void PanelRefresh(PLAYERp pp);
 //#line "border.c" 522
 extern void BorderRefreshClip(PLAYERp pp,short x,short y,short x2,short y2);
+

@@ -34,3 +34,4 @@ extern volatile char keystatus[256], keyfifo[KEYFIFOSIZ], keyfifoplc, keyfifoend
 extern volatile char readch, oldreadch, extended, keytemp;
 
 #endif
+

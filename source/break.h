@@ -51,3 +51,4 @@ int HitBreakSprite(short BreakSprite, short type);
 BOOL CheckBreakToughness(BREAK_INFOp break_info, short ID);
 
 #endif
+

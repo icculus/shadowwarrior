@@ -292,3 +292,4 @@ extern void InitMultiPlayerInfo(void );
 extern int DoFootPrints(short SpriteNum);
 //#line "player.c" 6904
 extern void CheckFootPrints(PLAYERp pp);
+

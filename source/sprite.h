@@ -48,3 +48,5 @@ int DoGet(short SpriteNum);
 VOID SpriteControl(VOID);
 
 #endif
+
+

@@ -28,3 +28,4 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 extern void CopySectorWalls(short dest_sectnum,short src_sectnum);
 //#line "copysect.c" 57
 extern void CopySectorMatch(short match);
+

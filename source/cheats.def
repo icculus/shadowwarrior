@@ -64,3 +64,4 @@ extern void RandyFunc(PLAYERp pp,char *cheat_string);
 extern int cheatcmp(char *str1,char *str2,long len);
 //#line "cheats.c" 309
 extern void CheatInput(void );
+

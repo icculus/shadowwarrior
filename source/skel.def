@@ -38,3 +38,4 @@ extern int NullSkel(short SpriteNum);
 extern int DoSkelPain(short SpriteNum);
 //#line "skel.c" 591
 extern int DoSkelMove(short SpriteNum);
+

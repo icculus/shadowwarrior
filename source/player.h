@@ -127,3 +127,5 @@ int DoPickTarget(SPRITEp sp, WORD max_delta_ang, BOOL skip_targets);
 VOID DoPlayer(VOID);
 
 #endif
+
+

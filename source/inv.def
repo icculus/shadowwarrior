@@ -80,3 +80,4 @@ extern void PlayerUpdateInventoryPercent(PLAYERp pp);
 extern void PlayerUpdateInventoryPic(PLAYERp pp);
 //#line "inv.c" 975
 extern void PlayerUpdateInventoryState(PLAYERp pp);
+

@@ -131,3 +131,4 @@ extern int MissileWaterAdjust(short SpriteNum);
 extern int MissileZrange(short SpriteNum);
 //#line "sprite.c" 5902
 extern int move_missile(short spritenum,long xchange,long ychange,long zchange,long ceildist,long flordist,ULONG cliptype,long numtics);
+

@@ -1247,3 +1247,4 @@ STAT_QUICK_DEFEND
 #define SCROLL_FIRE 524
 
 #endif
+
