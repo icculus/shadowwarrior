@@ -1719,6 +1719,9 @@ DoUpdateSounds3D(void)
     short dist, angle;
     BOOL deletesound = FALSE;
 
+STUBBED("DoUpdateSounds3D hits an infinite loop");
+return;
+
     TVOC_INFO TmpVocArray[32]; 
     int i;
     static BOOL MoveSkip8 = 0;

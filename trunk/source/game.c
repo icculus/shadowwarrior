@@ -1147,7 +1147,7 @@ InitGame(VOID)
     // LoadImages will now proceed to steal all the remaining heap space    
     //_outtext("\n\n\n\n\n\n\n\n");
     //AnimateCacheCursor();
-    initprintf("Loading sound and graphics...\n");
+    printf("Loading sound and graphics...\n");
     LoadImages("tiles000.art");
     
     // Now free it up for later use
@@ -3890,21 +3890,20 @@ int main(int argc, char **argv)
 #endif
 
     const char *grpfile = "sw.grp";
-    
-    OSD_SetLogFile("sw.log");
+
     {	// JBF: moved to here for shareware detection
 	char *newgrp;
 	newgrp = getenv("SWGRP");
 	if (newgrp) {
 		grpfile = newgrp;
-		initprintf("Using alternative GRP file: %s\n", newgrp);
+		printf("Using alternative GRP file: %s\n", newgrp);
 	}
 	initgroupfile(grpfile);
     }
 
     if (!DetectShareware()) {
-	if (SW_SHAREWARE) initprintf("Detected shareware GRP\n");
-	else initprintf("Detected registered GRP\n");
+	if (SW_SHAREWARE) printf("Detected shareware GRP\n");
+	else printf("Detected registered GRP\n");
     }
     
     if (SW_SHAREWARE) {
