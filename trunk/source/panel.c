@@ -7464,7 +7464,8 @@ pSetState(PANEL_SPRITEp psp, PANEL_STATEp panel_state)
     ASSERT(ValidPtr(psp));
     psp->tics = 0;
     psp->State = panel_state;
-    psp->picndx = panel_state->picndx;
+    if (panel_state != NULL)
+        psp->picndx = panel_state->picndx;
     }
 
 

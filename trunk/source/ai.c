@@ -1908,6 +1908,12 @@ FindNewAngle(short SpriteNum, char dir, long DistToMove)
             break;
         }
 
+if (!adp)
+{
+STUBBED("hit a null in the AI code...");
+return -1;
+}
+
     for (; *adp != -99; adp++)
         {
         new_ang = NORM_ANGLE(oang + *adp);

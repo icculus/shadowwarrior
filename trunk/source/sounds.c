@@ -1709,6 +1709,8 @@ typedef struct {
 void
 DoUpdateSounds3D(void)
     {
+STUBBED("hit infinite loop here.");
+return;
     VOC3D_INFOp p;
     BOOL looping;
     int pitch = 0, pitchmax;

@@ -28,6 +28,7 @@ Prepared for public release: 03/21/2003 - Charlie Wiederhold, 3D Realms
 #include "control.h"
 #include "mouse.h"
 #include "joystick.h"
+#include "function.h"
 
 //***************************************************************************
 // FIXME  These will need to be removed once the buildengine directory
@@ -223,7 +224,91 @@ void CONTROL_ClearAssignments( void )
 
 void CONTROL_GetUserInput( UserInput *info )
 {
-	STUBBED("CONTROL_GetUserInput");
+    STUBBED("GetUserInput")  // this function may be totally wrong.  --ryan.
+    info->button0 = info->button1 = FALSE;
+    info->dir = dir_None;
+
+    int x = 0;
+    int y = 0;
+
+    if (KB_KeyDown[KeyMapping[gamefunc_Fire].key1])
+    {
+        info->button0 = TRUE;
+        KB_KeyDown[KeyMapping[gamefunc_Fire].key1] = FALSE;
+    }
+
+    if (KB_KeyDown[KeyMapping[gamefunc_Fire].key2])
+    {
+        info->button0 = TRUE;
+        KB_KeyDown[KeyMapping[gamefunc_Fire].key2] = FALSE;
+    }
+
+    if (KB_KeyDown[KeyMapping[gamefunc_Move_Forward].key1])
+    {
+        y -= 1;
+        KB_KeyDown[KeyMapping[gamefunc_Move_Forward].key1] = FALSE;
+    }
+
+    if (KB_KeyDown[KeyMapping[gamefunc_Move_Forward].key2])
+    {
+        y -= 1;
+        KB_KeyDown[KeyMapping[gamefunc_Move_Forward].key2] = FALSE;
+    }
+
+    if (KB_KeyDown[KeyMapping[gamefunc_Move_Backward].key1])
+    {
+        y += 1;
+        KB_KeyDown[KeyMapping[gamefunc_Move_Backward].key1] = FALSE;
+    }
+
+    if (KB_KeyDown[KeyMapping[gamefunc_Move_Backward].key2])
+    {
+        y += 1;
+        KB_KeyDown[KeyMapping[gamefunc_Move_Backward].key2] = FALSE;
+    }
+
+    if (KB_KeyDown[KeyMapping[gamefunc_Turn_Left].key1])
+    {
+        x -= 1;
+        KB_KeyDown[KeyMapping[gamefunc_Turn_Left].key1] = FALSE;
+    }
+
+    if (KB_KeyDown[KeyMapping[gamefunc_Turn_Left].key2])
+    {
+        x -= 1;
+        KB_KeyDown[KeyMapping[gamefunc_Turn_Left].key2] = FALSE;
+    }
+
+    if (KB_KeyDown[KeyMapping[gamefunc_Turn_Right].key1])
+    {
+        x += 1;
+        KB_KeyDown[KeyMapping[gamefunc_Turn_Right].key1] = FALSE;
+    }
+
+    if (KB_KeyDown[KeyMapping[gamefunc_Turn_Right].key2])
+    {
+        x += 1;
+        KB_KeyDown[KeyMapping[gamefunc_Turn_Right].key2] = FALSE;
+    }
+
+    if ((x == 0) && (y < 0))
+        info->dir = dir_North;
+    else if ((x > 0) && (y < 0))
+        info->dir = dir_NorthEast;
+    else if ((x > 0) && (y == 0))
+        info->dir = dir_East;
+    else if ((x > 0) && (y > 0))
+        info->dir = dir_SouthEast;
+    else if ((x == 0) && (y > 0))
+        info->dir = dir_South;
+    else if ((x < 0) && (y > 0))
+        info->dir = dir_SouthWest;
+    else if ((x < 0) && (y == 0))
+        info->dir = dir_West;
+    else if ((x < 0) && (y < 0))
+        info->dir = dir_NorthWest;
+    else
+        info->dir = dir_None;
 }
 
 void CONTROL_GetInput( ControlInfo *info )
