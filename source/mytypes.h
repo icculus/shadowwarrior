@@ -24,9 +24,8 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 */
 //-------------------------------------------------------------------------
 
-#ifndef TYPES_H
-
-#define TYPES_H
+#ifndef INCL_MYTYPES_H
+#define INCL_MYTYPES_H
 
 #include "shadow.h"  // added for unix port.  --ryan.
 

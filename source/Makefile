@@ -228,6 +228,7 @@ shadow: 	\
 	weapon.o \
 	zilla.o \
 	zombie.o \
+	scriplib.o \
 	audiolib/audiolib.a
 	$(CC) $^ $(BUILDOBJS) $(LDLIBS) -o $@
 
