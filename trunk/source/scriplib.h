@@ -57,6 +57,8 @@ Prepared for public release: 03/21/2003 - Charlie Wiederhold, 3D Realms
 extern "C" {
 #endif
 
+#include "mytypes.h"
+
 /*
 ==============
 =
@@ -221,6 +223,22 @@ void SCRIPT_GetBoolean
 /*
 ==============
 =
+= SCRIPT_GetFloat
+=
+==============
+*/
+
+boolean SCRIPT_GetFloat
+   (
+   int32 scripthandle,
+   char * sectionname,
+   char * entryname,
+   float * floatnumber
+   );
+
+/*
+++==============
+++=
 = SCRIPT_GetDouble
 =
 ==============
