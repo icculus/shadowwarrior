@@ -3257,7 +3257,9 @@ MNU_DoHotkey(void)
     short index;
 
     index = 0;
-    for (item = currentmenu->items; item->type != mt_none; item++)
+	 // DDOI
+    //for (item = currentmenu->items; item->type != mt_none; item++)
+    for (item = currentmenu->items; item && item->type != mt_none; item++)
         {
         if (KEY_PRESSED(item->hotkey) && item->hotkey != NULL)
             {

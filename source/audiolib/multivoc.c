@@ -2847,7 +2847,14 @@ void MV_CalcVolume
    )
 
    {
+
    int volume;
+
+	// DDOI
+	if (!MV_Installed)
+	{
+		return;
+	}
 
    for( volume = 0; volume < 128; volume++ )
       {

@@ -2036,6 +2036,12 @@ Set3DSoundOwner(short spritenum)
 
     p = voc3dend;
 
+	 // DDOI
+	 if (p == NULL)
+	 {
+		 return;
+	 }
+
     // Queue up sounds with ambient flag even if they didn't play right away!
     if(p->handle != -1 || TEST(p->flags,v3df_ambient))
     {

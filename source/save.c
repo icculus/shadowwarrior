@@ -163,6 +163,10 @@ void SaveSymDataInfo(MFILE fil, void *ptr)
     SYM_TABLEp st_ptr;
     char sym_name[80];
     
+#ifndef PLATFORM_DOS
+	 return;	// DDOI - no good.
+#endif
+
     if (!ptr)
         {
         offset_from_symbol = -1;
@@ -186,6 +190,10 @@ void SaveSymCodeInfo(MFILE fil, void *ptr)
     SYM_TABLEp st_ptr;
     char sym_name[80];
     unsigned long test;
+
+#ifndef PLATFORM_DOS
+	 return;	// DDOI - no good.
+#endif
     
     if (!ptr)
         {
@@ -230,6 +238,10 @@ void *LoadSymDataInfo(MFILE fil)
     SYM_TABLEp st_ptr;
     void *data_ptr;
 
+#ifndef PLATFORM_DOS
+	 return;	// DDOI - no good.
+#endif
+
     MREAD(&sym_name, sizeof(st_ptr->Name), 1, fil);
     MREAD(&offset_from_symbol, sizeof(offset_from_symbol), 1, fil);
     
@@ -250,6 +262,10 @@ void *LoadSymCodeInfo(MFILE fil)
     char sym_name[80];
     SYM_TABLEp st_ptr;
     void *code_ptr;
+
+#ifndef PLATFORM_DOS
+	 return;	// DDOI - no good.
+#endif
 
     MREAD(&sym_name, sizeof(st_ptr->Name), 1, fil);
     MREAD(&offset_from_symbol, sizeof(offset_from_symbol), 1, fil);
