@@ -43,6 +43,8 @@ extern "C" {
 //#define SW_3DFX 1
 #endif
 
+#include "shadow.h"  // added for unix port.  --ryan.
+
 //****************************************************************************
 //
 // DEFINES

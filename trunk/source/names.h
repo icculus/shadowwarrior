@@ -77,7 +77,7 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 #define RIFLE1 2044
 #define RIFLE2 2045
 #define RIFLE3 2046
-#define DON'TUSE...EXTRA 2047
+//#define DON'TUSE...EXTRA 2047
 #define RIFLE4 2048
 #define CARTRIGE3 2053
 #define STATUE1 2054
@@ -89,6 +89,6 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 #define SWORD1 2067
 #define SWORD2 2068
 #define SWORD5 2069
-#define BLACK!!!!!!!!!!! 2306
+//#define BLACK!!!!!!!!!!! 2306
 #define FragBarErase 2375
 #define FragBarErase2 2376
