@@ -1,30 +1,5 @@
 //-------------------------------------------------------------------------
 /*
-Copyright (C) 1997, 2005 - 3D Realms Entertainment
-
-This file is part of Shadow Warrior version 1.2
-
-Shadow Warrior is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
-
-See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-
-Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
-*/
-//-------------------------------------------------------------------------
-
-//-------------------------------------------------------------------------
-/*
 Copyright (C) 1996, 2003 - 3D Realms Entertainment
 
 This file is part of Duke Nukem 3D version 1.5 - Atomic Edition
@@ -61,6 +36,7 @@ Prepared for public release: 03/21/2003 - Charlie Wiederhold, 3D Realms
 extern "C" {
 #endif
 
+#include "keyboard.h"
 
 //***************************************************************************
 //
@@ -70,6 +46,24 @@ extern "C" {
 
 #define MaxJoys             2
 #define MAXGAMEBUTTONS      64
+
+// Number of Mouse buttons
+#define MAXMOUSEBUTTONS 7
+
+// Number of JOY buttons
+#define MAXJOYBUTTONS 32
+
+// Number of joystick "top hats"
+#define MAXJOYHATS 6
+
+// Number of Mouse Axes
+#define MAXMOUSEAXES 2
+
+// Number of JOY axes
+#define MAXJOYAXES 6
+
+// Number of GAMEPAD axes
+#define MAXGAMEPADAXES 2
 
 #define BUTTON(x) \
     ( \
@@ -152,7 +146,8 @@ typedef enum
    controltype_keyboardandexternal,
    controltype_keyboardandgamepad,
    controltype_keyboardandflightstick,
-   controltype_keyboardandthrustmaster
+   controltype_keyboardandthrustmaster,
+   controltype_joystickandmouse
    } controltype;
 
 
@@ -187,6 +182,8 @@ void CONTROL_MapButton
         int32 whichbutton,
         boolean doubleclicked
         );
+void CONTROL_MapJoyButton(int32 whichfunction, int32 whichbutton, boolean doubleclicked);
+void CONTROL_MapJoyHat(int32 whichfunction, int32 whichhat, int32 whichvalue); 
 void CONTROL_DefineFlag( int32 which, boolean toggle );
 boolean CONTROL_FlagActive( int32 which );
 void CONTROL_ClearAssignments( void );
@@ -229,12 +226,26 @@ void CONTROL_MapDigitalAxis
 void CONTROL_SetAnalogAxisScale
    (
    int32 whichaxis,
-   int32 axisscale
+   float axisscale
    );
+void CONTROL_SetAnalogAxisDeadzone
+   (
+   int32 whichaxis,
+   int32 axisdeadzone
+   );
+int32 CONTROL_FilterDeadzone
+   (
+   int32 axisvalue,
+   int32 axisdeadzone
+   );
+int32 CONTROL_GetFilteredAxisValue(int32 axis);
 void CONTROL_PrintAxes( void );
+
+void CONTROL_UpdateKeyboardState(int key, int pressed);
+
+const char *CONTROL_GetMappingName(int32 which);
 
 #ifdef __cplusplus
 };
 #endif
 #endif
-

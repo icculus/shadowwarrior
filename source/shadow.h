@@ -39,6 +39,8 @@
 #include "swwin.h"
 #endif
 
+#include "mytypes.h"
+
 #ifndef GCC_PACK1_EXT
 #define GCC_PACK1_EXT
 #endif
