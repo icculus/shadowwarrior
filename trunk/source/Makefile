@@ -229,6 +229,9 @@ shadow: 	\
 	zilla.o \
 	zombie.o \
 	timer.o \
+	animlib.o \
+	dukemusc.o \
+	control.o \
 	keyboard.o \
 	global.o \
 	scriplib.o \
