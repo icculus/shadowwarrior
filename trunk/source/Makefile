@@ -229,6 +229,8 @@ shadow: 	\
 	zilla.o \
 	zombie.o \
 	timer.o \
+	keyboard.o \
+	global.o \
 	scriplib.o \
 	audiolib/audiolib.a
 	$(CC) $^ $(BUILDOBJS) $(LDLIBS) -o $@

@@ -2690,7 +2690,8 @@ MNU_DoSlider(short dir, MenuItem_p item, BOOL draw)
             }
         else 
             {
-            itoa(offset*10,tmp_text,10);        
+            //itoa(offset*10,tmp_text,10);
+            snprintf(tmp_text,sizeof(tmp_text),offset*10);
             }
         MNU_DrawString(OPT_XSIDE+101, item->y, tmp_text, 1, 16);
         gs.NetKillLimit = offset;

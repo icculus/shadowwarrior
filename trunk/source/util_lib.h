@@ -61,11 +61,7 @@ Prepared for public release: 03/21/2003 - Charlie Wiederhold, 3D Realms
 extern "C" {
 #endif
 
-#if (defined(__MSDOS__) && !defined(__FLAT__))
-extern  int16    _argc;
-#else
-extern  int32    _argc;
-#endif
+extern  int      _argc;
 extern  char **  _argv;
 
 void RegisterShutdownFunction( void (* shutdown) (void) );
