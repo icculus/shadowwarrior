@@ -46,7 +46,7 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 BOOL SyncPrintMode = TRUE;
 short NumSyncBytes = 1;
 CHAR sync_first[MAXSYNCBYTES][60];
-sync_found = FALSE;
+extern int sync_found;
 
 extern long crctable[256];
 #define updatecrc(dcrc,xz) (dcrc = (crctable[((dcrc)>>8)^((xz)&255)]^((dcrc)<<8)))

@@ -186,7 +186,6 @@ shadow: 	\
 	kbd.o \
 	lava.o \
 	light.o \
-	makesym.o \
 	mclip.o \
 	mdastr.o \
 	menus.o \
@@ -220,7 +219,6 @@ shadow: 	\
 	symutil.o \
 	sync.o \
 	text.o \
-	timer.o \
 	track.o \
 	usrhooks.o \
 	vator.o \

@@ -27,7 +27,7 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 //#line "kbd.c" 15
 extern void initkeys(void );
 //#line "kbd.c" 33
-extern void uninitkeys(void );
+extern void _uninitkeys(void );
 //#line "kbd.c" 96
 extern void gamekeys(void );
 

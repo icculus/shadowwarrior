@@ -126,8 +126,6 @@ extern void __cdecl erf_custom(char *message);
 extern void DosScreen(void );
 //#line "game.c" 1950
 extern void AlphaMessage(void );
-//#line "game.c" 2072
-extern int main(short argc,char *argv[]);
 //#line "game.c" 2361
 extern void ManualPlayerInsert(PLAYERp pp);
 //#line "game.c" 2393

@@ -678,7 +678,8 @@ OLDsetsprite(short spritenum, long newx, long newy, long newz)
     }
 
     
-// take over the setsprite function and call updatesectorz    
+#if 0  // this is in buildengine.  --ryan.
+// take over the setsprite function and call updatesectorz
 setsprite(short spritenum, long newx, long newy, long newz)
     {
     short bad, j, tempsectnum;
@@ -700,6 +701,7 @@ setsprite(short spritenum, long newx, long newy, long newz)
 
     return (0);
     }
+#endif
 
 #if 0
 BOOL 

@@ -104,7 +104,7 @@ extern char syncstate;
 //long myminlag[MAX_SW_PLAYERS];
 long mymaxlag, otherminlag, bufferjitter = 1;
 extern CHAR sync_first[MAXSYNCBYTES][60];
-extern sync_found = FALSE;
+int sync_found = FALSE;
 
 //
 // Tic Duplication - so you can move multiple times per packet
