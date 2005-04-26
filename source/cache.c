@@ -163,6 +163,10 @@ short Pachinko_SCTable[] =
 int PreCacheSoundList(short table[], long num);
 void PreCacheTable(short table[], long num);
 
+/* ZAKK CRAP CONTINUES ON FOR ONE LINE */
+static void PreCacheGhost();
+/* ZAKK CRAP ENDS */
+
 void
 SetupPreCache(void)
     {

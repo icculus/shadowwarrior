@@ -2,6 +2,7 @@
 # Duke3D makefile.
 #-----------------------------------------------------------------------------#
 
+linux64 := true
 linux_ppc := false
 beos := false
 macosx := false
@@ -24,66 +25,66 @@ SDL_LIB_DIR = /cygdrive/c/SDL/lib
 
 # need this for now.
 ifeq ($(strip $(beos)),true)
-  use_asm := false
+use_asm := false
 endif
 
 # Don't touch anything below this line unless you know what you're doing.
 
 ifeq ($(strip $(cygwin)),autodetect)
-  ifneq ($(strip $(shell gcc -v 2>&1 |grep "cygwin")),)
-    cygwin := true
-  else
-    cygwin := false
-  endif
+ifneq ($(strip $(shell gcc -v 2>&1 |grep "cygwin")),)
+cygwin := true
+else
+cygwin := false
+endif
 endif
 
 
 ifeq ($(strip $(cygwin)),true)
-  ifeq ($(strip $(SDL_INC_DIR)),please_set_me_cygwin_users)
-    $(error Cygwin users need to set the SDL_INC_DIR envr var.)
-  else
-    SDL_CFLAGS := -I$(SDL_INC_DIR)
-  endif
-
-  ifeq ($(strip $(SDL_LIB_DIR)),please_set_me_cygwin_users)
-    $(error Cygwin users need to set the SDL_LIB_DIR envr var.)
-  else
-    SDL_LDFLAGS := -L$(SDL_LIB_DIR) -lSDL
-  endif
+ifeq ($(strip $(SDL_INC_DIR)),please_set_me_cygwin_users)
+$(error Cygwin users need to set the SDL_INC_DIR envr var.)
 else
-  SDL_CFLAGS := $(shell sdl-config --cflags)
-  SDL_LDFLAGS := $(shell sdl-config --libs) -L.
+SDL_CFLAGS := -I$(SDL_INC_DIR)
+endif
+
+ifeq ($(strip $(SDL_LIB_DIR)),please_set_me_cygwin_users)
+$(error Cygwin users need to set the SDL_LIB_DIR envr var.)
+else
+SDL_LDFLAGS := -L$(SDL_LIB_DIR) -lSDL
+endif
+else
+SDL_CFLAGS := $(shell sdl-config --cflags)
+SDL_LDFLAGS := $(shell sdl-config --libs) -L.
 endif
 
 ifeq ($(strip $(macosx)),true)
-  EXTRACFLAGS += -DPLATFORM_MACOSX=1
-  EXTRALDFLAGS += -lSDLmain
+EXTRACFLAGS += -DPLATFORM_MACOSX=1
+EXTRALDFLAGS += -lSDLmain
 endif
 
 ifeq ($(strip $(linux_ppc)),true)
-  EXTRACFLAGS += -DPLATFORM_LINUXPPC=1
+EXTRACFLAGS += -DPLATFORM_LINUXPPC=1
 endif
 
 ifneq ($(strip $(cygwin)),true)
-  ifneq ($(strip $(macosx)),true)
-    ifneq ($(strip $(beos)),true)
-      EXTRACFLAGS += -DUSE_EXECINFO=1
-    endif
-  endif
+ifneq ($(strip $(macosx)),true)
+ifneq ($(strip $(beos)),true)
+EXTRACFLAGS += -DUSE_EXECINFO=1
+endif
+endif
 endif
 
 ifeq ($(strip $(solaris)),true)
-  EXTRALDFLAGS += -lsocket -lnsl
+EXTRALDFLAGS += -lsocket -lnsl
 endif
 
 ifeq ($(strip $(shareware)),true)
-  EXTRACFLAGS += -DVOLUMEONE
+EXTRACFLAGS += -DVOLUMEONE
 else
-  EXTRACFLAGS += -DVOLUMEALL
+EXTRACFLAGS += -DVOLUMEALL
 endif
 
 ifeq ($(strip $(controls_menu)),true)
-  EXTRACFLAGS += -DCONTROLS_CONFIG_MENU=1
+EXTRACFLAGS += -DCONTROLS_CONFIG_MENU=1
 endif
 
 # check out buildengine in this directory:
@@ -95,21 +96,26 @@ endif
 #  cd ..
 #  This sucks. We'll figure out something better.
 BUILDOBJS := \
-	buildengine/cache1d.o \
-	buildengine/engine.o \
-	buildengine/sdl_driver.o \
-	buildengine/mmulti.o \
-	buildengine/pragmas.o \
-	buildengine/unix_compat.o
+buildengine/cache1d.o \
+buildengine/engine.o \
+buildengine/sdl_driver.o \
+buildengine/mmulti.o \
+buildengine/pragmas.o \
+buildengine/unix_compat.o
 
 ifeq ($(strip $(use_asm)),true)
-	BUILDOBJS += buildengine/a_gnu.o buildengine/a_nasm.o
+BUILDOBJS += buildengine/a_gnu.o buildengine/a_nasm.o
 else
-	BUILDOBJS += buildengine/a.o
+BUILDOBJS += buildengine/a.o
 endif
 
 CC = gcc
 CFLAGS = -c -g $(SDL_CFLAGS) -DUSE_SDL=1 -DPLATFORM_UNIX=1 -Wno-unused $(EXTRACFLAGS) -funsigned-char
+
+ifeq ($(strip $(linux64)),true)
+  CFLAGS += -m32
+  EXTRALDFLAGS +=-m32 -L/emul/linux/x86/usr/lib
+endif
 
 #CFLAGS += -Wall
 CFLAGS += -w
@@ -139,7 +145,7 @@ LDLIBS = $(SDL_LDFLAGS) -lSDL -lSDL_mixer $(EXTRALDFLAGS)
 all: shadow
 
 
-%.o : %.c
+%.o : %.c _%.h
 	$(CC) $(CFLAGS) $(OPTIMIZE) -o $@ $<
 
 # Animation playback crashes due to optimization error on MacOS X. --ryan.
@@ -150,7 +156,7 @@ endif
 
 # Animation playback crashes due to optimization error on Linux PPC. --Felipe Barriga.
 ifeq ($(strip $(linux_ppc)),true)
-animlib.o : animlib.c
+animlib.o: animlib.c
 	$(CC) $(CFLAGS) -o $@ $<
 endif
 
@@ -158,87 +164,87 @@ audiolib/audiolib.a:
 	$(MAKE) -C audiolib CC="$(CC)" CFLAGS="$(CFLAGS)" LDLIBS="$(LDLIBS)"
 
 shadow: 	\
-	actor.o \
-	ai.o \
-	anim.o \
-	border.o \
-	break.o \
-	bunny.o \
-	cache.o \
-	cd.o \
-	cheats.o \
-	colormap.o \
-	config.o \
-	console.o \
-	coolg.o \
-	coolie.o \
-	copysect.o \
-	demo.o \
-	draw.o \
-	eel.o \
-	game.o \
-	girlninj.o \
-	goro.o \
-	hornet.o \
-	interp.o \
-	interpsh.o \
-	inv.o \
-	jplayer.o \
-	jsector.o \
-	jweapon.o \
-	kbd.o \
-	lava.o \
-	light.o \
-	mclip.o \
-	mdastr.o \
-	menus.o \
-	miscactr.o \
-	morph.o \
-	net.o \
-	ninja.o \
-	panel.o \
-	pcx.o \
-	player.o \
-	predict.o \
-	quake.o \
-	ripper.o \
-	ripper2.o \
-	rooms.o \
-	rotator.o \
-	rts.o \
-	save.o \
-	scrip2.o \
-	sector.o \
-	serp.o \
-	setup.o \
-	skel.o \
-	skull.o \
-	slidor.o \
-	sounds.o \
-	spike.o \
-	sprite.o \
-	sumo.o \
-	swconfig.o \
-	symutil.o \
-	sync.o \
-	text.o \
-	track.o \
-	usrhooks.o \
-	vator.o \
-	vis.o \
-	wallmove.o \
-	warp.o \
-	weapon.o \
-	zilla.o \
-	zombie.o \
-	timer.o \
-	animlib.o \
-	dukemusc.o \
-	control.o \
-	keyboard.o \
-	global.o \
-	scriplib.o \
-	audiolib/audiolib.a
+actor.o \
+ai.o \
+anim.o \
+border.o \
+break.o \
+bunny.o \
+cache.o \
+cd.o \
+cheats.o \
+colormap.o \
+config.o \
+console.o \
+coolg.o \
+coolie.o \
+copysect.o \
+demo.o \
+draw.o \
+eel.o \
+game.o \
+girlninj.o \
+goro.o \
+hornet.o \
+interp.o \
+interpsh.o \
+inv.o \
+jplayer.o \
+jsector.o \
+jweapon.o \
+kbd.o \
+lava.o \
+light.o \
+mclip.o \
+mdastr.o \
+menus.o \
+miscactr.o \
+morph.o \
+net.o \
+ninja.o \
+panel.o \
+pcx.o \
+player.o \
+predict.o \
+quake.o \
+ripper.o \
+ripper2.o \
+rooms.o \
+rotator.o \
+rts.o \
+save.o \
+scrip2.o \
+sector.o \
+serp.o \
+setup.o \
+skel.o \
+skull.o \
+slidor.o \
+sounds.o \
+spike.o \
+sprite.o \
+sumo.o \
+swconfig.o \
+symutil.o \
+sync.o \
+text.o \
+track.o \
+usrhooks.o \
+vator.o \
+vis.o \
+wallmove.o \
+warp.o \
+weapon.o \
+zilla.o \
+zombie.o \
+timer.o \
+animlib.o \
+dukemusc.o \
+control.o \
+keyboard.o \
+global.o \
+scriplib.o \
+audiolib/audiolib.a
 	$(CC) $^ $(BUILDOBJS) $(LDLIBS) -o $@
 
 #build: astub.o

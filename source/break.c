@@ -38,6 +38,11 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 #include "break.h"
 #include "def.h"
 
+/* ZAKK CRAP FOR THE NEXT TWO LINES */
+static int SectorOfWall(short theline);
+static void DoWallBreakSpriteMatch( short match );
+/* ZAKK CRAP ENDS */ 
+		
 BREAK_INFOp GlobBreakInfo;
 
 int WallBreakPosition(short hitwall, short *sectnum, long *x, long *y, long *z, short *ang);

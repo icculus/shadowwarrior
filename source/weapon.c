@@ -93,16 +93,18 @@ ANIMATOR DoCrossBolt;
 ANIMATOR DoSuicide, DoUziSmoke;
 ANIMATOR DoShrapJumpFall;
 
-int SpawnSmokePuff(short SpriteNum);
-BOOL WarpToUnderwater(short *sectnum, long *x, long *y, long *z);
-BOOL WarpToSurface(short *sectnum, long *x, long *y, long *z);
-short ElectroFindClosestEnemy(short SpriteNum);
-int InitElectroJump(SPRITEp wp, SPRITEp sp);
-BOOL TestDontStickSector(short hitsect);
-int SpawnShrapX(short SpriteNum);
-BOOL WeaponMoveHit(short SpriteNum);
-int HelpMissileLateral(SHORT Weapon, long dist);
-void SpawnMidSplash(short SpriteNum);
+int SpawnSmokePuff(short);
+BOOL WarpToUnderwater(short *, long *, long *, long *);
+short ElectroFindClosestEnemy(short);
+int InitElectroJump(SPRITEp, SPRITEp);
+BOOL TestDontStickSector(short);
+int SpawnShrapX(short);
+BOOL WeaponMoveHit(short);
+int HelpMissileLateral(SHORT, long);
+void SpawnMidSplash(short);
+int SpawnLittleExp(SHORT);
+int SpawnDemonFist(short);
+BOOL WarpToSurface(short *, long *, long *, long *);
 
 short StatDamageList[STAT_DAMAGE_LIST_SIZE] =
     {
