@@ -40,6 +40,9 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 //#include "_save.h"
 //#undef SAVE_EXTERN
 
+/* ZAKK CRAP BEGINS YET AGAIN */
+static void InvBorderRefresh();
+/* ZAKK CRAP ENDS! */
 extern short NormalVisibility;
 
 // indexed by gs.BorderNum   130,172

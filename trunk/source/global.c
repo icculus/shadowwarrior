@@ -407,7 +407,7 @@ int32 SafeOpenRead (const char *_filename, int32 filetype)
 
 void SafeRead (int32 handle, void *buffer, int32 count)
 {
-	unsigned	iocount;
+        unsigned iocount;
 
 	while (count)
 	{

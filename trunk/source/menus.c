@@ -65,6 +65,11 @@ Prepared for public release: 03/28/2005 - Charlie Wiederhold, 3D Realms
 
 //#define PLOCK_VERSION TRUE
 
+/* ZAKK CRAP! */
+static void LoadSaveMsg();
+static void MNU_SelectItem(MenuGroup * group, short index, BOOL draw);
+static void MNU_PushItem(MenuItem * item, BOOL draw);
+/* ZAKK CRAP ENDS! */
 extern BOOL cdvalid, enabled;
 
 short TimeLimitTable[9] = {0,3,5,10,15,20,30,45,60}; 

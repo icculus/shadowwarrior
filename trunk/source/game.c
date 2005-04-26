@@ -159,6 +159,9 @@ extern long lastUpdate; // CD tic counter
 // Stupid WallMart version!
 //#define PLOCK_VERSION TRUE
 
+/* ZAKK CRAP BEGINS HERE */
+VOID SybexScreen(VOID);
+/* ZAKK CRAP ENDS! */
 #if PLOCK_VERSION
 BOOL Global_PLock = TRUE;
 #else

@@ -63,6 +63,8 @@ int StateControl(SHORT SpriteNum);
 VOID DoActorZrange(short SpriteNum);
 void PreCacheRange(short, short);
 */
+VOID ActorWarpType(SPRITEp, SPRITEp);
+
 
 TRACK Track[MAX_TRACKS];
 SECTOR_OBJECT SectorObject[MAX_SECTOR_OBJECTS];
