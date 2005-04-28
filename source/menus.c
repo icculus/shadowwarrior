@@ -3357,7 +3357,7 @@ void MNU_DoMenu( CTLType type, PLAYERp pp )
                 select_held = TRUE;
                 } 
                 else
-                if(totalclock - limitmove > 7)
+                if(totalclock - limitmove > 2)
                 {
                 mnu_input.button0 = mnu_input_buffered.button0;
                 mnu_input.button1 = mnu_input_buffered.button1;
@@ -3372,17 +3372,19 @@ void MNU_DoMenu( CTLType type, PLAYERp pp )
             mnu_input_buffered.button1 = tst_input.button1;
             }
 
-        if(totalclock - limitmove > 7 && !select_held)
-            {
-            mnu_input.dir = mnu_input_buffered.dir;
+	if(totalclock - limitmove > 2 && !select_held)
+	  {
+	  mnu_input.dir = mnu_input_buffered.dir;
+	
+	  if (mnu_input.dir != dir_None) 
+	    {
+	      if(!FX_SoundActive(handle2))
+	          handle2 = PlaySound(DIGI_STAR,&zero,&zero,&zero,v3df_dontpan);
 
-            if (mnu_input.dir != dir_None)
-                if(!FX_SoundActive(handle2))
-                    handle2 = PlaySound(DIGI_STAR,&zero,&zero,&zero,v3df_dontpan);
-
-            limitmove = totalclock;
-            mnu_input_buffered.dir = dir_None;
-            }
+	      limitmove = totalclock;
+	      mnu_input_buffered.dir = dir_None;
+	    }
+	  }
         }
 
     if (mnu_input.dir == dir_North)
