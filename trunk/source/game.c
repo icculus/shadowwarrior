@@ -1190,7 +1190,14 @@ InitGame(VOID)
     if (UserMapName[0] == '\0')
         {
         AnimateCacheCursor();
-        LoadLevel("$dozer.map");
+	// LoadLevel("$dozer.map"); 
+	// 
+	// ugh.  DOS is case insensitive and nt et all are case preserving insensitive.  Problem most dos archived 
+	// levels etc come in happy UPCASE
+	// todo:
+	//   go through make file schtuff case insensitive, in some logical way :)
+	//
+	LoadLevel("$DOZER.MAP");
         AnimateCacheCursor();
         SetupPreCache();
         DoTheCache();    
