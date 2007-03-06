@@ -598,7 +598,7 @@ MNU_DoParentalPassword(UserCall call, MenuItem_p item)
     return(TRUE);
     }
 
-static BOOL
+BOOL
 MNU_ParentalCustom(void)
     {
 
@@ -814,7 +814,7 @@ ExitMenus(void)
     SetRedrawScreen(&Player[myconnectindex]);
     }
 
-static BOOL
+BOOL
 MNU_StartGame(void)
     {
     PLAYERp pp = Player + screenpeek;
@@ -947,7 +947,7 @@ MNU_StartNetGame(void)
     }
 
     
-static BOOL
+BOOL
 MNU_EpisodeCustom(void)
     {
     EpisodeMenuSelection = currentmenu->cursor;
@@ -1633,7 +1633,7 @@ VOID LoadSaveMsg(char *msg)
 //  I'm figuring it need to do the following:
 //  . Load the game if there is one by calling: MNU_LoadGameCustom.
 ////////////////////////////////////////////////
-static BOOL
+BOOL
 MNU_GetLoadCustom(void)
     {
     short load_num;
@@ -1696,7 +1696,7 @@ MNU_GetLoadCustom(void)
 //  . Call MNU_GetInput to allow string input of description.
 //  . Save the game if there is one by calling: MNU_SaveGameCustom.
 ////////////////////////////////////////////////
-static BOOL
+BOOL
 MNU_GetSaveCustom(void)
     {
     short save_num;
