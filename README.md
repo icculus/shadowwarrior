@@ -1,9 +1,16 @@
-====================================================================
-Shadow Warrior (v1.2 CD Version) Source Code Release - April 1, 2005
-====================================================================
 
-LEGAL STUFF
------------
+# shadowwarrior
+
+This is the icculus.org port of 3DRealms' Shadow Warrior. We didn't go nearly as hard on this as we did Duke3D, so I can't speak to the quality of this port.
+
+Below is the original README, unchanged beyond some Markdown formatting cleanup.
+
+--ryan. (icculus@icculus.org)
+
+
+# Shadow Warrior (v1.2 CD Version) Source Code Release - April 1, 2005
+
+## LEGAL STUFF
 
 "Shadow Warrior" is a registered trademark of Apogee Software, Ltd. (a.k.a. 3D Realms).
 "Shadow Warrior" copyright 1997 - 2005 3D Realms.  All trademarks and copyrights reserved.
@@ -18,8 +25,7 @@ Please do not contact us for possible commercial exploitation of Shadow Warrior 
 
 Please note that this is being released without any kind of support from Apogee Software, Ltd / 3D Realms Entertainment.  We cannot help in getting this running and we do not guarantee that you will be able to get it to work, nor do we guarantee that it won't blow up your computer if you do try and use it.  Use at your own risk.
 
-SPECIAL THANKS
---------------
+## SPECIAL THANKS
 
 Very large thanks to Frank Maddin (one of the original Shadow Warrior programmers) for digging up the code and providing some help getting it off the ground.  Also thanks to Jonothan Fowler (responsible for the JonoF port of Duke 3D) for lending his experience with the Build Engine to help track down the last major issues, thus making the released source as full featured and bug free as possible.  I couldn't have done it without these guys.
 
@@ -32,9 +38,7 @@ I had fun putting this source release together, especially given the lack of a c
 Charlie Wiederhold
 3D Realms
 
-====================================================================
-HOW TO COMPILE THE SOURCE CODE
-====================================================================
+# HOW TO COMPILE THE SOURCE CODE
 
 This source code release was compiled on March 31st, 2005 using the materials in this archive.
 
@@ -50,16 +54,14 @@ Step 3) Choose a place you want to work from and unzip the contents of this .ZIP
 
 From here you must use the IDE to compile (the IDE is the software that manages your files, options for compiling, editing files, debugger, etc). There is a MAKEFILE included in the extras folder, but I didn't spend the time testing it to see if it works, which I seriously doubt.
 
-USING THE WATCOM IDE
---------------------
+## USING THE WATCOM IDE
 
 - Start up the Watcom IDE and go to File -> Open Project.
 - Find the directory where you've unzipped the Source files into, and you should see a SW.WPJ. Select this and hit "OK".
 - Click the "Make Current Target" button, or press "F4", or go to the menu Targets -> Make. You'll see a couple Warnings as it compiles, that's normal.
 - This will create a SW.EXE file in the same directory where the SW.WPJ was located, which can then be copied in the directory with your Shadow Warrior data and run.
 
-ONCE YOU HAVE SW.EXE COMPILED
------------------------------
+## ONCE YOU HAVE SW.EXE COMPILED
 
 - If you own Shadow Warrior version 1.2 (registered): You are set... simply copy your new SW.EXE into the directory and run it.
 
@@ -68,9 +70,7 @@ ONCE YOU HAVE SW.EXE COMPILED
 
 This is enough to get you started. Unfortunately nobody at 3D Realms will be able to devote the time to answer any support questions if you do encounter problems. However, go to http://www.3drealms.com/forums.html and you will find people discussing it in the Shadow Warrior Source category who are also probably able to answer questions. Thanks to the prior release of the Duke 3D Source Code, there is already a wealth of knowledge and experienced people around to help out.
 
-====================================================================
-MISC NOTES ABOUT THIS RELEASE
-====================================================================
+# MISC NOTES ABOUT THIS RELEASE
 
 - All changes I made from the original are indicated by a "// CTW" style comment. I made as few changes as possible since the fun for people is working on the Shadow Warrior original code, not my personal rewrite/interpretation. Unfortunately, there was a significant amount of work and hacking needed to get this up and running compared to the Duke 3D release. I was provided with a large list of files with no clue how they needed to be organized, what was actually used, etc. Also, several key files were missing entirely and required borrowing from the Duke 3D source code.
 
